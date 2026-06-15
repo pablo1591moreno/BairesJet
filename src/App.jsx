@@ -443,11 +443,17 @@ const FleetCard = ({ type, img, description, passengers, range, speed, cabin, fe
         </div>
         <div className="text-center">
           <Icon3 strokeWidth={1} className="w-6 h-6 mx-auto text-gray-800 mb-2" />
-          <p className="text-[10px] text-gray-500 leading-tight">{speed.split('\n')[0]}<br/><span className="font-bold text-gray-900">{speed.split('\n')[1] || speed}</span></p>
+          <p className="text-[10px] text-gray-500 leading-tight">
+            {speed.split(/\\n|\n/)[0]}
+            {speed.split(/\\n|\n/)[1] && <><br/><span className="font-bold text-gray-900">{speed.split(/\\n|\n/)[1]}</span></>}
+          </p>
         </div>
         <div className="text-center">
           <Icon4 strokeWidth={1} className="w-6 h-6 mx-auto text-gray-800 mb-2" />
-          <p className="text-[10px] text-gray-500 leading-tight">{cabin.split('\n')[0]}<br/><span className="font-bold text-gray-900">{cabin.split('\n')[1] || cabin}</span></p>
+          <p className="text-[10px] text-gray-500 leading-tight">
+            {cabin.split(/\\n|\n/)[0]}
+            {cabin.split(/\\n|\n/)[1] && <><br/><span className="font-bold text-gray-900">{cabin.split(/\\n|\n/)[1]}</span></>}
+          </p>
         </div>
       </div>
       
