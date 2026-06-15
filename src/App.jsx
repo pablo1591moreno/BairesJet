@@ -491,7 +491,7 @@ const FleetSection = () => {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16 relative z-10">
       <FleetCard 
         type="Light Jets"
-        img={`${import.meta.env.BASE_URL}fleet-light-jet.png`}
+        img={`${import.meta.env.BASE_URL}fleet-light-jet.png?v=2`}
         description="Eficiencia y acceso a más destinos."
         features="Ideales para vuelos cortos y regionales, con acceso a aeropuertos más pequeños y máxima eficiencia."
         passengers="6 pasajeros"
@@ -502,7 +502,7 @@ const FleetSection = () => {
       />
       <FleetCard 
         type="Medium Jets"
-        img={`${import.meta.env.BASE_URL}fleet-medium-jet.png`}
+        img={`${import.meta.env.BASE_URL}fleet-medium-jet.png?v=2`}
         description="Versatilidad y confort en cada vuelo."
         features="La mejor combinación entre alcance, confort y performance para vuelos nacionales e internacionales."
         passengers="8 pasajeros"
@@ -515,7 +515,7 @@ const FleetSection = () => {
       />
       <FleetCard 
         type="Heavy Jets"
-        img={`${import.meta.env.BASE_URL}fleet-heavy-jet.png`}
+        img={`${import.meta.env.BASE_URL}fleet-heavy-jet.png?v=2`}
         description="Rendimiento superior. Alcance excepcional."
         features="Diseñados para vuelos de larga distancia con cabinas espaciosas y servicios personalizados de primer nivel."
         passengers="14 pasajeros"
