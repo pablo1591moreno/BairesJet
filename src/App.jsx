@@ -26,6 +26,7 @@ import {
   Menu,
   X
 } from 'lucide-react';
+import { airports } from './data/airports';
 
 // --- COMPONENTES REUTILIZABLES ---
 
@@ -216,135 +217,205 @@ const Hero = () => (
   </div>
 );
 
-const QuoteSection = () => (
-  <Section id="vuelos" bg="bg-gray-50" className="relative overflow-hidden">
-    <div className="flex flex-col lg:flex-row gap-12 relative z-10">
-      <div className="w-full lg:w-1/2">
-        <div className="w-12 h-1 bg-red-600 mb-6"></div>
-        <h4 className="text-red-600 font-bold text-xs md:text-sm tracking-wider uppercase mb-2">Vuelos Privados</h4>
-        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-4 md:mb-6">
-          COTIZÁ TU VUELO<br/><span className="text-red-600">EN MINUTOS.</span>
-        </h2>
-        <p className="text-gray-600 mb-6 md:mb-8 text-sm md:text-base max-w-lg">
-          Completá el formulario y nuestro equipo te enviará una propuesta a medida, rápida y sin compromiso.
-        </p>
+const AutocompleteInput = ({ label, placeholder, icon: Icon, className = "" }) => {
+  const [query, setQuery] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
-        <form className="bg-white p-5 sm:p-6 md:p-8 border border-gray-200">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            <div>
-              <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Tipo de Vuelo</label>
-              <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
-                <Plane strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                <select className="w-full bg-transparent outline-none text-gray-800 text-sm appearance-none">
-                  <option>Ida y vuelta</option>
-                  <option>Solo ida</option>
-                </select>
-                <ChevronDown strokeWidth={1.5} className="w-4 h-4 text-gray-400 absolute right-3" />
+  const filteredAirports = airports.filter(a => 
+    a.city.toLowerCase().includes(query.toLowerCase()) || 
+    a.name.toLowerCase().includes(query.toLowerCase()) || 
+    a.code.toLowerCase().includes(query.toLowerCase()) ||
+    a.country.toLowerCase().includes(query.toLowerCase())
+  );
+
+  return (
+    <div className={`relative ${className}`}>
+      <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{label}</label>
+      <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50 focus-within:border-red-600 focus-within:bg-white transition-colors">
+        <Icon strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2 shrink-0" />
+        <input 
+          type="text" 
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setIsOpen(true);
+          }}
+          onFocus={() => setIsOpen(true)}
+          onBlur={() => setTimeout(() => setIsOpen(false), 200)}
+          placeholder={placeholder} 
+          className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" 
+        />
+      </div>
+      {isOpen && query && (
+        <div className="absolute z-50 w-full mt-1 bg-white border border-gray-200 shadow-xl max-h-60 overflow-y-auto left-0">
+          {filteredAirports.length > 0 ? (
+            filteredAirports.map(a => (
+              <div 
+                key={a.code} 
+                className="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-0 flex flex-col"
+                onClick={() => {
+                  setQuery(`${a.city} (${a.code})`);
+                  setIsOpen(false);
+                }}
+              >
+                <span className="font-bold text-sm text-gray-900">{a.city}, {a.country}</span>
+                <span className="text-xs text-gray-500">{a.name} ({a.code})</span>
               </div>
-            </div>
-            <div>
-              <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Cantidad de Pasajeros</label>
-              <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
-                <Users strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                <input type="number" placeholder="Ej: 4 pasajeros" className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
+            ))
+          ) : (
+            <div className="p-3 text-sm text-gray-500">No se encontraron aeropuertos</div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
+const QuoteSection = () => {
+  const today = new Date().toISOString().split("T")[0];
+
+  return (
+    <Section id="vuelos" bg="bg-gray-50" className="relative overflow-hidden">
+      <div className="flex flex-col lg:flex-row gap-12 relative z-10">
+        <div className="w-full lg:w-1/2">
+          <div className="w-12 h-1 bg-red-600 mb-6"></div>
+          <h4 className="text-red-600 font-bold text-xs md:text-sm tracking-wider uppercase mb-2">Vuelos Privados</h4>
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-4 md:mb-6">
+            COTIZÁ TU VUELO<br/><span className="text-red-600">EN MINUTOS.</span>
+          </h2>
+          <p className="text-gray-600 mb-6 md:mb-8 text-sm md:text-base max-w-lg">
+            Completá el formulario y nuestro equipo te enviará una propuesta a medida, rápida y sin compromiso.
+          </p>
+
+          <form className="bg-white p-5 sm:p-6 md:p-8 border border-gray-200">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              <div>
+                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Tipo de Vuelo</label>
+                <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
+                  <Plane strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
+                  <select className="w-full bg-transparent outline-none text-gray-800 text-sm appearance-none">
+                    <option>Ida y vuelta</option>
+                    <option>Solo ida</option>
+                  </select>
+                  <ChevronDown strokeWidth={1.5} className="w-4 h-4 text-gray-400 absolute right-3" />
+                </div>
               </div>
-            </div>
-            <div className="relative">
-              <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Origen</label>
-              <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
-                <MapPin strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                <input type="text" placeholder="Ciudad o aeropuerto" className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
+              <div>
+                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Cantidad de Pasajeros</label>
+                <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
+                  <Users strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
+                  <input type="number" min="1" placeholder="Ej: 4 pasajeros" className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
+                </div>
               </div>
-              <div className="hidden md:flex absolute top-[60%] -right-5 z-10 w-8 h-8 bg-white border border-gray-200 rounded-full items-center justify-center text-red-600 shadow-sm">
-                <ArrowLeftRight strokeWidth={1.5} className="w-4 h-4" />
+              
+              <AutocompleteInput 
+                label="Origen" 
+                placeholder="Ciudad o aeropuerto" 
+                icon={MapPin} 
+              />
+              
+              <AutocompleteInput 
+                label="Destino" 
+                placeholder="Ciudad o aeropuerto" 
+                icon={MapPin} 
+              />
+              
+              <div>
+                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Fecha de Salida</label>
+                <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
+                  <input type="date" min={today} className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
+                </div>
               </div>
-            </div>
-            <div>
-              <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Destino</label>
-              <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50 md:pl-4">
-                <MapPin strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                <input type="text" placeholder="Ciudad o aeropuerto" className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
+              <div>
+                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Fecha de Regreso</label>
+                <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
+                  <input type="date" min={today} className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400 pr-24" />
+                  <div className="absolute right-3 flex items-center gap-2 bg-gray-50/80 px-2 py-1 rounded">
+                    <input type="checkbox" id="solo_ida" className="accent-red-600" />
+                    <label htmlFor="solo_ida" className="text-xs text-gray-600 cursor-pointer">Solo ida</label>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div>
-              <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Fecha de Salida</label>
-              <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
-                <Calendar strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                <input type="text" placeholder="Seleccioná fecha" className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
-                <ChevronDown strokeWidth={1.5} className="w-4 h-4 text-gray-400 absolute right-3" />
+               <div>
+                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Horario Preferido</label>
+                <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
+                  <Clock strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
+                  <select className="w-full bg-transparent outline-none text-gray-800 text-sm appearance-none">
+                    <option>Horario aproximado</option>
+                    <option>Mañana</option>
+                    <option>Tarde</option>
+                    <option>Noche</option>
+                  </select>
+                  <ChevronDown strokeWidth={1.5} className="w-4 h-4 text-gray-400 absolute right-3" />
+                </div>
               </div>
-            </div>
-            <div>
-              <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Fecha de Regreso</label>
-              <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
-                <Calendar strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                <input type="text" placeholder="Seleccioná fecha" className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
-                <div className="absolute right-3 flex items-center gap-2">
-                  <input type="checkbox" id="solo_ida" className="accent-red-600" />
-                  <label htmlFor="solo_ida" className="text-xs text-gray-600 cursor-pointer">Solo ida</label>
+               <div>
+                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Tipo de Aeronave</label>
+                <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
+                  <Plane strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
+                  <select className="w-full bg-transparent outline-none text-gray-800 text-sm appearance-none">
+                    <option>Seleccioná preferencia</option>
+                    <option>Light Jet</option>
+                    <option>Medium Jet</option>
+                    <option>Heavy Jet</option>
+                  </select>
+                  <ChevronDown strokeWidth={1.5} className="w-4 h-4 text-gray-400 absolute right-3" />
                 </div>
               </div>
             </div>
-             <div>
-              <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Horario Preferido</label>
-              <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
-                <Clock strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                <select className="w-full bg-transparent outline-none text-gray-800 text-sm appearance-none">
-                  <option>Horario aproximado</option>
-                  <option>Mañana</option>
-                  <option>Tarde</option>
-                  <option>Noche</option>
-                </select>
-                <ChevronDown strokeWidth={1.5} className="w-4 h-4 text-gray-400 absolute right-3" />
+
+            <div className="mt-8 pt-8 border-t border-gray-200">
+              <h3 className="font-bold text-sm mb-4 text-gray-900 uppercase">Datos de Contacto</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                <div>
+                  <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Nombre Completo</label>
+                  <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50 focus-within:border-red-600 focus-within:bg-white transition-colors">
+                    <User strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
+                    <input type="text" placeholder="Ej: Juan Pérez" className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Email</label>
+                  <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50 focus-within:border-red-600 focus-within:bg-white transition-colors">
+                    <Mail strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
+                    <input type="email" placeholder="ejemplo@correo.com" className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Teléfono</label>
+                  <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50 focus-within:border-red-600 focus-within:bg-white transition-colors">
+                    <Phone strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
+                    <input type="tel" placeholder="+54 9 11 1234-5678" className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
+                  </div>
+                </div>
               </div>
             </div>
-             <div>
-              <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Tipo de Aeronave</label>
-              <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
-                <Plane strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                <select className="w-full bg-transparent outline-none text-gray-800 text-sm appearance-none">
-                  <option>Seleccioná preferencia</option>
-                  <option>Light Jet</option>
-                  <option>Medium Jet</option>
-                  <option>Heavy Jet</option>
-                </select>
-                <ChevronDown strokeWidth={1.5} className="w-4 h-4 text-gray-400 absolute right-3" />
+            
+            <div className="mt-8 flex flex-col sm:flex-row items-center gap-6">
+              <button className="w-full sm:w-auto bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors">
+                SOLICITAR COTIZACIÓN <ArrowRight strokeWidth={2} className="w-4 h-4" />
+              </button>
+              <div className="flex items-center gap-2 text-xs text-gray-500">
+                <Lock strokeWidth={1.5} className="w-4 h-4" />
+                <span>Tu información está<br/>segura y protegida.</span>
               </div>
             </div>
-            <div className="md:col-span-2">
-              <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Servicios Adicionales (Opcional)</label>
-              <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
-                <Briefcase strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                <input type="text" placeholder="Catering, transporte terrestre, WiFi, etc." className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
-                <ChevronDown strokeWidth={1.5} className="w-4 h-4 text-gray-400 absolute right-3" />
-              </div>
-            </div>
-          </div>
-          
-          <div className="mt-8 flex flex-col sm:flex-row items-center gap-6">
-            <button className="w-full sm:w-auto bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors">
-              SOLICITAR COTIZACIÓN <ArrowRight strokeWidth={2} className="w-4 h-4" />
-            </button>
-            <div className="flex items-center gap-2 text-xs text-gray-500">
-              <Lock strokeWidth={1.5} className="w-4 h-4" />
-              <span>Tu información está<br/>segura y protegida.</span>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
+        
+        {/* Background Jet Image for Right Side */}
+        <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80" 
+            alt="Private Jet" 
+            className="w-full h-full object-cover"
+            style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0 100%)' }}
+          />
+        </div>
       </div>
-      
-      {/* Background Jet Image for Right Side */}
-      <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80" 
-          alt="Private Jet" 
-          className="w-full h-full object-cover"
-          style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0 100%)' }}
-        />
-      </div>
-    </div>
-  </Section>
-);
+    </Section>
+  );
+};
 
 const FleetCard = ({ type, img, description, passengers, range, speed, cabin, features, buttonText = "VER DISPONIBILIDAD", Icon3 = Gauge, Icon4 = Briefcase }) => (
   <div className="bg-white border border-gray-200 flex flex-col group relative z-10">
