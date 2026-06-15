@@ -171,7 +171,7 @@ const Hero = () => (
   <div id="inicio" className="relative pt-20 min-h-screen flex flex-col bg-white overflow-hidden">
     <div className="flex-grow flex flex-col lg:flex-row relative">
       {/* Mobile Top Image */}
-      <div className="lg:hidden w-full h-64 sm:h-80 bg-cover bg-center" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80")' }} />
+      <div className="lg:hidden w-full h-64 sm:h-80 bg-cover bg-center" style={{ backgroundImage: `url("${import.meta.env.BASE_URL}hero-jet.jpg")` }} />
       
       <div className="w-full lg:w-[55%] p-6 sm:p-8 md:p-16 lg:p-24 flex flex-col justify-center relative z-10 bg-white lg:bg-transparent">
         <div className="w-12 h-1 bg-red-600 mb-6 md:mb-8"></div>
@@ -187,7 +187,7 @@ const Hero = () => (
           </button>
         </div>
 
-        <div className="mt-10 md:mt-16 grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 border-t border-gray-100 pt-6 md:pt-8">
+        <div className="mt-10 md:mt-16 grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 pt-6 md:pt-8">
           <div className="flex flex-col items-start text-left">
             <Plane strokeWidth={1} className="w-8 h-8 text-red-600 mb-2 transform -rotate-45" />
             <h3 className="font-bold text-xs mb-1">VUELOS PRIVADOS</h3>
@@ -209,7 +209,7 @@ const Hero = () => (
       {/* Right Image */}
       <div className="hidden lg:block absolute top-0 right-0 w-[55%] h-full z-0 pointer-events-none">
          <div className="absolute inset-0 z-10" style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}>
-           <div className="absolute top-0 left-0 w-full h-full bg-cover bg-center" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80")' }} />
+           <div className="absolute top-0 left-0 w-full h-full bg-cover bg-center" style={{ backgroundImage: `url("${import.meta.env.BASE_URL}hero-jet.jpg")` }} />
          </div>
       </div>
     </div>
@@ -406,7 +406,7 @@ const QuoteSection = () => {
         {/* Background Jet Image for Right Side */}
         <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full z-0">
           <img 
-            src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80" 
+            src={`${import.meta.env.BASE_URL}hero-jet.jpg`} 
             alt="Private Jet" 
             className="w-full h-full object-cover"
             style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0 100%)' }}
@@ -496,7 +496,7 @@ const FleetSection = () => {
       />
       <FleetCard 
         type="Medium Jets"
-        img="https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80"
+        img={`${import.meta.env.BASE_URL}hero-jet.jpg`}
         description="Versatilidad y confort en cada vuelo."
         features="La mejor combinación entre alcance, confort y performance para vuelos nacionales e internacionales."
         passengers="8 pasajeros"
@@ -548,8 +548,8 @@ const ExperienceSection = () => {
           En BairesJet ofrecemos vuelos privados de máxima calidad. Nuestro compromiso es brindarte seguridad, eficiencia y una experiencia personalizada en cada detalle, superando tus expectativas en cada viaje.
         </p>
       </div>
-      <div className="w-full lg:w-1/2">
-        <img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80" alt="Private Jet Sunset" className="w-full h-auto object-cover shadow-lg" />
+      <div className="relative z-10 w-full md:w-1/2 p-6 md:p-12">
+        <img src={`${import.meta.env.BASE_URL}hero-jet.jpg`} alt="Private Jet Sunset" className="w-full h-auto object-cover shadow-lg" />
       </div>
     </div>
 
