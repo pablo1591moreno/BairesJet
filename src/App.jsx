@@ -83,11 +83,7 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center flex-col items-start relative z-50">
-              <span className="text-3xl font-bold italic tracking-tighter text-black flex items-center">
-                Baires<span className="text-red-600">jet</span>
-                <Plane className="w-6 h-6 text-red-600 transform -rotate-45 -ml-1 -mt-4" />
-              </span>
-              <span className="text-[10px] tracking-widest text-gray-500 font-medium">- PRIVATE FLIGHTS -</span>
+              <img src={`${import.meta.env.BASE_URL}logo-BGJ.png`} alt="BairesJet" className="h-12 md:h-14 w-auto object-contain" />
             </div>
             
             <div className="hidden md:flex space-x-8 text-sm font-semibold text-gray-800">
@@ -127,11 +123,7 @@ const Navbar = () => {
         <div className="md:hidden fixed inset-0 bg-white z-[100] flex flex-col p-6 overflow-y-auto">
           <div className="flex justify-between items-center mb-8">
             <div className="flex items-center flex-col items-start relative">
-              <span className="text-2xl font-bold italic tracking-tighter text-black flex items-center">
-                Baires<span className="text-red-600">jet</span>
-                <Plane className="w-5 h-5 text-red-600 transform -rotate-45 -ml-1 -mt-3" />
-              </span>
-              <span className="text-[8px] tracking-widest text-gray-500 font-medium">- PRIVATE FLIGHTS -</span>
+              <img src={`${import.meta.env.BASE_URL}logo-BGJ.png`} alt="BairesJet" className="h-10 w-auto object-contain" />
             </div>
             <button 
               className="p-1 border-2 border-black"
