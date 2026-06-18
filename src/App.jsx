@@ -172,7 +172,7 @@ const Hero = () => (
           <span className="text-red-600 mt-2 md:mt-4">SIN LÍMITES.</span>
         </h1>
         <p className="mt-4 md:mt-6 text-gray-600 text-base md:text-lg max-w-md">
-          Vuelos privados de última generación. Una experiencia aérea completa, a tu medida.
+          Vuelos privados y chárter ejecutivos en Argentina. Sin escalas, a tu horario, con privacidad total. De Buenos Aires al mundo y a cada rincón del país.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-4">
           <button className="bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-fit">
@@ -479,7 +479,7 @@ const FleetSection = () => {
         <span className="text-red-600 mt-1 md:mt-4">JETS PRIVADOS</span>
       </h2>
       <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto px-4 md:px-0">
-        Contamos con una flota cuidadosamente seleccionada de jets privados que combinan performance, confort y tecnología de última generación para ofrecerte una experiencia de vuelo única.
+        Flota de jets privados disponibles para alquiler en Argentina. Desde vuelos regionales y traslados corporativos hasta viajes de lujo intercontinentales. Operamos los 365 días del año, las 24 horas.
       </p>
     </div>
 
@@ -487,8 +487,8 @@ const FleetSection = () => {
       <FleetCard 
         type="Light Jets"
         img={`${import.meta.env.BASE_URL}fleet-light-jet.png?v=2`}
-        description="Eficiencia y acceso a más destinos."
-        features="Ideales para vuelos cortos y regionales, con acceso a aeropuertos más pequeños y máxima eficiencia."
+        description="Eficiencia máxima. Acceso a más destinos."
+        features="Ideales para traslados ejecutivos y regionales sin escala. Acceden a aeropuertos pequeños sin vuelos comerciales directos, como Neuquén, Viedma, San Martín de los Andes y más."
         passengers="6 pasajeros"
         range="hasta 2.000 km"
         speed="Velocidad crucero\nhasta 740 km/h"
@@ -498,8 +498,8 @@ const FleetSection = () => {
       <FleetCard 
         type="Medium Jets"
         img={`${import.meta.env.BASE_URL}fleet-medium-jet.png?v=2`}
-        description="Versatilidad y confort en cada vuelo."
-        features="La mejor combinación entre alcance, confort y performance para vuelos nacionales e internacionales."
+        description="Versatilidad corporativa. Alcance internacional."
+        features="La opción perfecta para grupos ejecutivos y turismo de lujo. Vuelos directos a Patagonia, Mendoza, Salta y destinos internacionales como Chile, Uruguay, Brasil y Miami."
         passengers="8 pasajeros"
         range="hasta 4.500 km"
         speed="Wi-Fi y\ncatering opcional"
@@ -511,8 +511,8 @@ const FleetSection = () => {
       <FleetCard 
         type="Heavy Jets"
         img={`${import.meta.env.BASE_URL}fleet-heavy-jet.png?v=2`}
-        description="Rendimiento superior. Alcance excepcional."
-        features="Diseñados para vuelos de larga distancia con cabinas espaciosas y servicios personalizados de primer nivel."
+        description="Máximo alcance. Lujo sin compromisos."
+        features="Ultra long range para vuelos intercontinentales sin escalas. Buenos Aires – Europa, EE.UU. o Asia en cabinas de gran confort con servicios VIP a bordo y privacidad absoluta."
         passengers="14 pasajeros"
         range="hasta 12.000 km"
         speed="Cabina\nde lujo"
@@ -547,7 +547,7 @@ const ExperienceSection = () => {
           <span className="mt-1 md:mt-4">PREMIUM.</span>
         </h2>
         <p className="text-gray-600 mb-6 md:mb-8 text-sm md:text-base">
-          En Baires Global Jets ofrecemos vuelos privados de máxima calidad. Nuestro compromiso es brindarte seguridad, eficiencia y una experiencia personalizada en cada detalle, superando tus expectativas en cada viaje.
+          En Baires Global Jets operamos vuelos privados y chárter ejecutivos con los más altos estándares de seguridad aeronáutica. Conectamos Buenos Aires con destinos clave del país —Vaca Muerta, Patagonia, Mendoza, NOA— y con el mundo. Ahorrá tiempo, evitá escalas y volá con privacidad total.
         </p>
       </div>
       <div className="relative z-10 w-full md:w-1/2 p-6 md:p-12">
