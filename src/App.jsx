@@ -167,7 +167,7 @@ const Hero = () => (
       
       <div className="w-full lg:w-[55%] p-6 sm:p-8 md:p-16 lg:p-24 flex flex-col justify-center relative z-10 bg-white lg:bg-transparent">
         <div className="w-12 h-1 bg-red-600 mb-6 md:mb-8"></div>
-        <h1 className="text-4xl md:text-7xl font-futuristic italic text-gray-900 leading-normal">
+        <h1 className="text-4xl md:text-7xl font-futuristic italic text-gray-900 leading-[1.7]">
           VOLAR.<br/><span className="text-red-600">SIN LÍMITES.</span>
         </h1>
         <p className="mt-4 md:mt-6 text-gray-600 text-base md:text-lg max-w-md">
@@ -272,7 +272,7 @@ const QuoteSection = () => {
         <div className="w-full lg:w-1/2">
           <div className="w-12 h-1 bg-red-600 mb-6"></div>
           <h4 className="text-red-600 font-bold text-xs md:text-sm tracking-wider uppercase mb-2">Vuelos Privados</h4>
-          <h2 className="text-3xl md:text-5xl font-futuristic italic text-gray-900 leading-normal mb-4 md:mb-6">
+          <h2 className="text-3xl md:text-5xl font-futuristic italic text-gray-900 leading-[1.7] mb-4 md:mb-6">
             COTIZÁ TU VUELO<br/><span className="text-red-600">EN MINUTOS.</span>
           </h2>
           <p className="text-gray-600 mb-6 md:mb-8 text-sm md:text-base max-w-lg">
@@ -472,7 +472,7 @@ const FleetSection = () => {
     <div className="text-center mb-10 md:mb-12 relative z-10">
       <div className="w-12 h-1 bg-red-600 mx-auto mb-4 md:mb-6"></div>
       <h4 className="text-red-600 font-futuristic italic text-xs md:text-sm tracking-widest uppercase mb-2">Nuestra Flota</h4>
-      <h2 className="text-3xl md:text-5xl font-futuristic italic text-gray-900 leading-normal mb-4">
+      <h2 className="text-3xl md:text-5xl font-futuristic italic text-gray-900 leading-[1.7] mb-4">
         DESCRIPCIÓN DE<br/><span className="text-red-600">JETS PRIVADOS</span>
       </h2>
       <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto px-4 md:px-0">
@@ -539,7 +539,7 @@ const ExperienceSection = () => {
       <div className="w-full lg:w-1/2">
         <div className="w-12 h-1 bg-red-600 mb-4 md:mb-6"></div>
         <h4 className="text-red-600 font-futuristic italic text-xs md:text-sm tracking-widest uppercase mb-2">Nuestro Compromiso</h4>
-        <h2 className="text-3xl md:text-5xl font-futuristic italic text-gray-900 leading-normal mb-4 md:mb-6">
+        <h2 className="text-3xl md:text-5xl font-futuristic italic text-gray-900 leading-[1.7] mb-4 md:mb-6">
           EXPERIENCIA AERONÁUTICA<br/>PREMIUM.
         </h2>
         <p className="text-gray-600 mb-6 md:mb-8 text-sm md:text-base">
@@ -614,7 +614,7 @@ const ContactSection = () => {
       <div className="w-full lg:w-1/3">
         <div className="w-12 h-1 bg-red-600 mb-4 md:mb-6 mt-8 md:mt-0"></div>
         <h4 className="text-red-600 font-bold text-xs md:text-sm tracking-wider uppercase mb-2">Contacto</h4>
-        <h2 className="text-3xl md:text-4xl font-futuristic italic text-gray-900 leading-normal mb-4 md:mb-6">
+        <h2 className="text-3xl md:text-4xl font-futuristic italic text-gray-900 leading-[1.7] mb-4 md:mb-6">
           ESTAMOS PARA<br/><span className="text-red-600">AYUDARTE.</span>
         </h2>
         <p className="text-gray-600 mb-6 md:mb-8 text-sm">
