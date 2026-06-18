@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        futuristic: ['Michroma', 'sans-serif'],
+        orbitron: ['Orbitron', 'sans-serif'],
+        exo: ['"Exo 2"', 'sans-serif'],
+        syncopate: ['Syncopate', 'sans-serif'],
+      }
+    },
   },
   plugins: [],
 }

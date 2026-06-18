@@ -167,7 +167,7 @@ const Hero = () => (
       
       <div className="w-full lg:w-[55%] p-6 sm:p-8 md:p-16 lg:p-24 flex flex-col justify-center relative z-10 bg-white lg:bg-transparent">
         <div className="w-12 h-1 bg-red-600 mb-6 md:mb-8"></div>
-        <h1 className="text-4xl md:text-7xl font-bold tracking-tight text-gray-900 leading-tight">
+        <h1 className="text-4xl md:text-7xl font-futuristic italic text-gray-900 leading-tight">
           VOLAR.<br/><span className="text-red-600">SIN LÍMITES.</span>
         </h1>
         <p className="mt-4 md:mt-6 text-gray-600 text-base md:text-lg max-w-md">
@@ -272,7 +272,7 @@ const QuoteSection = () => {
         <div className="w-full lg:w-1/2">
           <div className="w-12 h-1 bg-red-600 mb-6"></div>
           <h4 className="text-red-600 font-bold text-xs md:text-sm tracking-wider uppercase mb-2">Vuelos Privados</h4>
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-4 md:mb-6">
+          <h2 className="text-3xl md:text-5xl font-futuristic italic text-gray-900 leading-tight mb-4 md:mb-6">
             COTIZÁ TU VUELO<br/><span className="text-red-600">EN MINUTOS.</span>
           </h2>
           <p className="text-gray-600 mb-6 md:mb-8 text-sm md:text-base max-w-lg">
@@ -471,8 +471,8 @@ const FleetSection = () => {
     <Plane className="absolute right-10 top-20 w-96 h-96 text-gray-50 opacity-50 transform rotate-45 pointer-events-none" />
     <div className="text-center mb-10 md:mb-12 relative z-10">
       <div className="w-12 h-1 bg-red-600 mx-auto mb-4 md:mb-6"></div>
-      <h4 className="text-red-600 font-bold text-xs md:text-sm tracking-wider uppercase mb-2">Nuestra Flota</h4>
-      <h2 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
+      <h4 className="text-red-600 font-futuristic italic text-xs md:text-sm tracking-widest uppercase mb-2">Nuestra Flota</h4>
+      <h2 className="text-3xl md:text-5xl font-futuristic italic text-gray-900 leading-tight mb-4">
         DESCRIPCIÓN DE<br/><span className="text-red-600">JETS PRIVADOS</span>
       </h2>
       <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto px-4 md:px-0">
@@ -538,8 +538,8 @@ const ExperienceSection = () => {
     <div className="flex flex-col lg:flex-row gap-8 md:gap-12 mb-12 md:mb-16">
       <div className="w-full lg:w-1/2">
         <div className="w-12 h-1 bg-red-600 mb-4 md:mb-6"></div>
-        <h4 className="text-red-600 font-bold text-xs md:text-sm tracking-wider uppercase mb-2">Nuestro Compromiso</h4>
-        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-4 md:mb-6">
+        <h4 className="text-red-600 font-futuristic italic text-xs md:text-sm tracking-widest uppercase mb-2">Nuestro Compromiso</h4>
+        <h2 className="text-3xl md:text-5xl font-futuristic italic text-gray-900 leading-tight mb-4 md:mb-6">
           EXPERIENCIA AERONÁUTICA<br/>PREMIUM.
         </h2>
         <p className="text-gray-600 mb-6 md:mb-8 text-sm md:text-base">
@@ -586,7 +586,7 @@ const ExperienceSection = () => {
 
     <div className="bg-gray-50 border border-gray-200 flex flex-col lg:flex-row items-center justify-between p-6 md:p-8 rounded-sm">
       <div className="lg:w-1/2 mb-6 lg:mb-0 text-center lg:text-left">
-        <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">RESERVÁ TU PRÓXIMA EXPERIENCIA<br/><span className="text-red-600">CON BAIRESJET</span></h3>
+        <h3 className="text-xl md:text-2xl font-futuristic italic text-gray-900 mb-2">RESERVÁ TU PRÓXIMA EXPERIENCIA<br/><span className="text-red-600">CON BAIRESJET</span></h3>
         <p className="text-xs md:text-sm text-gray-600">Ya sea que quieras alcanzar tu próximo destino por negocios o placer, estamos listos para acompañarte con el más alto estándar de calidad.</p>
       </div>
       <div className="flex flex-col sm:flex-row gap-4 lg:w-auto w-full">
@@ -614,7 +614,7 @@ const ContactSection = () => {
       <div className="w-full lg:w-1/3">
         <div className="w-12 h-1 bg-red-600 mb-4 md:mb-6 mt-8 md:mt-0"></div>
         <h4 className="text-red-600 font-bold text-xs md:text-sm tracking-wider uppercase mb-2">Contacto</h4>
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4 md:mb-6">
+        <h2 className="text-3xl md:text-4xl font-futuristic italic text-gray-900 leading-tight mb-4 md:mb-6">
           ESTAMOS PARA<br/><span className="text-red-600">AYUDARTE.</span>
         </h2>
         <p className="text-gray-600 mb-6 md:mb-8 text-sm">
