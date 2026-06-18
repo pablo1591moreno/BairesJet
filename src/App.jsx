@@ -83,7 +83,7 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center flex-col items-start relative z-50">
-              <img src={`${import.meta.env.BASE_URL}logo-BGJ.png`} alt="BairesJet" className="h-12 md:h-14 w-auto object-contain" />
+              <img src={`${import.meta.env.BASE_URL}logo-BGJ.png`} alt="Baires Global Jets" className="h-12 md:h-14 w-auto object-contain" />
             </div>
             
             <div className="hidden md:flex space-x-8 text-sm font-semibold text-gray-800">
@@ -123,7 +123,7 @@ const Navbar = () => {
         <div className="md:hidden fixed inset-0 bg-white z-[100] flex flex-col p-6 overflow-y-auto">
           <div className="flex justify-between items-center mb-8">
             <div className="flex items-center flex-col items-start relative">
-              <img src={`${import.meta.env.BASE_URL}logo-BGJ.png`} alt="BairesJet" className="h-10 w-auto object-contain" />
+              <img src={`${import.meta.env.BASE_URL}logo-BGJ.png`} alt="Baires Global Jets" className="h-10 w-auto object-contain" />
             </div>
             <button 
               className="p-1 border-2 border-black"
@@ -547,7 +547,7 @@ const ExperienceSection = () => {
           <span className="mt-1 md:mt-4">PREMIUM.</span>
         </h2>
         <p className="text-gray-600 mb-6 md:mb-8 text-sm md:text-base">
-          En BairesJet ofrecemos vuelos privados de máxima calidad. Nuestro compromiso es brindarte seguridad, eficiencia y una experiencia personalizada en cada detalle, superando tus expectativas en cada viaje.
+          En Baires Global Jets ofrecemos vuelos privados de máxima calidad. Nuestro compromiso es brindarte seguridad, eficiencia y una experiencia personalizada en cada detalle, superando tus expectativas en cada viaje.
         </p>
       </div>
       <div className="relative z-10 w-full md:w-1/2 p-6 md:p-12">
@@ -592,7 +592,7 @@ const ExperienceSection = () => {
       <div className="lg:w-1/2 mb-6 lg:mb-0 text-center lg:text-left">
         <h3 className="text-xl md:text-2xl font-futuristic italic font-bold text-gray-900 mb-2 flex flex-col">
           <span>RESERVÁ TU PRÓXIMA EXPERIENCIA</span>
-          <span className="text-red-600 mt-1 md:mt-2">CON BAIRESJET</span>
+          <span className="text-red-600 mt-1 md:mt-2">CON BAIRES GLOBAL JETS</span>
         </h3>
         <p className="text-xs md:text-sm text-gray-600">Ya sea que quieras alcanzar tu próximo destino por negocios o placer, estamos listos para acompañarte con el más alto estándar de calidad.</p>
       </div>
@@ -636,8 +636,8 @@ const ContactSection = () => {
             </div>
             <div>
               <h4 className="font-bold text-sm text-gray-900 mb-1">CORREOS ELECTRÓNICOS</h4>
-              <p className="text-sm text-red-600">vuelos@bairesjet.com.ar</p>
-              <p className="text-sm text-red-600">info@bairesjet.com.ar</p>
+              <p className="text-sm text-red-600">vuelos@bairesglobaljets.com.ar</p>
+              <p className="text-sm text-red-600">info@bairesglobaljets.com.ar</p>
             </div>
           </div>
           
