@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   Plane, 
   ShieldCheck, 
@@ -757,6 +758,60 @@ const WhatsAppButton = () => {
   );
 };
 
+
+const SimulatorPreviewSection = () => (
+  <section id="simuladores-preview" className="bg-gray-900 py-16 md:py-24 overflow-hidden relative">
+    {/* Background cockpit image */}
+    <div
+      className="absolute inset-0 bg-cover bg-center opacity-20"
+      style={{ backgroundImage: `url("${import.meta.env.BASE_URL}simulator-cockpit.png")` }}
+    />
+    <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col lg:flex-row items-center gap-12">
+        {/* Left: text */}
+        <div className="w-full lg:w-1/2">
+          <div className="w-12 h-1 bg-red-600 mb-4" />
+          <p className="text-red-600 font-bold text-xs tracking-widest uppercase mb-3">Training Center</p>
+          <h2 className="text-3xl md:text-5xl font-futuristic italic font-bold text-white leading-tight flex flex-col mb-6">
+            <span>SIMULADORES</span>
+            <span className="text-red-600 mt-2 md:mt-4">DE VUELO.</span>
+          </h2>
+          <p className="text-gray-300 text-sm md:text-base mb-8 max-w-md">
+            Entrenamiento profesional en simuladores Boeing 737 y King Air 200. Cursos IFR, MCC, Airline Preparation y Corporate Pilot Training para pilotos que buscan excelencia operacional.
+          </p>
+          <div className="flex flex-wrap gap-4 mb-8">
+            {['Boeing 737', 'King Air 200', 'IFR', 'MCC', 'Airline Prep', 'Corporate'].map(tag => (
+              <span key={tag} className="border border-red-600 text-red-400 text-xs font-bold px-3 py-1 uppercase tracking-wider">{tag}</span>
+            ))}
+          </div>
+          <Link
+            to="/simuladores"
+            className="bg-red-600 text-white px-8 py-4 font-bold text-sm inline-flex items-center gap-2 hover:bg-red-700 transition-colors"
+          >
+            VER CURSOS Y SIMULADORES <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        {/* Right: mini cards */}
+        <div className="w-full lg:w-1/2 grid grid-cols-2 gap-4">
+          {[
+            { icon: '🎯', title: 'ENTRENAMIENTO\nREALISTA', desc: 'Simuladores de alta fidelidad con escenarios reales.' },
+            { icon: '🏆', title: 'INSTRUCTORES\nEXPERTOS', desc: 'Pilotos con experiencia operacional certificada.' },
+            { icon: '🛡️', title: 'MÁXIMA\nSEGURIDAD', desc: 'Protocolos internacionales en cada sesión.' },
+            { icon: '💻', title: 'TECNOLOGÍA\nAVANZADA', desc: 'Equipos de última generación para el mejor aprendizaje.' },
+          ].map(({ icon, title, desc }) => (
+            <div key={title} className="bg-white/5 border border-white/10 p-4 hover:border-red-600/50 transition-colors">
+              <span className="text-2xl mb-2 block">{icon}</span>
+              <p className="font-futuristic italic font-bold text-white text-xs whitespace-pre-line leading-snug mb-1">{title}</p>
+              <p className="text-gray-500 text-[10px]">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
 export default function App() {
   return (
     <div className="font-sans text-gray-900 bg-white">
@@ -765,6 +820,7 @@ export default function App() {
       <QuoteSection />
       <FleetSection />
       <ExperienceSection />
+      <SimulatorPreviewSection />
       <ContactSection />
       <WhatsAppButton />
     </div>
