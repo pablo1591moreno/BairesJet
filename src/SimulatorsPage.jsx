@@ -40,7 +40,7 @@ const SimulatorSEO = () => {
           "name": "Baires Global Jets Training Center",
           "description": "Centro de entrenamiento aeronáutico en Argentina con simuladores de vuelo profesionales Boeing 737 y Beechcraft King Air 200. Ofrecemos cursos de piloto privado, IFR, MCC, Airline Preparation y Corporate Pilot Training.",
           "url": "https://pablo1591moreno.github.io/BairesJet/simuladores",
-          "telephone": "+54-9-11-2690-9313",
+          "telephone": "+54-9-11-7374-5726",
           "email": "info@bairesglobaljets.com.ar",
           "address": { "@type": "PostalAddress", "addressLocality": "Buenos Aires", "addressCountry": "AR" },
           "hasOfferCatalog": {
@@ -317,7 +317,7 @@ export default function SimulatorsPage() {
           <div className="lg:w-1/2 flex flex-col gap-4">
             <div className="flex items-center gap-3 text-white">
               <Phone strokeWidth={1.5} className="w-5 h-5 text-red-600 shrink-0" />
-              <span className="text-sm">+54 9 11 2690 9313</span>
+              <span className="text-sm">+54 9 11 7374 5726</span>
             </div>
             <div className="flex items-center gap-3 text-white">
               <Mail strokeWidth={1.5} className="w-5 h-5 text-red-600 shrink-0" />
