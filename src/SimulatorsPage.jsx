@@ -151,10 +151,10 @@ export default function SimulatorsPage() {
               Entrenamiento profesional en simuladores de última generación para pilotos que buscan excelencia operacional. Boeing 737 y King Air 200 disponibles en Buenos Aires.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#cursos" className="bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-fit">
+              <a href="#simuladores" className="bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-fit">
                 VER CURSOS <ChevronRight className="w-4 h-4" />
               </a>
-              <a href="#contacto-sim" className="border-2 border-gray-900 text-gray-900 px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-gray-900 hover:text-white transition-colors w-fit">
+              <a href="https://wa.me/5491126909313" target="_blank" rel="noopener noreferrer" className="border-2 border-gray-900 text-gray-900 px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-gray-900 hover:text-white transition-colors w-fit">
                 RESERVAR SESIÓN
               </a>
             </div>
