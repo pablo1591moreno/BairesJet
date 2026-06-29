@@ -134,9 +134,7 @@ export const Navbar = () => {
             </div>
             
             <div className="flex items-center gap-4">
-              <button className="hidden md:block bg-red-600 text-white px-6 py-2 font-bold text-sm hover:bg-red-700 transition-colors">
-                RESERVAR
-              </button>
+              {/* RESERVAR button removed */}
               <button 
                 className="md:hidden text-gray-900 p-2 z-50 relative"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -189,9 +187,15 @@ export const Navbar = () => {
             ))}
           </div>
 
-          <button className="mt-8 bg-red-600 text-white w-full py-4 font-bold text-sm">
-            RESERVAR VUELO
-          </button>
+            <a
+              id="btn-mobile-menu-reservar"
+              href="https://wa.me/5491173745726"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 bg-red-600 text-white w-full py-4 font-bold text-sm block text-center"
+            >
+              RESERVAR VUELO
+            </a>
         </div>
       )}
     </>
@@ -214,9 +218,13 @@ const Hero = () => (
           Vuelos privados y chárter ejecutivos en Argentina. Sin escalas, a tu horario, con privacidad total. De Buenos Aires al mundo y a cada rincón del país.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-4">
-          <button className="bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-fit">
+          <a
+            id="btn-hero-cotizar-vuelo"
+            href="#vuelos"
+            className="bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-fit"
+          >
             COTIZÁ TU VUELO <ArrowRight strokeWidth={2} className="w-4 h-4" />
-          </button>
+          </a>
         </div>
 
         <div className="mt-10 md:mt-16 grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 pt-6 md:pt-8">
@@ -425,7 +433,10 @@ const QuoteSection = () => {
             </div>
             
             <div className="mt-8 flex flex-col sm:flex-row items-center gap-6">
-              <button className="w-full sm:w-auto bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors">
+              <button
+                id="btn-form-solicitar-cotizacion"
+                className="w-full sm:w-auto bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors"
+              >
                 SOLICITAR COTIZACIÓN <ArrowRight strokeWidth={2} className="w-4 h-4" />
               </button>
               <div className="flex items-center gap-2 text-xs text-gray-500">
@@ -490,7 +501,10 @@ const FleetCard = ({ type, img, description, passengers, range, speed, cabin, fe
         </div>
       </div>
       
-      <button className="w-full bg-red-600 text-white py-3 font-bold text-xs uppercase hover:bg-red-700 transition-colors">
+      <button
+        id={`btn-flota-${buttonText.toLowerCase().replace(/\s+/g, '-')}`}
+        className="w-full bg-red-600 text-white py-3 font-bold text-xs uppercase hover:bg-red-700 transition-colors"
+      >
         {buttonText}
       </button>
     </div>
@@ -636,9 +650,13 @@ const ExperienceSection = () => {
         <p className="text-xs md:text-sm text-gray-600">Ya sea que quieras alcanzar tu próximo destino por negocios o placer, estamos listos para acompañarte con el más alto estándar de calidad.</p>
       </div>
       <div className="flex flex-col sm:flex-row gap-4 lg:w-auto w-full">
-        <button className="bg-red-600 text-white px-6 py-3 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-full sm:w-auto">
+        <a
+          id="btn-experiencia-cotizar-vuelo"
+          href="#vuelos"
+          className="bg-red-600 text-white px-6 py-3 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-full sm:w-auto"
+        >
           <Plane className="w-4 h-4 transform -rotate-45" /> COTIZAR VUELO PRIVADO
-        </button>
+        </a>
       </div>
     </div>
     <FeatureStrip items={expFeatures} className="mt-8 bg-white border-none" />
@@ -738,9 +756,13 @@ const ContactSection = () => {
       </div>
       <p className="text-gray-600 text-sm hidden lg:block border-l border-gray-300 pl-6 h-full flex items-center">Solicitá más información o cotizá tu próximo servicio.</p>
       <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
-        <button className="bg-red-600 text-white px-8 py-3 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors whitespace-nowrap">
+        <a
+          id="btn-contacto-cotizar-vuelo"
+          href="#vuelos"
+          className="bg-red-600 text-white px-8 py-3 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors whitespace-nowrap"
+        >
           <Plane strokeWidth={2} className="w-4 h-4 transform -rotate-45" /> COTIZAR VUELO PRIVADO
-        </button>
+        </a>
       </div>
     </div>
     
@@ -781,9 +803,10 @@ const WhatsAppButton = () => {
       </div>
       
       {/* WhatsApp Button */}
-      <a 
-        href="https://wa.me/5491173745726" 
-        target="_blank" 
+      <a
+        id="btn-whatsapp-flotante"
+        href="https://wa.me/5491173745726"
+        target="_blank"
         rel="noopener noreferrer"
         className="w-14 h-14 bg-[#25D366] rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform hover:shadow-xl"
       >

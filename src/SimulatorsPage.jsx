@@ -154,7 +154,7 @@ export default function SimulatorsPage() {
               <a href="#simuladores" className="bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-fit">
                 VER CURSOS <ChevronRight className="w-4 h-4" />
               </a>
-              <a href="https://wa.me/5491173745726" target="_blank" rel="noopener noreferrer" className="border-2 border-gray-900 text-gray-900 px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-gray-900 hover:text-white transition-colors w-fit">
+              <a id="btn-sim-hero-reservar-sesion" href="https://wa.me/5491173745726" target="_blank" rel="noopener noreferrer" className="border-2 border-gray-900 text-gray-900 px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-gray-900 hover:text-white transition-colors w-fit">
                 RESERVAR SESIÓN
               </a>
             </div>
@@ -331,7 +331,7 @@ export default function SimulatorsPage() {
               <MapPin strokeWidth={1.5} className="w-5 h-5 text-red-600 shrink-0" />
               <span className="text-sm">Buenos Aires, Argentina</span>
             </div>
-            <a href="https://wa.me/5491173745726" target="_blank" rel="noopener noreferrer"
+            <a id="btn-sim-cta-reservar-whatsapp" href="https://wa.me/5491173745726" target="_blank" rel="noopener noreferrer"
               className="mt-4 bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-fit">
               RESERVAR POR WHATSAPP <ChevronRight className="w-4 h-4" />
             </a>
