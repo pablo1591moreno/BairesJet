@@ -5,6 +5,7 @@ import {
   ChevronRight, ArrowLeft, CheckCircle, Target, Cpu, BookOpen,
   Radio, Briefcase, Star, MapPin, Phone, Mail
 } from 'lucide-react';
+import { Navbar } from './App.jsx';
 
 // ── SEO Head Manager ───────────────────────────────────────────────────────────
 const SimulatorSEO = () => {
@@ -126,26 +127,8 @@ export default function SimulatorsPage() {
     <div className="font-sans text-gray-900 bg-white min-h-screen">
       <SimulatorSEO />
 
-      {/* ── Navbar ── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <Link to="/" className="flex items-center gap-2">
-              <img src={`${import.meta.env.BASE_URL}logo-BGJ.png`} alt="Baires Global Jets" className="h-12 md:h-14 w-auto object-contain" />
-            </Link>
-            <div className="hidden md:flex items-center space-x-8 text-sm font-semibold text-gray-800">
-              <Link to="/" className="hover:text-red-600 transition-colors">HOME</Link>
-              <a href="#cursos" className="hover:text-red-600 transition-colors">CURSOS</a>
-              <a href="#simuladores" className="text-red-600 border-b-2 border-red-600 pb-0.5">SIMULADORES</a>
-              <Link to="/#flota" className="hover:text-red-600 transition-colors">FLOTA</Link>
-              <Link to="/#contacto" className="hover:text-red-600 transition-colors">CONTACTO</Link>
-            </div>
-            <Link to="/" className="flex items-center gap-1 text-sm font-semibold text-gray-600 hover:text-red-600 transition-colors md:hidden">
-              <ArrowLeft className="w-4 h-4" /> Volver
-            </Link>
-          </div>
-        </div>
-      </nav>
+
+      <Navbar />
 
       {/* ── Hero ── */}
       <div id="inicio" className="relative pt-20 min-h-screen flex flex-col bg-white overflow-hidden">

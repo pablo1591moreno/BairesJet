@@ -66,13 +66,14 @@ const defaultFeatures = [
 
 // --- SECCIONES PRINCIPALES ---
 
-const Navbar = () => {
+export const Navbar = () => {
   const [activeTab, setActiveTab] = useState('#inicio');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const navItems = [
     { id: '#inicio', label: 'INICIO' },
     { id: '#vuelos', label: 'VUELOS PRIVADOS' },
+    { id: '/simuladores', label: 'CURSOS', isRoute: true },
     { id: '#flota', label: 'FLOTA' },
     { id: '#empresa', label: 'EMPRESA' },
     { id: '#contacto', label: 'CONTACTO' },
@@ -89,18 +90,28 @@ const Navbar = () => {
             
             <div className="hidden md:flex space-x-8 text-sm font-semibold text-gray-800">
               {navItems.map((item) => (
-                <a
-                  key={item.id}
-                  href={item.id}
-                  onClick={() => setActiveTab(item.id)}
-                  className={`transition-colors ${
-                    activeTab === item.id
-                      ? 'text-red-600 border-b-2 border-red-600 pb-1'
-                      : 'hover:text-red-600'
-                  }`}
-                >
-                  {item.label}
-                </a>
+                item.isRoute ? (
+                  <Link
+                    key={item.id}
+                    to={item.id}
+                    className="transition-colors hover:text-red-600"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.id}
+                    href={item.id}
+                    onClick={() => setActiveTab(item.id)}
+                    className={`transition-colors ${
+                      activeTab === item.id
+                        ? 'text-red-600 border-b-2 border-red-600 pb-1'
+                        : 'hover:text-red-600'
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                )
               ))}
             </div>
             
@@ -136,19 +147,30 @@ const Navbar = () => {
           
           <div className="flex flex-col text-sm font-bold text-gray-900 mt-4">
             {navItems.map((item) => (
-              <a
-                key={item.id}
-                href={item.id}
-                onClick={() => {
-                  setActiveTab(item.id);
-                  setIsMobileMenuOpen(false);
-                }}
-                className={`transition-colors border-b border-gray-100 py-4 ${
-                  activeTab === item.id ? 'text-red-600' : 'hover:text-red-600'
-                }`}
-              >
-                {item.label}
-              </a>
+              item.isRoute ? (
+                <Link
+                  key={item.id}
+                  to={item.id}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="transition-colors border-b border-gray-100 py-4 hover:text-red-600"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.id}
+                  href={item.id}
+                  onClick={() => {
+                    setActiveTab(item.id);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`transition-colors border-b border-gray-100 py-4 ${
+                    activeTab === item.id ? 'text-red-600' : 'hover:text-red-600'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              )
             ))}
           </div>
           <button className="mt-8 bg-red-600 text-white w-full py-4 font-bold text-sm">
@@ -760,52 +782,61 @@ const WhatsAppButton = () => {
 
 
 const SimulatorPreviewSection = () => (
-  <section id="simuladores-preview" className="bg-gray-900 py-16 md:py-24 overflow-hidden relative">
-    {/* Background cockpit image */}
-    <div
-      className="absolute inset-0 bg-cover bg-center opacity-20"
-      style={{ backgroundImage: `url("${import.meta.env.BASE_URL}simulator-cockpit.png")` }}
-    />
-    <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex flex-col lg:flex-row items-center gap-12">
-        {/* Left: text */}
+  <section id="simuladores-preview" className="bg-white py-16 md:py-24 relative overflow-hidden">
+    {/* Decorative plane watermark */}
+    <Plane className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 text-gray-50 opacity-60 transform rotate-45 pointer-events-none" />
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="flex flex-col lg:flex-row gap-12 items-center">
+
+        {/* Left: cockpit image */}
+        <div className="w-full lg:w-1/2 relative">
+          <div className="aspect-video overflow-hidden shadow-lg">
+            <img
+              src={`${import.meta.env.BASE_URL}simulator-cockpit.png`}
+              alt="Simulador de vuelo profesional Boeing 737 - Baires Global Jets Training Center"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {/* Floating badge */}
+          <div className="absolute -bottom-4 -right-4 bg-red-600 text-white p-4 shadow-lg hidden md:block">
+            <p className="font-futuristic italic font-bold text-sm">TRAINING</p>
+            <p className="font-futuristic italic font-bold text-sm">CENTER</p>
+          </div>
+        </div>
+
+        {/* Right: content */}
         <div className="w-full lg:w-1/2">
-          <div className="w-12 h-1 bg-red-600 mb-4" />
-          <p className="text-red-600 font-bold text-xs tracking-widest uppercase mb-3">Training Center</p>
-          <h2 className="text-3xl md:text-5xl font-futuristic italic font-bold text-white leading-tight flex flex-col mb-6">
+          <div className="w-12 h-1 bg-red-600 mb-4 md:mb-6" />
+          <p className="text-red-600 font-bold text-xs md:text-sm tracking-widest uppercase mb-2">Cursos de Simuladores</p>
+          <h2 className="text-3xl md:text-5xl font-futuristic italic font-bold text-gray-900 leading-tight flex flex-col mb-4 md:mb-6">
             <span>SIMULADORES</span>
             <span className="text-red-600 mt-2 md:mt-4">DE VUELO.</span>
           </h2>
-          <p className="text-gray-300 text-sm md:text-base mb-8 max-w-md">
-            Entrenamiento profesional en simuladores Boeing 737 y King Air 200. Cursos IFR, MCC, Airline Preparation y Corporate Pilot Training para pilotos que buscan excelencia operacional.
+          <p className="text-gray-600 text-sm md:text-base mb-6">
+            Entrenamiento profesional en simuladores Boeing 737 y King Air 200. Instructores con experiencia operacional, escenarios configurables y tecnología de última generación disponibles en Buenos Aires.
           </p>
-          <div className="flex flex-wrap gap-4 mb-8">
-            {['Boeing 737', 'King Air 200', 'IFR', 'MCC', 'Airline Prep', 'Corporate'].map(tag => (
-              <span key={tag} className="border border-red-600 text-red-400 text-xs font-bold px-3 py-1 uppercase tracking-wider">{tag}</span>
+
+          {/* Course tags */}
+          <div className="grid grid-cols-2 gap-3 mb-8">
+            {[
+              { label: 'Discovery Flight', sub: 'Primera experiencia' },
+              { label: 'IFR Training', sub: 'Navegación instrumental' },
+              { label: 'MCC', sub: 'Multi Crew Cooperation' },
+              { label: 'Airline Prep', sub: 'Selección de aerolíneas' },
+            ].map(({ label, sub }) => (
+              <div key={label} className="border border-gray-200 p-3 hover:border-red-600 transition-colors">
+                <p className="font-bold text-xs text-gray-900 uppercase">{label}</p>
+                <p className="text-[10px] text-gray-500 mt-0.5">{sub}</p>
+              </div>
             ))}
           </div>
+
           <Link
             to="/simuladores"
             className="bg-red-600 text-white px-8 py-4 font-bold text-sm inline-flex items-center gap-2 hover:bg-red-700 transition-colors"
           >
             VER CURSOS Y SIMULADORES <ArrowRight className="w-4 h-4" />
           </Link>
-        </div>
-
-        {/* Right: mini cards */}
-        <div className="w-full lg:w-1/2 grid grid-cols-2 gap-4">
-          {[
-            { icon: '🎯', title: 'ENTRENAMIENTO\nREALISTA', desc: 'Simuladores de alta fidelidad con escenarios reales.' },
-            { icon: '🏆', title: 'INSTRUCTORES\nEXPERTOS', desc: 'Pilotos con experiencia operacional certificada.' },
-            { icon: '🛡️', title: 'MÁXIMA\nSEGURIDAD', desc: 'Protocolos internacionales en cada sesión.' },
-            { icon: '💻', title: 'TECNOLOGÍA\nAVANZADA', desc: 'Equipos de última generación para el mejor aprendizaje.' },
-          ].map(({ icon, title, desc }) => (
-            <div key={title} className="bg-white/5 border border-white/10 p-4 hover:border-red-600/50 transition-colors">
-              <span className="text-2xl mb-2 block">{icon}</span>
-              <p className="font-futuristic italic font-bold text-white text-xs whitespace-pre-line leading-snug mb-1">{title}</p>
-              <p className="text-gray-500 text-[10px]">{desc}</p>
-            </div>
-          ))}
         </div>
       </div>
     </div>
