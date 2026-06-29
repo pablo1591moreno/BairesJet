@@ -218,13 +218,13 @@ const Hero = () => (
           Vuelos privados y chárter ejecutivos en Argentina. Sin escalas, a tu horario, con privacidad total. De Buenos Aires al mundo y a cada rincón del país.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-4">
-          <a
+          <button
             id="btn-hero-cotizar-vuelo"
-            href="#vuelos"
+            onClick={() => document.getElementById('vuelos').scrollIntoView({ behavior: 'smooth' })}
             className="bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-fit"
           >
             COTIZÁ TU VUELO <ArrowRight strokeWidth={2} className="w-4 h-4" />
-          </a>
+          </button>
         </div>
 
         <div className="mt-10 md:mt-16 grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 pt-6 md:pt-8">
@@ -650,13 +650,13 @@ const ExperienceSection = () => {
         <p className="text-xs md:text-sm text-gray-600">Ya sea que quieras alcanzar tu próximo destino por negocios o placer, estamos listos para acompañarte con el más alto estándar de calidad.</p>
       </div>
       <div className="flex flex-col sm:flex-row gap-4 lg:w-auto w-full">
-        <a
+        <button
           id="btn-experiencia-cotizar-vuelo"
-          href="#vuelos"
+          onClick={() => document.getElementById('vuelos').scrollIntoView({ behavior: 'smooth' })}
           className="bg-red-600 text-white px-6 py-3 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-full sm:w-auto"
         >
           <Plane className="w-4 h-4 transform -rotate-45" /> COTIZAR VUELO PRIVADO
-        </a>
+        </button>
       </div>
     </div>
     <FeatureStrip items={expFeatures} className="mt-8 bg-white border-none" />
@@ -756,13 +756,13 @@ const ContactSection = () => {
       </div>
       <p className="text-gray-600 text-sm hidden lg:block border-l border-gray-300 pl-6 h-full flex items-center">Solicitá más información o cotizá tu próximo servicio.</p>
       <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
-        <a
+        <button
           id="btn-contacto-cotizar-vuelo"
-          href="#vuelos"
+          onClick={() => document.getElementById('vuelos').scrollIntoView({ behavior: 'smooth' })}
           className="bg-red-600 text-white px-8 py-3 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors whitespace-nowrap"
         >
           <Plane strokeWidth={2} className="w-4 h-4 transform -rotate-45" /> COTIZAR VUELO PRIVADO
-        </a>
+        </button>
       </div>
     </div>
     
