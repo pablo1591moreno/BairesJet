@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { 
   Plane, 
   ShieldCheck, 
@@ -69,15 +69,33 @@ const defaultFeatures = [
 export const Navbar = () => {
   const [activeTab, setActiveTab] = useState('#inicio');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const navItems = [
-    { id: '#inicio', label: 'INICIO' },
-    { id: '#vuelos', label: 'VUELOS PRIVADOS' },
-    { id: '/simuladores', label: 'CURSOS', isRoute: true },
-    { id: '#flota', label: 'FLOTA' },
-    { id: '#empresa', label: 'EMPRESA' },
-    { id: '#contacto', label: 'CONTACTO' },
+    { id: '#inicio',   label: 'INICIO',          section: 'inicio' },
+    { id: '#vuelos',   label: 'VUELOS PRIVADOS',  section: 'vuelos' },
+    { id: '/simuladores', label: 'CURSOS',        isRoute: true },
+    { id: '#flota',    label: 'FLOTA',            section: 'flota' },
+    { id: '#empresa',  label: 'EMPRESA',          section: 'empresa' },
+    { id: '#contacto', label: 'CONTACTO',         section: 'contacto' },
   ];
+
+  const handleSectionClick = (e, item) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    setActiveTab(item.id);
+    const scrollToSection = () => {
+      const el = document.getElementById(item.section);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    };
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(scrollToSection, 120);
+    } else {
+      scrollToSection();
+    }
+  };
 
   return (
     <>
@@ -94,7 +112,7 @@ export const Navbar = () => {
                   <Link
                     key={item.id}
                     to={item.id}
-                    className="transition-colors hover:text-red-600"
+                    className={`transition-colors hover:text-red-600 ${location.pathname === item.id ? 'text-red-600 border-b-2 border-red-600 pb-1' : ''}`}
                   >
                     {item.label}
                   </Link>
@@ -102,9 +120,9 @@ export const Navbar = () => {
                   <a
                     key={item.id}
                     href={item.id}
-                    onClick={() => setActiveTab(item.id)}
+                    onClick={(e) => handleSectionClick(e, item)}
                     className={`transition-colors ${
-                      activeTab === item.id
+                      activeTab === item.id && location.pathname === '/'
                         ? 'text-red-600 border-b-2 border-red-600 pb-1'
                         : 'hover:text-red-600'
                     }`}
@@ -160,12 +178,9 @@ export const Navbar = () => {
                 <a
                   key={item.id}
                   href={item.id}
-                  onClick={() => {
-                    setActiveTab(item.id);
-                    setIsMobileMenuOpen(false);
-                  }}
+                  onClick={(e) => handleSectionClick(e, item)}
                   className={`transition-colors border-b border-gray-100 py-4 ${
-                    activeTab === item.id ? 'text-red-600' : 'hover:text-red-600'
+                    activeTab === item.id && location.pathname === '/' ? 'text-red-600' : 'hover:text-red-600'
                   }`}
                 >
                   {item.label}
@@ -173,6 +188,7 @@ export const Navbar = () => {
               )
             ))}
           </div>
+
           <button className="mt-8 bg-red-600 text-white w-full py-4 font-bold text-sm">
             RESERVAR VUELO
           </button>
