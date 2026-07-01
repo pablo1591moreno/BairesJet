@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { useLanguage } from './i18n/LanguageContext';
 import { 
   Plane, 
@@ -55,10 +56,22 @@ import { airports } from './data/airports';
 
 // --- COMPONENTES REUTILIZABLES ---
 
-const Section = ({ id, children, className = '', bg = 'bg-white' }) => (
+export const FadeIn = ({ children, delay = 0, className = '' }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.5, delay, ease: "easeOut" }}
+    className={className}
+  >
+    {children}
+  </motion.div>
+);
+
+export const Section = ({ id, children, className = '', bg = 'bg-white' }) => (
   <section id={id} className={`py-16 md:py-24 ${bg} ${className}`}>
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      {children}
+      <FadeIn>{children}</FadeIn>
     </div>
   </section>
 );
@@ -245,16 +258,17 @@ const Hero = () => {
       <div className="lg:hidden w-full h-64 sm:h-80 bg-cover bg-center" style={{ backgroundImage: `url("${import.meta.env.BASE_URL}hero-jet.jpg")` }} />
       
       <div className="w-full lg:w-[55%] p-6 sm:p-8 md:p-16 lg:p-24 flex flex-col justify-center relative z-10 bg-white lg:bg-transparent">
-        <div className="w-12 h-1 bg-red-600 mb-6 md:mb-8"></div>
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-futuristic italic font-bold text-gray-900 leading-tight flex flex-col">
-          <span>{t('hero.volar')}</span>
-          <span>{t('hero.entrenar')}</span>
-          <span className="text-red-600 mt-2 md:mt-4">{t('hero.sin_limites')}</span>
-        </h1>
-        <p className="mt-4 md:mt-6 text-gray-600 text-base md:text-lg max-w-md">
-          {t('hero.desc1')}<br/>
-          {t('hero.desc2')}
-        </p>
+        <FadeIn>
+          <div className="w-12 h-1 bg-red-600 mb-6 md:mb-8"></div>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-futuristic italic font-bold text-gray-900 leading-tight flex flex-col">
+            <span>{t('hero.volar')}</span>
+            <span>{t('hero.entrenar')}</span>
+            <span className="text-red-600 mt-2 md:mt-4">{t('hero.sin_limites')}</span>
+          </h1>
+          <p className="mt-4 md:mt-6 text-gray-600 text-base md:text-lg max-w-md">
+            {t('hero.desc1')}<br/>
+            {t('hero.desc2')}
+          </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-4">
           <button
             id="btn-hero-reservar-vuelo"
@@ -298,6 +312,7 @@ const Hero = () => {
             <p className="text-[10px] md:text-xs text-gray-500 whitespace-pre-line">{t('hero.feat3_desc')}</p>
           </div>
         </div>
+        </FadeIn>
       </div>
       
       {/* Right Image */}
