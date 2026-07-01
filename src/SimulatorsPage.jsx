@@ -108,7 +108,7 @@ export default function SimulatorsPage() {
   const teoricos = [
     {
       title: 'MCC',
-      subtitle: 'MULTI CREW COOPERATION',
+      subtitle: 'COOPERACIÓN EN TRIPULACIÓN MÚLTIPLE',
       hours: '25 HORAS',
       desc: 'Entrenamiento indispensable para desarrollar la coordinación entre Pilot Flying y Pilot Monitoring bajo estándares internacionales.',
       list: ['CRM', 'SOP', 'Callouts', 'Checklist', 'Trabajo en equipo'],
@@ -117,7 +117,7 @@ export default function SimulatorsPage() {
     },
     {
       title: 'JOC',
-      subtitle: 'JET ORIENTATION COURSE',
+      subtitle: 'CURSO DE ORIENTACIÓN EN REACTORES',
       hours: '15 HORAS',
       desc: 'Transición técnica hacia aeronaves a reacción. Aprendé gestión de energía, automatización, Director de Vuelo y operación del FMS.',
       list: [],
@@ -126,7 +126,7 @@ export default function SimulatorsPage() {
     },
     {
       title: 'CRM',
-      subtitle: 'CREW RESOURCE MANAGEMENT',
+      subtitle: 'GESTIÓN DE RECURSOS DE LA TRIPULACIÓN',
       hours: '16 HORAS',
       desc: 'Capacitación enfocada en el factor humano, liderazgo, toma de decisiones y seguridad operacional.',
       list: [],
@@ -135,7 +135,7 @@ export default function SimulatorsPage() {
     },
     {
       title: 'BOEING\n737 NG',
-      subtitle: 'SYSTEMS',
+      subtitle: 'SISTEMAS',
       hours: '30 HORAS',
       desc: 'Estudio completo de todos los sistemas del Boeing 737 NG.',
       list: ['Motores', 'Hidráulico', 'Eléctrico', 'Neumático', 'Presurización', 'FMC', 'Emergencias'],
@@ -144,10 +144,10 @@ export default function SimulatorsPage() {
     },
     {
       title: 'KING AIR\nB200',
-      subtitle: 'SYSTEMS',
+      subtitle: 'SISTEMAS',
       hours: '20 HORAS',
       desc: 'Curso completo sobre los sistemas del Beechcraft King Air B200.',
-      list: ['PT6A', 'Fuel', 'Electrical', 'Landing Gear', 'Pressurization', 'Emergency Procedures'],
+      list: ['PT6A', 'Combustible', 'Eléctrico', 'Tren de Aterrizaje', 'Presurización', 'Procedimientos de Emergencia'],
       price: '$300.000 ARS',
       icon: Wrench
     }
@@ -181,7 +181,7 @@ export default function SimulatorsPage() {
           <div className="w-full lg:w-[55%] px-4 py-8 sm:p-8 md:p-16 lg:p-24 flex flex-col justify-center relative z-10 bg-white lg:bg-transparent">
             <div className="w-12 h-1 bg-red-600 mb-4 md:mb-6" />
             <p className="text-red-600 font-bold text-xs md:text-sm tracking-widest uppercase mb-4">
-              TRAIN LIKE REAL. FLY WITH CONFIDENCE.
+              ENTRENÁ COMO EN LA REALIDAD. VOLÁ CON SEGURIDAD.
             </p>
             <h1 className="text-3xl sm:text-4xl md:text-7xl font-futuristic italic font-bold text-gray-900 leading-tight flex flex-col mb-6">
               <span>SIMULADORES</span>
@@ -527,8 +527,8 @@ export default function SimulatorsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
             <h2 className="text-4xl md:text-6xl font-futuristic italic font-bold text-white leading-none">
-              YOUR AIRLINE CAREER<br/>
-              <span className="text-red-600">STARTS HERE.</span>
+              TU CARRERA EN AEROLÍNEAS<br/>
+              <span className="text-red-600">COMIENZA ACÁ.</span>
             </h2>
           </div>
           <a
