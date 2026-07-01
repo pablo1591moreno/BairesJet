@@ -178,12 +178,12 @@ export default function SimulatorsPage() {
             style={{ backgroundImage: `url("${import.meta.env.BASE_URL}simulator-cockpit.png")` }} />
 
           {/* Left content */}
-          <div className="w-full lg:w-[55%] px-4 py-8 sm:p-8 md:p-16 lg:p-24 flex flex-col justify-center relative z-10 bg-white lg:bg-transparent">
+          <div className="w-full lg:w-[60%] px-4 py-8 sm:p-8 md:p-16 lg:p-24 flex flex-col justify-center relative z-10 bg-white lg:bg-transparent">
             <div className="w-12 h-1 bg-red-600 mb-4 md:mb-6" />
             <p className="text-red-600 font-bold text-xs md:text-sm tracking-widest uppercase mb-4">
               ENTRENÁ COMO EN LA REALIDAD. VOLÁ CON SEGURIDAD.
             </p>
-            <h1 className="text-3xl sm:text-4xl md:text-7xl font-futuristic italic font-bold text-gray-900 leading-tight flex flex-col mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-futuristic italic font-bold text-gray-900 leading-tight flex flex-col mb-6">
               <span>SIMULADORES</span>
               <span className="text-red-600 mt-2 md:mt-4">DE VUELO.</span>
             </h1>
@@ -220,7 +220,7 @@ export default function SimulatorsPage() {
           </div>
 
           {/* Right image desktop */}
-          <div className="hidden lg:block absolute top-0 right-0 w-[55%] h-full z-0 pointer-events-none">
+          <div className="hidden lg:block absolute top-0 right-0 w-[50%] h-full z-0 pointer-events-none">
             <div className="absolute inset-0 z-10" style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}>
               <div className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
                 style={{ backgroundImage: `url("${import.meta.env.BASE_URL}simulator-cockpit.png")` }} />
