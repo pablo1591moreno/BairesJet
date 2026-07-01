@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useLanguage } from './i18n/LanguageContext';
 import { 
   Plane, 
   ShieldCheck, 
@@ -58,12 +59,7 @@ const FeatureStrip = ({ items, className = "bg-gray-50 border-t border-gray-100"
   </div>
 );
 
-const defaultFeatures = [
-  { icon: ShieldCheck, title: "SEGURIDAD GARANTIZADA", desc: "Operadores certificados y máximos estándares de seguridad." },
-  { icon: Clock, title: "DISPONIBILIDAD 24/7", desc: "Atención personalizada los 365 días del año." },
-  { icon: Globe, title: "COBERTURA GLOBAL", desc: "Vuelos nacionales e internacionales a cualquier destino." },
-  { icon: User, title: "EXPERIENCIA PREMIUM", desc: "Servicio exclusivo, discreto y totalmente personalizado." }
-];
+
 
 // --- SECCIONES PRINCIPALES ---
 
@@ -72,14 +68,15 @@ export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { t, language, changeLanguage } = useLanguage();
 
   const navItems = [
-    { id: '#inicio',   label: 'INICIO',          section: 'inicio' },
-    { id: '#vuelos',   label: 'VUELOS PRIVADOS',  section: 'vuelos' },
-    { id: '/simuladores', label: 'CURSOS',        isRoute: true },
-    { id: '#flota',    label: 'FLOTA',            section: 'flota' },
-    { id: '#empresa',  label: 'EMPRESA',          section: 'empresa' },
-    { id: '#contacto', label: 'CONTACTO',         section: 'contacto' },
+    { id: '#inicio',   label: t('nav.inicio'),          section: 'inicio' },
+    { id: '#vuelos',   label: t('nav.vuelos'),          section: 'vuelos' },
+    { id: '/simuladores', label: t('nav.cursos'),       isRoute: true },
+    { id: '#flota',    label: t('nav.flota'),           section: 'flota' },
+    { id: '#empresa',  label: t('nav.empresa'),         section: 'empresa' },
+    { id: '#contacto', label: t('nav.contacto'),        section: 'contacto' },
   ];
 
   const handleSectionClick = (e, item) => {
@@ -135,7 +132,13 @@ export const Navbar = () => {
             </div>
             
             <div className="flex items-center gap-4">
-              {/* RESERVAR button removed */}
+              <button
+                onClick={() => changeLanguage(language === 'es' ? 'en' : 'es')}
+                className="flex items-center gap-1 text-gray-900 font-bold text-xs border border-gray-300 rounded px-2 py-1 hover:bg-gray-100 transition-colors"
+              >
+                <Globe className="w-4 h-4 text-red-600" />
+                {language === 'es' ? 'ES' : 'EN'}
+              </button>
               <button 
                 className="md:hidden text-gray-900 p-2 z-50 relative"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -195,7 +198,7 @@ export const Navbar = () => {
               rel="noopener noreferrer"
               className="mt-8 bg-red-600 text-white w-full py-4 font-bold text-sm block text-center"
             >
-              RESERVAR VUELO
+              {t('nav.reservar')}
             </a>
         </div>
       )}
@@ -203,7 +206,17 @@ export const Navbar = () => {
   );
 };
 
-const Hero = () => (
+const Hero = () => {
+  const { t } = useLanguage();
+  
+  const defaultFeatures = [
+    { icon: ShieldCheck, title: t('features.seguridad'), desc: t('features.seguridad_desc') },
+    { icon: Clock, title: t('features.reloj'), desc: t('features.reloj_desc') },
+    { icon: Globe, title: t('features.global'), desc: t('features.global_desc') },
+    { icon: User, title: t('features.premium'), desc: t('features.premium_desc') }
+  ];
+
+  return (
   <div id="inicio" className="relative pt-20 min-h-screen flex flex-col bg-white overflow-hidden">
     <div className="flex-grow flex flex-col lg:flex-row relative">
       {/* Mobile Top Image */}
@@ -212,13 +225,13 @@ const Hero = () => (
       <div className="w-full lg:w-[55%] p-6 sm:p-8 md:p-16 lg:p-24 flex flex-col justify-center relative z-10 bg-white lg:bg-transparent">
         <div className="w-12 h-1 bg-red-600 mb-6 md:mb-8"></div>
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-futuristic italic font-bold text-gray-900 leading-tight flex flex-col">
-          <span>VOLAR.</span>
-          <span>ENTRENAR.</span>
-          <span className="text-red-600 mt-2 md:mt-4">SIN LÍMITES.</span>
+          <span>{t('hero.volar')}</span>
+          <span>{t('hero.entrenar')}</span>
+          <span className="text-red-600 mt-2 md:mt-4">{t('hero.sin_limites')}</span>
         </h1>
         <p className="mt-4 md:mt-6 text-gray-600 text-base md:text-lg max-w-md">
-          Vuelos privados y simuladores de última generación.<br/>
-          La experiencia aérea completa, a tu medida.
+          {t('hero.desc1')}<br/>
+          {t('hero.desc2')}
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-4">
           <button
@@ -228,7 +241,7 @@ const Hero = () => (
           >
             <div className="flex items-center gap-3">
               <Plane strokeWidth={1.5} className="w-6 h-6 transform -rotate-45" />
-              <span className="text-left leading-tight">RESERVÁ TU<br/>VUELO PRIVADO</span>
+              <span className="text-left leading-tight whitespace-pre-line">{t('hero.btn_vuelo')}</span>
             </div>
             <ArrowRight strokeWidth={2} className="w-4 h-4 ml-4" />
           </button>
@@ -240,7 +253,7 @@ const Hero = () => (
           >
             <div className="flex items-center gap-3">
               <Target strokeWidth={1.5} className="w-6 h-6 text-red-600" />
-              <span className="text-left leading-tight">RESERVÁ TURNO<br/>EN SIMULADOR</span>
+              <span className="text-left leading-tight whitespace-pre-line">{t('hero.btn_sim')}</span>
             </div>
             <ArrowRight strokeWidth={2} className="w-4 h-4 ml-4 text-red-600" />
           </Link>
@@ -249,18 +262,18 @@ const Hero = () => (
         <div className="mt-10 md:mt-16 grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 pt-6 md:pt-8">
           <div className="flex flex-col items-start text-left">
             <Plane strokeWidth={1} className="w-8 h-8 text-red-600 mb-2 transform -rotate-45" />
-            <h3 className="font-bold text-xs mb-1">VUELOS PRIVADOS</h3>
-            <p className="text-[10px] md:text-xs text-gray-500">A tu destino,<br/>a tu manera.</p>
+            <h3 className="font-bold text-xs mb-1 whitespace-pre-line">{t('hero.feat1_title')}</h3>
+            <p className="text-[10px] md:text-xs text-gray-500 whitespace-pre-line">{t('hero.feat1_desc')}</p>
           </div>
           <div className="flex flex-col items-start text-left">
             <Globe strokeWidth={1} className="w-8 h-8 text-red-600 mb-2" />
-            <h3 className="font-bold text-xs mb-1">COBERTURA<br/>GLOBAL</h3>
-            <p className="text-[10px] md:text-xs text-gray-500">Llegamos a donde<br/>necesites estar.</p>
+            <h3 className="font-bold text-xs mb-1 whitespace-pre-line">{t('hero.feat2_title')}</h3>
+            <p className="text-[10px] md:text-xs text-gray-500 whitespace-pre-line">{t('hero.feat2_desc')}</p>
           </div>
           <div className="flex flex-col items-start text-left col-span-2 md:col-span-1">
             <ShieldCheck strokeWidth={1} className="w-8 h-8 text-red-600 mb-2" />
-            <h3 className="font-bold text-xs mb-1">SEGURIDAD<br/>Y CONFIDENCIALIDAD</h3>
-            <p className="text-[10px] md:text-xs text-gray-500">Tu vuelo, tu información,<br/>tu privacidad.</p>
+            <h3 className="font-bold text-xs mb-1 whitespace-pre-line">{t('hero.feat3_title')}</h3>
+            <p className="text-[10px] md:text-xs text-gray-500 whitespace-pre-line">{t('hero.feat3_desc')}</p>
           </div>
         </div>
       </div>
@@ -274,7 +287,8 @@ const Hero = () => (
     </div>
     <FeatureStrip items={defaultFeatures} />
   </div>
-);
+  );
+};
 
 const AutocompleteInput = ({ label, placeholder, icon: Icon, className = "" }) => {
   const [query, setQuery] = useState('');
@@ -331,6 +345,7 @@ const AutocompleteInput = ({ label, placeholder, icon: Icon, className = "" }) =
 };
 
 const QuoteSection = () => {
+  const { t } = useLanguage();
   const today = new Date().toISOString().split("T")[0];
 
   return (
@@ -338,83 +353,83 @@ const QuoteSection = () => {
       <div className="flex flex-col lg:flex-row gap-12 relative z-10">
         <div className="w-full lg:w-1/2">
           <div className="w-12 h-1 bg-red-600 mb-6"></div>
-          <h4 className="text-red-600 font-bold text-xs md:text-sm tracking-wider uppercase mb-2">Vuelos Privados</h4>
+          <h4 className="text-red-600 font-bold text-xs md:text-sm tracking-wider uppercase mb-2">{t('quote.subtitle')}</h4>
           <h2 className="text-3xl md:text-5xl font-futuristic italic font-bold text-gray-900 leading-tight mb-4 md:mb-6 flex flex-col">
-            <span>COTIZÁ TU VUELO</span>
-            <span className="text-red-600 mt-1 md:mt-4">EN MINUTOS.</span>
+            <span>{t('quote.title1')}</span>
+            <span className="text-red-600 mt-1 md:mt-4">{t('quote.title2')}</span>
           </h2>
           <p className="text-gray-600 mb-6 md:mb-8 text-sm md:text-base max-w-lg">
-            Completá el formulario y nuestro equipo te enviará una propuesta a medida, rápida y sin compromiso.
+            {t('quote.desc')}
           </p>
 
           <form className="bg-white p-5 sm:p-6 md:p-8 border border-gray-200">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               <div>
-                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Tipo de Vuelo</label>
+                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.tipo')}</label>
                 <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
                   <Plane strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
                   <select className="w-full bg-transparent outline-none text-gray-800 text-sm appearance-none">
-                    <option>Ida y vuelta</option>
-                    <option>Solo ida</option>
+                    <option>{t('quote.form.ida_vuelta')}</option>
+                    <option>{t('quote.form.ida')}</option>
                   </select>
                   <ChevronDown strokeWidth={1.5} className="w-4 h-4 text-gray-400 absolute right-3" />
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Cantidad de Pasajeros</label>
+                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.pasajeros')}</label>
                 <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
                   <Users strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                  <input type="number" min="1" placeholder="Ej: 4 pasajeros" className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
+                  <input type="number" min="1" placeholder={t('quote.form.pasajeros_ph')} className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
                 </div>
               </div>
               
               <AutocompleteInput 
-                label="Origen" 
-                placeholder="Ciudad o aeropuerto" 
+                label={t('quote.form.origen')} 
+                placeholder={t('quote.form.ciudad_ph')} 
                 icon={MapPin} 
               />
               
               <AutocompleteInput 
-                label="Destino" 
-                placeholder="Ciudad o aeropuerto" 
+                label={t('quote.form.destino')} 
+                placeholder={t('quote.form.ciudad_ph')} 
                 icon={MapPin} 
               />
               
               <div>
-                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Fecha de Salida</label>
+                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.salida')}</label>
                 <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
                   <input type="date" min={today} className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Fecha de Regreso</label>
+                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.regreso')}</label>
                 <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
                   <input type="date" min={today} className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400 pr-24" />
                   <div className="absolute right-3 flex items-center gap-2 bg-gray-50/80 px-2 py-1 rounded">
                     <input type="checkbox" id="solo_ida" className="accent-red-600" />
-                    <label htmlFor="solo_ida" className="text-xs text-gray-600 cursor-pointer">Solo ida</label>
+                    <label htmlFor="solo_ida" className="text-xs text-gray-600 cursor-pointer">{t('quote.form.ida')}</label>
                   </div>
                 </div>
               </div>
                <div>
-                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Horario Preferido</label>
+                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.horario')}</label>
                 <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
                   <Clock strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
                   <select className="w-full bg-transparent outline-none text-gray-800 text-sm appearance-none">
-                    <option>Horario aproximado</option>
-                    <option>Mañana</option>
-                    <option>Tarde</option>
-                    <option>Noche</option>
+                    <option>{t('quote.form.horario_aprox')}</option>
+                    <option>{t('quote.form.manana')}</option>
+                    <option>{t('quote.form.tarde')}</option>
+                    <option>{t('quote.form.noche')}</option>
                   </select>
                   <ChevronDown strokeWidth={1.5} className="w-4 h-4 text-gray-400 absolute right-3" />
                 </div>
               </div>
                <div>
-                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Tipo de Aeronave</label>
+                <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.aeronave')}</label>
                 <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
                   <Plane strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
                   <select className="w-full bg-transparent outline-none text-gray-800 text-sm appearance-none">
-                    <option>Seleccioná preferencia</option>
+                    <option>{t('quote.form.selecciona')}</option>
                     <option>Light Jet</option>
                     <option>Medium Jet</option>
                     <option>Heavy Jet</option>
@@ -425,24 +440,24 @@ const QuoteSection = () => {
             </div>
 
             <div className="mt-8 pt-8 border-t border-gray-200">
-              <h3 className="font-bold text-sm mb-4 text-gray-900 uppercase">Datos de Contacto</h3>
+              <h3 className="font-bold text-sm mb-4 text-gray-900 uppercase">{t('quote.form.datos')}</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                 <div>
-                  <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Nombre Completo</label>
+                  <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.nombre')}</label>
                   <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50 focus-within:border-red-600 focus-within:bg-white transition-colors">
                     <User strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                    <input type="text" placeholder="Ej: Juan Pérez" className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
+                    <input type="text" placeholder={t('quote.form.nombre_ph')} className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Email</label>
+                  <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.email')}</label>
                   <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50 focus-within:border-red-600 focus-within:bg-white transition-colors">
                     <Mail strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                    <input type="email" placeholder="ejemplo@correo.com" className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
+                    <input type="email" placeholder={t('quote.form.email_ph')} className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Teléfono</label>
+                  <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.telefono')}</label>
                   <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50 focus-within:border-red-600 focus-within:bg-white transition-colors">
                     <Phone strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
                     <input type="tel" placeholder="+54 9 11 1234-5678" className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
@@ -456,11 +471,11 @@ const QuoteSection = () => {
                 id="btn-form-solicitar-cotizacion"
                 className="w-full sm:w-auto bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors"
               >
-                SOLICITAR COTIZACIÓN <ArrowRight strokeWidth={2} className="w-4 h-4" />
+                {t('quote.form.btn_cotizar')} <ArrowRight strokeWidth={2} className="w-4 h-4" />
               </button>
               <div className="flex items-center gap-2 text-xs text-gray-500">
-                <Lock strokeWidth={1.5} className="w-4 h-4" />
-                <span>Tu información está<br/>segura y protegida.</span>
+                <Lock strokeWidth={1.5} className="w-4 h-4 shrink-0" />
+                <span className="whitespace-pre-line">{t('quote.form.seguridad')}</span>
               </div>
             </div>
           </form>
@@ -533,11 +548,13 @@ const FleetCard = ({ type, img, description, passengers, range, speed, cabin, fe
 
 
 const FleetSection = () => {
+  const { t } = useLanguage();
+  
   const fleetFeatures = [
-    { icon: ShieldCheck, title: "OPERADORES CERTIFICADOS", desc: "Máximos estándares de seguridad y mantenimiento internacional." },
-    { icon: Globe, title: "COBERTURA NACIONAL E INTERNACIONAL", desc: "Llegamos a los principales destinos con la mejor conectividad." },
-    { icon: Clock, title: "DISPONIBILIDAD 24/7", desc: "Atención personalizada todo el año, a cualquier hora." },
-    { icon: User, title: "ATENCIÓN PERSONALIZADA", desc: "Un equipo dedicado a brindarte la mejor experiencia de vuelo." }
+    { icon: ShieldCheck, title: t('features.op'), desc: t('features.op_desc') },
+    { icon: Globe, title: t('features.nacional'), desc: t('features.nacional_desc') },
+    { icon: Clock, title: t('features.reloj'), desc: t('features.reloj_desc_f') },
+    { icon: User, title: t('features.atencion'), desc: t('features.atencion_desc') }
   ];
 
   return (
@@ -545,13 +562,13 @@ const FleetSection = () => {
     <Plane className="absolute right-10 top-20 w-96 h-96 text-gray-50 opacity-50 transform rotate-45 pointer-events-none" />
     <div className="text-center mb-10 md:mb-12 relative z-10">
       <div className="w-12 h-1 bg-red-600 mx-auto mb-4 md:mb-6"></div>
-      <h4 className="text-red-600 font-futuristic italic font-bold text-xs md:text-sm tracking-widest uppercase mb-2">Nuestra Flota</h4>
+      <h4 className="text-red-600 font-futuristic italic font-bold text-xs md:text-sm tracking-widest uppercase mb-2">{t('fleet.subtitle')}</h4>
       <h2 className="text-3xl md:text-5xl font-futuristic italic font-bold text-gray-900 leading-tight mb-4 flex flex-col">
-        <span>DESCRIPCIÓN DE</span>
-        <span className="text-red-600 mt-1 md:mt-4">JETS PRIVADOS</span>
+        <span>{t('fleet.title1')}</span>
+        <span className="text-red-600 mt-1 md:mt-4">{t('fleet.title2')}</span>
       </h2>
       <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto px-4 md:px-0">
-        Flota de jets privados disponibles para alquiler en Argentina. Desde vuelos regionales y traslados corporativos hasta viajes de lujo intercontinentales. Operamos los 365 días del año, las 24 horas.
+        {t('fleet.desc')}
       </p>
     </div>
 
@@ -559,37 +576,37 @@ const FleetSection = () => {
       <FleetCard 
         type="Light Jets"
         img={`${import.meta.env.BASE_URL}fleet-light-jet.png?v=2`}
-        description="Eficiencia máxima. Acceso a más destinos."
-        features="Ideales para traslados ejecutivos y regionales sin escala. Acceden a aeropuertos pequeños sin vuelos comerciales directos, como Neuquén, Viedma, San Martín de los Andes y más."
-        passengers="6 pasajeros"
-        range="hasta 2.000 km"
-        speed="Velocidad crucero\nhasta 740 km/h"
-        cabin="Cabina\nejecutiva"
-        buttonText="VER DISPONIBILIDAD"
+        description={t('fleet.light_desc')}
+        features={t('fleet.light_feat')}
+        passengers={t('fleet.light_pass')}
+        range={t('fleet.light_range')}
+        speed={t('fleet.light_speed1') + '\n' + t('fleet.light_speed2')}
+        cabin={t('fleet.light_cabin1') + '\n' + t('fleet.light_cabin2')}
+        buttonText={t('fleet.btn_disp')}
       />
       <FleetCard 
         type="Medium Jets"
         img={`${import.meta.env.BASE_URL}fleet-medium-jet.png?v=2`}
-        description="Versatilidad corporativa. Alcance internacional."
-        features="La opción perfecta para grupos ejecutivos y turismo de lujo. Vuelos directos a Patagonia, Mendoza, Salta y destinos internacionales como Chile, Uruguay, Brasil y Miami."
-        passengers="8 pasajeros"
-        range="hasta 4.500 km"
-        speed="Wi-Fi y\ncatering opcional"
-        cabin="Equipaje\nampliado"
-        buttonText="SOLICITAR COTIZACIÓN"
+        description={t('fleet.medium_desc')}
+        features={t('fleet.medium_feat')}
+        passengers={t('fleet.medium_pass')}
+        range={t('fleet.medium_range')}
+        speed={t('fleet.medium_speed1') + '\n' + t('fleet.medium_speed2')}
+        cabin={t('fleet.medium_cabin1') + '\n' + t('fleet.medium_cabin2')}
+        buttonText={t('fleet.btn_cotizar')}
         Icon3={Wifi}
         Icon4={Briefcase}
       />
       <FleetCard 
         type="Heavy Jets"
         img={`${import.meta.env.BASE_URL}fleet-heavy-jet.png?v=2`}
-        description="Máximo alcance. Lujo sin compromisos."
-        features="Ultra long range para vuelos intercontinentales sin escalas. Buenos Aires – Europa, EE.UU. o Asia en cabinas de gran confort con servicios VIP a bordo y privacidad absoluta."
-        passengers="14 pasajeros"
-        range="hasta 12.000 km"
-        speed="Cabina\nde lujo"
-        cabin="Vuelos\ninternacionales"
-        buttonText="CHARTER VIP"
+        description={t('fleet.heavy_desc')}
+        features={t('fleet.heavy_feat')}
+        passengers={t('fleet.heavy_pass')}
+        range={t('fleet.heavy_range')}
+        speed={t('fleet.heavy_speed1') + '\n' + t('fleet.heavy_speed2')}
+        cabin={t('fleet.heavy_cabin1') + '\n' + t('fleet.heavy_cabin2')}
+        buttonText={t('fleet.btn_charter')}
         Icon3={User}
         Icon4={Plane}
       />
@@ -601,11 +618,13 @@ const FleetSection = () => {
 };
 
 const ExperienceSection = () => {
+  const { t } = useLanguage();
+  
   const expFeatures = [
-    { icon: ShieldCheck, title: "SEGURIDAD GARANTIZADA", desc: "Protocolos y estándares internacionales." },
-    { icon: Globe, title: "COBERTURA GLOBAL", desc: "Vuelos a destinos nacionales e internacionales." },
-    { icon: Headset, title: "SOPORTE DEDICADO", desc: "Asistencia personalizada en cada etapa." },
-    { icon: Award, title: "CALIDAD CERTIFICADA", desc: "Equipamiento de última generación y atención experta." }
+    { icon: ShieldCheck, title: t('features.seguridad'), desc: t('experience.feat4_desc') }, // fallback
+    { icon: Globe, title: t('features.global'), desc: t('features.global_desc') },
+    { icon: Headset, title: t('features.soporte'), desc: t('features.soporte_desc') },
+    { icon: Award, title: t('features.calidad'), desc: t('features.calidad_desc') }
   ];
 
   return (
@@ -613,13 +632,13 @@ const ExperienceSection = () => {
     <div className="flex flex-col lg:flex-row gap-8 md:gap-12 mb-12 md:mb-16">
       <div className="w-full lg:w-1/2">
         <div className="w-12 h-1 bg-red-600 mb-4 md:mb-6"></div>
-        <h4 className="text-red-600 font-futuristic italic font-bold text-xs md:text-sm tracking-widest uppercase mb-2">Nuestro Compromiso</h4>
+        <h4 className="text-red-600 font-futuristic italic font-bold text-xs md:text-sm tracking-widest uppercase mb-2">{t('experience.subtitle')}</h4>
         <h2 className="text-3xl md:text-5xl font-futuristic italic font-bold text-gray-900 leading-tight mb-4 md:mb-6 flex flex-col">
-          <span>EXPERIENCIA AERONÁUTICA</span>
-          <span className="mt-1 md:mt-4">PREMIUM.</span>
+          <span>{t('experience.title1')}</span>
+          <span className="mt-1 md:mt-4">{t('experience.title2')}</span>
         </h2>
         <p className="text-gray-600 mb-6 md:mb-8 text-sm md:text-base">
-          En Baires Global Jets operamos vuelos privados y chárter ejecutivos con los más altos estándares de seguridad aeronáutica. Conectamos Buenos Aires con destinos clave del país —Vaca Muerta, Patagonia, Mendoza, NOA— y con el mundo. Ahorrá tiempo, evitá escalas y volá con privacidad total.
+          {t('experience.desc')}
         </p>
       </div>
       <div className="relative z-10 w-full md:w-1/2 p-6 md:p-12">
@@ -630,51 +649,51 @@ const ExperienceSection = () => {
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 mb-12 md:mb-16 text-center">
       <div>
         <Plane strokeWidth={1} className="w-10 h-10 mx-auto text-red-600 mb-4" />
-        <h4 className="font-bold text-sm mb-2">VUELOS PRIVADOS</h4>
-        <p className="text-xs text-gray-500">Jets privados para viajes personales. Confort, privacidad y eficiencia en cada destino.</p>
+        <h4 className="font-bold text-sm mb-2">{t('experience.feat1')}</h4>
+        <p className="text-xs text-gray-500">{t('experience.feat1_desc')}</p>
       </div>
       <div>
         <Clock strokeWidth={1} className="w-10 h-10 mx-auto text-red-600 mb-4" />
-        <h4 className="font-bold text-sm mb-2">ATENCIÓN 24/7</h4>
-        <p className="text-xs text-gray-500">Coordinación inmediata para vuelos en cualquier momento.</p>
+        <h4 className="font-bold text-sm mb-2">{t('experience.feat2')}</h4>
+        <p className="text-xs text-gray-500">{t('experience.feat2_desc')}</p>
       </div>
       <div>
         <Armchair strokeWidth={1} className="w-10 h-10 mx-auto text-red-600 mb-4" />
-        <h4 className="font-bold text-sm mb-2">CONFORT EXCLUSIVO</h4>
-        <p className="text-xs text-gray-500">Cabinas diseñadas para garantizar tu descanso y comodidad.</p>
+        <h4 className="font-bold text-sm mb-2">{t('experience.feat3')}</h4>
+        <p className="text-xs text-gray-500">{t('experience.feat3_desc')}</p>
       </div>
       <div>
         <ShieldCheck strokeWidth={1} className="w-10 h-10 mx-auto text-red-600 mb-4" />
-        <h4 className="font-bold text-sm mb-2">PRIVACIDAD Y SEGURIDAD</h4>
-        <p className="text-xs text-gray-500">Operaciones realizadas bajo estrictos estándares de confidencialidad y seguridad operacional.</p>
+        <h4 className="font-bold text-sm mb-2">{t('experience.feat4')}</h4>
+        <p className="text-xs text-gray-500">{t('experience.feat4_desc')}</p>
       </div>
       <div>
         <User strokeWidth={1} className="w-10 h-10 mx-auto text-red-600 mb-4" />
-        <h4 className="font-bold text-sm mb-2">EXPERIENCIA PERSONALIZADA</h4>
-        <p className="text-xs text-gray-500">Cada servicio se adapta a las necesidades específicas de cada cliente.</p>
+        <h4 className="font-bold text-sm mb-2">{t('experience.feat5')}</h4>
+        <p className="text-xs text-gray-500">{t('experience.feat5_desc')}</p>
       </div>
       <div>
         <MapPin strokeWidth={1} className="w-10 h-10 mx-auto text-red-600 mb-4" />
-        <h4 className="font-bold text-sm mb-2">UBICACIÓN ESTRATÉGICA</h4>
-        <p className="text-xs text-gray-500">Acceso rápido y atención dedicada para operaciones corporativas.</p>
+        <h4 className="font-bold text-sm mb-2">{t('experience.feat6')}</h4>
+        <p className="text-xs text-gray-500">{t('experience.feat6_desc')}</p>
       </div>
     </div>
 
     <div className="bg-gray-50 border border-gray-200 flex flex-col lg:flex-row items-center justify-between p-6 md:p-8 rounded-sm">
       <div className="lg:w-1/2 mb-6 lg:mb-0 text-center lg:text-left">
         <h3 className="text-xl md:text-2xl font-futuristic italic font-bold text-gray-900 mb-2 flex flex-col">
-          <span>RESERVÁ TU PRÓXIMA EXPERIENCIA</span>
-          <span className="text-red-600 mt-1 md:mt-2">CON BAIRES GLOBAL JETS</span>
+          <span>{t('experience.reserva_title1')}</span>
+          <span className="text-red-600 mt-1 md:mt-2">{t('experience.reserva_title2')}</span>
         </h3>
-        <p className="text-xs md:text-sm text-gray-600">Ya sea que quieras alcanzar tu próximo destino por negocios o placer, estamos listos para acompañarte con el más alto estándar de calidad.</p>
+        <p className="text-xs md:text-sm text-gray-600">{t('experience.reserva_desc')}</p>
       </div>
       <div className="flex flex-col sm:flex-row gap-4 lg:w-auto w-full">
         <button
           id="btn-experiencia-cotizar-vuelo"
           onClick={() => document.getElementById('vuelos').scrollIntoView({ behavior: 'smooth' })}
-          className="bg-red-600 text-white px-6 py-3 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-full sm:w-auto"
+          className="bg-red-600 text-white px-6 py-3 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-full sm:w-auto whitespace-nowrap"
         >
-          <Plane className="w-4 h-4 transform -rotate-45" /> COTIZAR VUELO PRIVADO
+          <Plane className="w-4 h-4 transform -rotate-45 shrink-0" /> {t('experience.btn_cotizar')}
         </button>
       </div>
     </div>
@@ -684,11 +703,13 @@ const ExperienceSection = () => {
 };
 
 const ContactSection = () => {
+  const { t } = useLanguage();
+  
   const contactFeatures = [
-    { icon: ShieldCheck, title: "SEGURIDAD GARANTIZADA", desc: "Operaciones bajo estrictos estándares internacionales de seguridad." },
-    { icon: Globe, title: "COBERTURA GLOBAL", desc: "Vuelos a destinos nacionales e internacionales." },
-    { icon: Headset, title: "SOPORTE DEDICADO", desc: "Asistencia personalizada antes, durante y después de tu vuelo." },
-    { icon: Award, title: "CALIDAD CERTIFICADA", desc: "Equipamiento de última generación y personal altamente capacitado." }
+    { icon: ShieldCheck, title: t('features.seguridad'), desc: t('features.seguridad_desc_c') },
+    { icon: Globe, title: t('features.global'), desc: t('features.global_desc') },
+    { icon: Headset, title: t('features.soporte'), desc: t('features.soporte_desc_c') },
+    { icon: Award, title: t('features.calidad'), desc: t('features.calidad_desc_c') }
   ];
 
   return (
@@ -696,13 +717,13 @@ const ContactSection = () => {
     <div className="flex flex-col lg:flex-row gap-8 md:gap-12">
       <div className="w-full lg:w-1/3">
         <div className="w-12 h-1 bg-red-600 mb-4 md:mb-6 mt-8 md:mt-0"></div>
-        <h4 className="text-red-600 font-bold text-xs md:text-sm tracking-wider uppercase mb-2">Contacto</h4>
+        <h4 className="text-red-600 font-bold text-xs md:text-sm tracking-wider uppercase mb-2">{t('contact.subtitle')}</h4>
         <h2 className="text-3xl md:text-4xl font-futuristic italic font-bold text-gray-900 leading-tight mb-4 md:mb-6 flex flex-col">
-          <span>ESTAMOS PARA</span>
-          <span className="text-red-600 mt-1 md:mt-3">AYUDARTE.</span>
+          <span>{t('contact.title1')}</span>
+          <span className="text-red-600 mt-1 md:mt-3">{t('contact.title2')}</span>
         </h2>
         <p className="text-gray-600 mb-6 md:mb-8 text-sm">
-          Nuestro equipo está disponible para asesorarte en vuelos privados y soluciones personalizadas. Comunicate con nosotros.
+          {t('contact.desc')}
         </p>
 
         <div className="space-y-4">
@@ -711,7 +732,7 @@ const ContactSection = () => {
               <Mail strokeWidth={1} className="w-5 h-5 text-red-600" />
             </div>
             <div>
-              <h4 className="font-bold text-sm text-gray-900 mb-1">CORREOS ELECTRÓNICOS</h4>
+              <h4 className="font-bold text-sm text-gray-900 mb-1">{t('contact.email')}</h4>
               <p className="text-sm text-red-600">vuelos@bairesglobaljets.com.ar</p>
               <p className="text-sm text-red-600">info@bairesglobaljets.com.ar</p>
             </div>
@@ -722,9 +743,9 @@ const ContactSection = () => {
               <Phone strokeWidth={1} className="w-5 h-5 text-red-600" />
             </div>
             <div>
-              <h4 className="font-bold text-sm text-gray-900 mb-1">TELÉFONOS</h4>
+              <h4 className="font-bold text-sm text-gray-900 mb-1">{t('contact.tel')}</h4>
               <p className="text-sm text-red-600">+54 9 11 7374 5726</p>
-              <p className="text-xs text-gray-500 mt-1">Lunes a Domingo 24/7</p>
+              <p className="text-xs text-gray-500 mt-1">{t('contact.tel_desc')}</p>
             </div>
           </div>
 
@@ -733,9 +754,9 @@ const ContactSection = () => {
               <MapPin strokeWidth={1} className="w-5 h-5 text-red-600" />
             </div>
             <div>
-              <h4 className="font-bold text-sm text-gray-900 mb-1">UBICACIÓN</h4>
+              <h4 className="font-bold text-sm text-gray-900 mb-1">{t('contact.ubicacion')}</h4>
               <p className="text-sm text-red-600">Aeroparque Jorge Newbery (AEP)</p>
-              <p className="text-xs text-gray-500 mt-1">Av. Rafael Obligado s/n, CABA, Argentina</p>
+              <p className="text-xs text-gray-500 mt-1">{t('contact.ubicacion_desc')}</p>
             </div>
           </div>
         </div>
@@ -759,7 +780,7 @@ const ContactSection = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-4 py-2 shadow-lg flex items-center gap-3 border border-gray-200">
            <MapPin strokeWidth={2} className="text-red-600 w-5 h-5 md:w-6 md:h-6 shrink-0" />
            <div>
-             <p className="font-bold text-xs md:text-sm text-gray-900">AEROPARQUE</p>
+             <p className="font-bold text-xs md:text-sm text-gray-900">{t('contact.aeroparque')}</p>
              <p className="text-[10px] md:text-xs text-gray-500">Jorge Newbery (AEP)</p>
            </div>
         </div>
@@ -770,17 +791,17 @@ const ContactSection = () => {
       <div className="flex flex-col items-center md:items-start text-center md:text-left">
         <div className="w-12 h-1 bg-red-600 mb-4 hidden md:block"></div>
         <h3 className="text-xl md:text-2xl font-bold text-gray-900">
-          ¿LISTO PARA<br/><span className="text-red-600">VOLAR?</span>
+          {t('contact.listo1')}<br/><span className="text-red-600">{t('contact.listo2')}</span>
         </h3>
       </div>
-      <p className="text-gray-600 text-sm hidden lg:block border-l border-gray-300 pl-6 h-full flex items-center">Solicitá más información o cotizá tu próximo servicio.</p>
+      <p className="text-gray-600 text-sm hidden lg:block border-l border-gray-300 pl-6 h-full flex items-center">{t('contact.listo_desc')}</p>
       <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
         <button
           id="btn-contacto-cotizar-vuelo"
           onClick={() => document.getElementById('vuelos').scrollIntoView({ behavior: 'smooth' })}
           className="bg-red-600 text-white px-8 py-3 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors whitespace-nowrap"
         >
-          <Plane strokeWidth={2} className="w-4 h-4 transform -rotate-45" /> COTIZAR VUELO PRIVADO
+          <Plane strokeWidth={2} className="w-4 h-4 transform -rotate-45" /> {t('contact.btn_cotizar')}
         </button>
       </div>
     </div>

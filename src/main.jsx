@@ -4,14 +4,17 @@ import { HashRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import SimulatorsPage from './SimulatorsPage.jsx'
+import { LanguageProvider } from './i18n/LanguageContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/simuladores" element={<SimulatorsPage />} />
-      </Routes>
-    </HashRouter>
+    <LanguageProvider>
+      <HashRouter>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/simuladores" element={<SimulatorsPage />} />
+        </Routes>
+      </HashRouter>
+    </LanguageProvider>
   </StrictMode>,
 )

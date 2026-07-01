@@ -8,6 +8,7 @@ import {
   Calendar, Layers, FileText
 } from 'lucide-react';
 import { Navbar } from './App.jsx';
+import { useLanguage } from './i18n/LanguageContext';
 
 // ── SEO Head Manager ───────────────────────────────────────────────────────────
 const SimulatorSEO = () => {
@@ -103,63 +104,64 @@ const CheckItem = ({ text }) => (
 
 // ── Main Page ──────────────────────────────────────────────────────────────────
 export default function SimulatorsPage() {
+  const { t } = useLanguage();
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const teoricos = [
     {
       title: 'MCC',
-      subtitle: 'COOPERACIÓN EN TRIPULACIÓN MÚLTIPLE',
-      hours: '25 HORAS',
-      desc: 'Entrenamiento indispensable para desarrollar la coordinación entre Pilot Flying y Pilot Monitoring bajo estándares internacionales.',
-      list: ['CRM', 'SOP', 'Callouts', 'Checklist', 'Trabajo en equipo'],
+      subtitle: t('sim.teoricos.mcc'),
+      hours: `25 ${t('sim.teoricos.horas')}`,
+      desc: t('sim.teoricos.mcc_desc'),
+      list: t('sim.teoricos.mcc_list'),
       price: '$350.000 ARS',
       icon: Users
     },
     {
       title: 'JOC',
-      subtitle: 'CURSO DE ORIENTACIÓN EN REACTORES',
-      hours: '15 HORAS',
-      desc: 'Transición técnica hacia aeronaves a reacción. Aprendé gestión de energía, automatización, Director de Vuelo y operación del FMS.',
+      subtitle: t('sim.teoricos.joc'),
+      hours: `15 ${t('sim.teoricos.horas')}`,
+      desc: t('sim.teoricos.joc_desc'),
       list: [],
       price: '$250.000 ARS',
       icon: Plane
     },
     {
       title: 'CRM',
-      subtitle: 'GESTIÓN DE RECURSOS DE LA TRIPULACIÓN',
-      hours: '16 HORAS',
-      desc: 'Capacitación enfocada en el factor humano, liderazgo, toma de decisiones y seguridad operacional.',
+      subtitle: t('sim.teoricos.crm'),
+      hours: `16 ${t('sim.teoricos.horas')}`,
+      desc: t('sim.teoricos.crm_desc'),
       list: [],
       price: '$180.000 ARS',
       icon: ShieldCheck
     },
     {
       title: 'BOEING\n737 NG',
-      subtitle: 'SISTEMAS',
-      hours: '30 HORAS',
-      desc: 'Estudio completo de todos los sistemas del Boeing 737 NG.',
-      list: ['Motores', 'Hidráulico', 'Eléctrico', 'Neumático', 'Presurización', 'FMC', 'Emergencias'],
+      subtitle: t('sim.teoricos.b737'),
+      hours: `30 ${t('sim.teoricos.horas')}`,
+      desc: t('sim.teoricos.b737_desc'),
+      list: t('sim.teoricos.b737_list'),
       price: '$400.000 ARS',
       icon: Settings
     },
     {
       title: 'KING AIR\nB200',
-      subtitle: 'SISTEMAS',
-      hours: '20 HORAS',
-      desc: 'Curso completo sobre los sistemas del Beechcraft King Air B200.',
-      list: ['PT6A', 'Combustible', 'Eléctrico', 'Tren de Aterrizaje', 'Presurización', 'Procedimientos de Emergencia'],
+      subtitle: t('sim.teoricos.ka'),
+      hours: `20 ${t('sim.teoricos.horas')}`,
+      desc: t('sim.teoricos.ka_desc'),
+      list: t('sim.teoricos.ka_list'),
       price: '$300.000 ARS',
       icon: Wrench
     }
   ];
 
   const whyUsNew = [
-    { icon: UserCheck, label: 'INSTRUCTORES\nACTIVOS DE\nLÍNEA AÉREA' },
-    { icon: Monitor, label: 'SIMULADORES\nDE ALTA\nFIDELIDAD' },
-    { icon: ClipboardList, label: 'CAPACITACIÓN\nBAJO SOP\nINTERNACIONALES' },
-    { icon: Users, label: 'PREPARACIÓN\nPARA\nENTREVISTAS' },
-    { icon: Crosshair, label: 'ENTRENAMIENTO\nIFR' },
-    { icon: BookOpen, label: 'MATERIAL\nACTUALIZADO' }
+    { icon: UserCheck, label: t('sim.whyus.f1') },
+    { icon: Monitor, label: t('sim.whyus.f2') },
+    { icon: ClipboardList, label: t('sim.whyus.f3') },
+    { icon: Users, label: t('sim.whyus.f4') },
+    { icon: Crosshair, label: t('sim.whyus.f5') },
+    { icon: FileText, label: t('sim.whyus.f6') }
   ];
 
   const whatsappBase = "https://wa.me/5491173745726?text=";
@@ -181,14 +183,14 @@ export default function SimulatorsPage() {
           <div className="w-full lg:w-[60%] px-4 py-8 sm:p-8 md:p-16 lg:p-24 flex flex-col justify-center relative z-10 bg-white lg:bg-transparent">
             <div className="w-12 h-1 bg-red-600 mb-4 md:mb-6" />
             <p className="text-red-600 font-bold text-xs md:text-sm tracking-widest uppercase mb-4">
-              ENTRENÁ COMO EN LA REALIDAD. VOLÁ CON SEGURIDAD.
+              {t('sim.hero.pre')}
             </p>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-futuristic italic font-bold text-gray-900 leading-tight flex flex-col mb-6">
-              <span>SIMULADORES</span>
-              <span className="text-red-600 mt-2 md:mt-4">DE VUELO.</span>
+              <span>{t('sim.hero.title1')}</span>
+              <span className="text-red-600 mt-2 md:mt-4">{t('sim.hero.title2')}</span>
             </h1>
             <p className="text-gray-600 text-base md:text-lg max-w-md mb-8">
-              Entrenamiento profesional en simuladores de última generación para pilotos que buscan excelencia operacional. Boeing 737 y King Air 200 disponibles en Buenos Aires.
+              {t('sim.hero.desc')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
@@ -196,20 +198,20 @@ export default function SimulatorsPage() {
                 onClick={() => document.getElementById('cursos-teoricos').scrollIntoView({ behavior: 'smooth' })}
                 className="bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-fit"
               >
-                VER CURSOS <ChevronRight className="w-4 h-4" />
+                {t('sim.hero.btn_cursos')} <ChevronRight className="w-4 h-4" />
               </button>
-              <a id="btn-sim-hero-reservar-sesion" href={`${whatsappBase}${encodeURIComponent("Hola, quisiera más información sobre las sesiones de simulador.")}`} target="_blank" rel="noopener noreferrer" className="border-2 border-gray-900 text-gray-900 px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-gray-900 hover:text-white transition-colors w-fit">
-                RESERVAR SESIÓN
+              <a id="btn-sim-hero-reservar-sesion" href={`${whatsappBase}${encodeURIComponent(t('sim.hero.wa_msg'))}`} target="_blank" rel="noopener noreferrer" className="border-2 border-gray-900 text-gray-900 px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-gray-900 hover:text-white transition-colors w-fit">
+                {t('sim.hero.btn_reservar')}
               </a>
             </div>
 
             {/* Feature pills */}
             <div className="mt-10 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 md:pt-8 border-t border-gray-100">
               {[
-                { icon: Target, label: 'ENTRENAMIENTO\nREALISTA' },
-                { icon: Award, label: 'INSTRUCTORES\nEXPERTOS' },
-                { icon: ShieldCheck, label: 'MÁXIMA\nSEGURIDAD' },
-                { icon: Settings, label: 'TECNOLOGÍA\nAVANZADA' },
+                { icon: Target, label: t('sim.hero.feat1') },
+                { icon: Award, label: t('sim.hero.feat2') },
+                { icon: ShieldCheck, label: t('sim.hero.feat3') },
+                { icon: Settings, label: t('sim.hero.feat4') },
               ].map(({ icon: Icon, label }) => (
                 <div key={label} className="flex flex-col items-start text-left">
                   <Icon strokeWidth={1} className="w-8 h-8 text-red-600 mb-2" />
@@ -232,12 +234,12 @@ export default function SimulatorsPage() {
       {/* ── HEADER Cursos y Programas ── */}
       <div className="bg-gray-50 pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-red-600 font-bold text-xs tracking-widest uppercase mb-2">FORMACIÓN PROFESIONAL</p>
+          <p className="text-red-600 font-bold text-xs tracking-widest uppercase mb-2">{t('sim.header.pre')}</p>
           <h2 className="text-3xl md:text-5xl font-futuristic italic font-bold text-gray-900 leading-tight mb-4">
-            CURSOS Y PROGRAMAS
+            {t('sim.header.title')}
           </h2>
           <p className="text-gray-600 text-sm max-w-2xl">
-            Entrenamientos teóricos y prácticos diseñados para pilotos que buscan ingresar o perfeccionarse en la aviación comercial y ejecutiva.
+            {t('sim.header.desc')}
           </p>
         </div>
       </div>
@@ -246,7 +248,7 @@ export default function SimulatorsPage() {
       <Section id="cursos-teoricos" bg="bg-gray-50" className="!pt-4 !pb-16">
         <div className="flex items-center gap-4 mb-8">
           <div className="w-8 h-0.5 bg-red-600" />
-          <h3 className="font-bold text-sm tracking-wider uppercase text-gray-900">CURSOS TEÓRICOS</h3>
+          <h3 className="font-bold text-sm tracking-wider uppercase text-gray-900">{t('sim.teoricos.title')}</h3>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -276,12 +278,12 @@ export default function SimulatorsPage() {
               <div className="mt-auto pt-4 border-t border-gray-100">
                 <p className="font-futuristic italic font-bold text-xl text-gray-900 mb-4">{item.price}</p>
                 <a 
-                  id={`btn-teorico-${item.title.replace(/\s+/g, '-').toLowerCase()}`}
-                  href={`${whatsappBase}${encodeURIComponent(`Hola, quisiera más información sobre el curso teórico: ${item.title.replace('\n', ' ')}`)}`}
+                  id={`btn-teorico-${item.title.replace(/\\s+/g, '-').toLowerCase()}`}
+                  href={`${whatsappBase}${encodeURIComponent(`${t('sim.teoricos.wa_msg')} ${item.title.replace('\\n', ' ')}`)}`}
                   target="_blank" rel="noopener noreferrer"
                   className="block w-full bg-red-600 text-white text-center py-2 text-xs font-bold uppercase hover:bg-red-700 transition-colors"
                 >
-                  MÁS INFORMACIÓN &rarr;
+                  {t('sim.teoricos.btn')} &rarr;
                 </a>
               </div>
             </div>
@@ -293,7 +295,7 @@ export default function SimulatorsPage() {
       <Section id="programas-completos" bg="bg-white" className="!py-16">
         <div className="flex items-center gap-4 mb-8">
           <div className="w-8 h-0.5 bg-red-600" />
-          <h3 className="font-bold text-sm tracking-wider uppercase text-gray-900">PROGRAMAS COMPLETOS</h3>
+          <h3 className="font-bold text-sm tracking-wider uppercase text-gray-900">{t('sim.programas.title')}</h3>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -301,26 +303,26 @@ export default function SimulatorsPage() {
           <div className="bg-[#111111] text-white p-8 relative overflow-hidden flex flex-col justify-between h-full group border border-gray-800 hover:border-red-600 transition-colors">
             <div className="relative z-10 mb-8">
               <div className="flex justify-between items-start mb-2">
-                <p className="text-red-600 font-bold text-xs tracking-wider uppercase">PROGRAMA 1</p>
-                <p className="text-red-600 font-bold text-sm">45 HORAS</p>
+                <p className="text-red-600 font-bold text-xs tracking-wider uppercase">{t('sim.programas.prog1')}</p>
+                <p className="text-red-600 font-bold text-sm">45 {t('sim.programas.horas')}</p>
               </div>
               <h4 className="text-3xl md:text-4xl font-futuristic italic font-bold text-white mb-2 leading-tight">
                 KING AIR B200
               </h4>
-              <p className="text-xs font-bold uppercase tracking-wide text-gray-300 mb-6">CURSO COMPLETO DE TRANSICIÓN<br/>AVANZADA Y MULTIMOTOR</p>
+              <p className="text-xs font-bold uppercase tracking-wide text-gray-300 mb-6 whitespace-pre-line">{t('sim.programas.ka_subtitle')}</p>
               
               <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
                 <p className="text-gray-400 text-sm md:w-1/2">
-                  La formación definitiva para dar el salto al entorno corporativo y ejecutivo de alta performance.
+                  {t('sim.programas.ka_desc')}
                 </p>
                 <div className="md:w-1/2 flex flex-col gap-2">
                   <div className="flex items-center gap-3">
                     <BookOpen strokeWidth={1} className="w-5 h-5 text-gray-500" />
-                    <span className="text-sm">25 hs Teoría</span>
+                    <span className="text-sm">25 {t('sim.programas.teoria')}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Monitor strokeWidth={1} className="w-5 h-5 text-gray-500" />
-                    <span className="text-sm">20 hs Simulador</span>
+                    <span className="text-sm">20 {t('sim.programas.sim')}</span>
                   </div>
                 </div>
               </div>
@@ -329,10 +331,10 @@ export default function SimulatorsPage() {
             <div className="relative z-10">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 border-t border-gray-800 pt-6">
                 {[
-                  { i: UserCheck, l: "Instructor\nCorporativo" },
-                  { i: FileText, l: "Manual\nincluido" },
-                  { i: Crosshair, l: "Enfoque\nIFR" },
-                  { i: Clock, l: "SOP y flujos\nejecutivos" }
+                  { i: UserCheck, l: t('sim.programas.ka_f1') },
+                  { i: FileText, l: t('sim.programas.ka_f2') },
+                  { i: Crosshair, l: t('sim.programas.ka_f3') },
+                  { i: Clock, l: t('sim.programas.ka_f4') }
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center gap-2">
                     <item.i strokeWidth={1} className="w-8 h-8 text-red-600 shrink-0" />
@@ -345,11 +347,11 @@ export default function SimulatorsPage() {
                 <p className="text-3xl font-futuristic italic font-bold">$1.450.000 ARS</p>
                 <a 
                   id="btn-programa-king-air"
-                  href={`${whatsappBase}${encodeURIComponent("Hola, quisiera más información sobre el Programa Completo 1: King Air B200.")}`}
+                  href={`${whatsappBase}${encodeURIComponent(t('sim.programas.wa_ka'))}`}
                   target="_blank" rel="noopener noreferrer"
                   className="w-full sm:w-auto bg-red-600 text-white px-8 py-3 text-xs font-bold uppercase hover:bg-red-700 transition-colors text-center"
                 >
-                  MÁS INFORMACIÓN &rarr;
+                  {t('sim.programas.btn')} &rarr;
                 </a>
               </div>
             </div>
@@ -361,26 +363,26 @@ export default function SimulatorsPage() {
           <div className="bg-[#111111] text-white p-8 relative overflow-hidden flex flex-col justify-between h-full group border border-gray-800 hover:border-red-600 transition-colors">
             <div className="relative z-10 mb-8">
               <div className="flex justify-between items-start mb-2">
-                <p className="text-red-600 font-bold text-xs tracking-wider uppercase">PROGRAMA 2</p>
-                <p className="text-red-600 font-bold text-sm">45 HORAS</p>
+                <p className="text-red-600 font-bold text-xs tracking-wider uppercase">{t('sim.programas.prog2')}</p>
+                <p className="text-red-600 font-bold text-sm">45 {t('sim.programas.horas')}</p>
               </div>
               <h4 className="text-3xl md:text-4xl font-futuristic italic font-bold text-white mb-2 leading-tight">
                 BOEING 737 NG MCC
               </h4>
-              <p className="text-xs font-bold uppercase tracking-wide text-gray-300 mb-6">CURSO COMPLETO DE COOPERACIÓN<br/>EN TRIPULACIÓN MÚLTIPLE</p>
+              <p className="text-xs font-bold uppercase tracking-wide text-gray-300 mb-6 whitespace-pre-line">{t('sim.programas.b737_subtitle')}</p>
               
               <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
                 <p className="text-gray-400 text-sm md:w-1/2">
-                  El puente técnico y operativo hacia la cabina de una línea aérea comercial.
+                  {t('sim.programas.b737_desc')}
                 </p>
                 <div className="md:w-1/2 flex flex-col gap-2">
                   <div className="flex items-center gap-3">
                     <BookOpen strokeWidth={1} className="w-5 h-5 text-gray-500" />
-                    <span className="text-sm">25 hs Teoría</span>
+                    <span className="text-sm">25 {t('sim.programas.teoria')}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Monitor strokeWidth={1} className="w-5 h-5 text-gray-500" />
-                    <span className="text-sm">20 hs Simulador</span>
+                    <span className="text-sm">20 {t('sim.programas.sim')}</span>
                   </div>
                 </div>
               </div>
@@ -389,10 +391,10 @@ export default function SimulatorsPage() {
             <div className="relative z-10">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 border-t border-gray-800 pt-6">
                 {[
-                  { i: Users, l: "CRM\navanzado" },
-                  { i: ShieldCheck, l: "MCC" },
-                  { i: ClipboardList, l: "SOP" },
-                  { i: Target, l: "PF / PM" }
+                  { i: Users, l: t('sim.programas.b737_f1') },
+                  { i: ShieldCheck, l: t('sim.programas.b737_f2') },
+                  { i: ClipboardList, l: t('sim.programas.b737_f3') },
+                  { i: Target, l: t('sim.programas.b737_f4') }
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center gap-2">
                     <item.i strokeWidth={1} className="w-8 h-8 text-red-600 shrink-0" />
@@ -405,11 +407,11 @@ export default function SimulatorsPage() {
                 <p className="text-3xl font-futuristic italic font-bold">$1.850.000 ARS</p>
                 <a 
                   id="btn-programa-737-mcc"
-                  href={`${whatsappBase}${encodeURIComponent("Hola, quisiera más información sobre el Programa Completo 2: Boeing 737 NG MCC.")}`}
+                  href={`${whatsappBase}${encodeURIComponent(t('sim.programas.wa_b737'))}`}
                   target="_blank" rel="noopener noreferrer"
                   className="w-full sm:w-auto bg-red-600 text-white px-8 py-3 text-xs font-bold uppercase hover:bg-red-700 transition-colors text-center"
                 >
-                  MÁS INFORMACIÓN &rarr;
+                  {t('sim.programas.btn')} &rarr;
                 </a>
               </div>
             </div>
@@ -423,7 +425,7 @@ export default function SimulatorsPage() {
       <Section id="entrenamiento-simulador" bg="bg-gray-50" className="!py-16">
         <div className="flex items-center gap-4 mb-8">
           <div className="w-8 h-0.5 bg-red-600" />
-          <h3 className="font-bold text-sm tracking-wider uppercase text-gray-900">ENTRENAMIENTO EN SIMULADOR</h3>
+          <h3 className="font-bold text-sm tracking-wider uppercase text-gray-900">{t('sim.entrenamiento.title')}</h3>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -434,7 +436,7 @@ export default function SimulatorsPage() {
                 style={{ backgroundImage: `url("${import.meta.env.BASE_URL}simulator-cockpit.png")` }} />
               <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />
               <div className="absolute bottom-4 left-6">
-                <p className="text-red-600 font-bold text-xs tracking-wider uppercase mb-1">PROGRAMA 3</p>
+                <p className="text-red-600 font-bold text-xs tracking-wider uppercase mb-1">{t('sim.entrenamiento.prog3')}</p>
                 <h4 className="text-3xl font-futuristic italic font-bold text-gray-900 leading-none">
                   BOEING 737 NG
                 </h4>
@@ -442,7 +444,7 @@ export default function SimulatorsPage() {
             </div>
             <div className="p-6 flex-grow border-b border-gray-100">
               <p className="text-sm text-gray-600">
-                Módulos de vuelo técnico para pilotos que buscan mantener habilitaciones, sumar horas instrumentales específicas o preparar un examen de ingreso.
+                {t('sim.entrenamiento.b737_desc')}
               </p>
             </div>
             <div className="grid grid-cols-3 bg-white">
@@ -507,7 +509,7 @@ export default function SimulatorsPage() {
       <Section id="por-que" bg="bg-white" className="!pt-4 !pb-24 border-t border-gray-100">
         <div className="flex flex-col items-center mb-12">
           <div className="w-8 h-0.5 bg-red-600 mb-4" />
-          <h3 className="font-bold text-sm tracking-wider uppercase text-gray-900 text-center">¿POR QUÉ ENTRENAR EN BAIRES GLOBAL JETS?</h3>
+          <h3 className="font-bold text-sm tracking-wider uppercase text-gray-900 text-center">{t('sim.whyus.title')}</h3>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
           {whyUsNew.map(({ icon: Icon, label }, idx) => (
@@ -527,17 +529,17 @@ export default function SimulatorsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
             <h2 className="text-4xl md:text-6xl font-futuristic italic font-bold text-white leading-none">
-              TU CARRERA EN AEROLÍNEAS<br/>
-              <span className="text-red-600">COMIENZA ACÁ.</span>
+              {t('sim.banner.title1')}<br/>
+              <span className="text-red-600">{t('sim.banner.title2')}</span>
             </h2>
           </div>
           <a
             id="btn-sim-banner-solicitar"
-            href={`${whatsappBase}${encodeURIComponent("Hola, me gustaría solicitar información general sobre los cursos y programas de simulador.")}`}
+            href={`${whatsappBase}${encodeURIComponent(t('sim.banner.wa_msg'))}`}
             target="_blank" rel="noopener noreferrer"
             className="bg-red-600 text-white px-8 py-4 text-sm font-bold uppercase hover:bg-red-700 transition-colors flex items-center gap-2 whitespace-nowrap"
           >
-            SOLICITAR INFORMACIÓN &rarr;
+            {t('sim.banner.btn')} &rarr;
           </a>
         </div>
       </div>
@@ -548,13 +550,13 @@ export default function SimulatorsPage() {
           <div className="lg:w-1/2">
             <div className="w-12 h-1 bg-red-600 mb-4" />
             <h2 className="text-3xl md:text-4xl font-futuristic italic font-bold text-white leading-tight flex flex-col mb-4">
-              <span>RESERVÁ TU</span>
-              <span className="text-red-600 mt-2">EXPERIENCIA.</span>
+              <span>{t('sim.cta.title1')}</span>
+              <span className="text-red-600 mt-2">{t('sim.cta.title2')}</span>
             </h2>
             <p className="text-gray-400 text-sm mb-2">
-              Viví la experiencia de operar un Boeing 737 o un King Air 200 con instructores profesionales y simuladores diseñados para replicar operaciones reales.
+              {t('sim.cta.desc1')}
             </p>
-            <p className="text-gray-500 text-xs">Buenos Aires, Argentina · Horarios flexibles · Sesiones individuales y grupales</p>
+            <p className="text-gray-500 text-xs">{t('sim.cta.desc2')}</p>
           </div>
           <div className="lg:w-1/2 flex flex-col gap-4">
             <div className="flex items-center gap-3 text-white">
@@ -575,7 +577,7 @@ export default function SimulatorsPage() {
             </div>
             <a id="btn-sim-cta-reservar-whatsapp" href="https://wa.me/5491173745726" target="_blank" rel="noopener noreferrer"
               className="mt-4 bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-fit">
-              RESERVAR POR WHATSAPP <ChevronRight className="w-4 h-4" />
+              {t('sim.cta.btn')} <ChevronRight className="w-4 h-4" />
             </a>
           </div>
         </div>
@@ -585,9 +587,9 @@ export default function SimulatorsPage() {
       <footer className="bg-gray-900 border-t border-gray-800 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <img src={`${import.meta.env.BASE_URL}logo-BGJ.png`} alt="Baires Global Jets" className="h-10 w-auto object-contain brightness-0 invert" />
-          <p className="text-gray-500 text-xs text-center">© 2025 Baires Global Jets · Training Center · Buenos Aires, Argentina</p>
+          <p className="text-gray-500 text-xs text-center">{t('sim.footer.copy')}</p>
           <Link to="/" className="text-gray-400 hover:text-white text-xs flex items-center gap-1 transition-colors">
-            <ArrowLeft className="w-3 h-3" /> Volver al sitio principal
+            <ArrowLeft className="w-3 h-3" /> {t('sim.footer.volver')}
           </Link>
         </div>
       </footer>
