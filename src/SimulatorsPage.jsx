@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Plane, ShieldCheck, Award, Clock, Users, Globe, Headset,
-  ChevronRight, ArrowLeft, CheckCircle, Target, Cpu, BookOpen,
-  Radio, Briefcase, Star, MapPin, Phone, Mail
+  Plane, ShieldCheck, Award, Clock, Users, Globe,
+  ChevronRight, ArrowLeft, Target, BookOpen,
+  MapPin, Phone, Mail, UserCheck, Monitor,
+  ClipboardList, Crosshair, Wrench, Settings,
+  Calendar, Layers, FileText
 } from 'lucide-react';
 import { Navbar } from './App.jsx';
 
@@ -103,30 +105,68 @@ const CheckItem = ({ text }) => (
 export default function SimulatorsPage() {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  const programs = [
-    { icon: Star, title: 'DISCOVERY\nFLIGHT EXPERIENCE', desc: 'Viví la experiencia de volar un avión comercial por primera vez. Sin requisitos previos.' },
-    { icon: Plane, title: 'PRIVATE\nPILOT TRAINING', desc: 'Entrenamiento orientado al perfeccionamiento de pilotos privados.' },
-    { icon: Radio, title: 'INSTRUMENT\nFLIGHT RULES (IFR)', desc: 'Procedimientos completos de navegación instrumental y aproximaciones de precisión.' },
-    { icon: Users, title: 'MULTI CREW\nCOOPERATION (MCC)', desc: 'Entrenamiento en comunicación, liderazgo y trabajo en cabina para múltiples pilotos.' },
-    { icon: BookOpen, title: 'AIRLINE\nPREPARATION', desc: 'Preparación para procesos de selección de aerolíneas: SOP, CRM, Checklist y más.' },
-    { icon: Briefcase, title: 'CORPORATE\nPILOT TRAINING', desc: 'Entrenamiento especializado para pilotos de aviación ejecutiva.' },
+  const teoricos = [
+    {
+      title: 'MCC',
+      subtitle: 'MULTI CREW COOPERATION',
+      hours: '25 HORAS',
+      desc: 'Entrenamiento indispensable para desarrollar la coordinación entre Pilot Flying y Pilot Monitoring bajo estándares internacionales.',
+      list: ['CRM', 'SOP', 'Callouts', 'Checklist', 'Trabajo en equipo'],
+      price: '$350.000 ARS',
+      icon: Users
+    },
+    {
+      title: 'JOC',
+      subtitle: 'JET ORIENTATION COURSE',
+      hours: '15 HORAS',
+      desc: 'Transición técnica hacia aeronaves a reacción. Aprendé gestión de energía, automatización, Director de Vuelo y operación del FMS.',
+      list: [],
+      price: '$250.000 ARS',
+      icon: Plane
+    },
+    {
+      title: 'CRM',
+      subtitle: 'CREW RESOURCE MANAGEMENT',
+      hours: '16 HORAS',
+      desc: 'Capacitación enfocada en el factor humano, liderazgo, toma de decisiones y seguridad operacional.',
+      list: [],
+      price: '$180.000 ARS',
+      icon: ShieldCheck
+    },
+    {
+      title: 'BOEING\n737 NG',
+      subtitle: 'SYSTEMS',
+      hours: '30 HORAS',
+      desc: 'Estudio completo de todos los sistemas del Boeing 737 NG.',
+      list: ['Motores', 'Hidráulico', 'Eléctrico', 'Neumático', 'Presurización', 'FMC', 'Emergencias'],
+      price: '$400.000 ARS',
+      icon: Settings
+    },
+    {
+      title: 'KING AIR\nB200',
+      subtitle: 'SYSTEMS',
+      hours: '20 HORAS',
+      desc: 'Curso completo sobre los sistemas del Beechcraft King Air B200.',
+      list: ['PT6A', 'Fuel', 'Electrical', 'Landing Gear', 'Pressurization', 'Emergency Procedures'],
+      price: '$300.000 ARS',
+      icon: Wrench
+    }
   ];
 
-  const whyUs = [
-    { icon: Cpu, label: 'Simuladores profesionales' },
-    { icon: Award, label: 'Instructores con experiencia operacional' },
-    { icon: Target, label: 'Escenarios completamente personalizables' },
-    { icon: Users, label: 'Entrenamiento individual y grupal' },
-    { icon: Star, label: 'Tecnología de última generación' },
-    { icon: ShieldCheck, label: 'Certificado de participación' },
-    { icon: Clock, label: 'Horarios flexibles' },
-    { icon: MapPin, label: 'Ubicación estratégica en Argentina' },
+  const whyUsNew = [
+    { icon: UserCheck, label: 'INSTRUCTORES\nACTIVOS DE\nLÍNEA AÉREA' },
+    { icon: Monitor, label: 'SIMULADORES\nDE ALTA\nFIDELIDAD' },
+    { icon: ClipboardList, label: 'CAPACITACIÓN\nBAJO SOP\nINTERNACIONALES' },
+    { icon: Users, label: 'PREPARACIÓN\nPARA\nENTREVISTAS' },
+    { icon: Crosshair, label: 'ENTRENAMIENTO\nIFR' },
+    { icon: BookOpen, label: 'MATERIAL\nACTUALIZADO' }
   ];
+
+  const whatsappBase = "https://wa.me/5491173745726?text=";
 
   return (
     <div className="font-sans text-gray-900 bg-white min-h-screen">
       <SimulatorSEO />
-
 
       <Navbar />
 
@@ -151,10 +191,14 @@ export default function SimulatorsPage() {
               Entrenamiento profesional en simuladores de última generación para pilotos que buscan excelencia operacional. Boeing 737 y King Air 200 disponibles en Buenos Aires.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#simuladores" className="bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-fit">
+              <button
+                id="btn-sim-hero-ver-cursos"
+                onClick={() => document.getElementById('cursos-teoricos').scrollIntoView({ behavior: 'smooth' })}
+                className="bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-fit"
+              >
                 VER CURSOS <ChevronRight className="w-4 h-4" />
-              </a>
-              <a id="btn-sim-hero-reservar-sesion" href="https://wa.me/5491173745726" target="_blank" rel="noopener noreferrer" className="border-2 border-gray-900 text-gray-900 px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-gray-900 hover:text-white transition-colors w-fit">
+              </button>
+              <a id="btn-sim-hero-reservar-sesion" href={`${whatsappBase}${encodeURIComponent("Hola, quisiera más información sobre las sesiones de simulador.")}`} target="_blank" rel="noopener noreferrer" className="border-2 border-gray-900 text-gray-900 px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-gray-900 hover:text-white transition-colors w-fit">
                 RESERVAR SESIÓN
               </a>
             </div>
@@ -165,7 +209,7 @@ export default function SimulatorsPage() {
                 { icon: Target, label: 'ENTRENAMIENTO\nREALISTA' },
                 { icon: Award, label: 'INSTRUCTORES\nEXPERTOS' },
                 { icon: ShieldCheck, label: 'MÁXIMA\nSEGURIDAD' },
-                { icon: Cpu, label: 'TECNOLOGÍA\nAVANZADA' },
+                { icon: Settings, label: 'TECNOLOGÍA\nAVANZADA' },
               ].map(({ icon: Icon, label }) => (
                 <div key={label} className="flex flex-col items-start text-left">
                   <Icon strokeWidth={1} className="w-8 h-8 text-red-600 mb-2" />
@@ -185,120 +229,318 @@ export default function SimulatorsPage() {
         </div>
       </div>
 
-      {/* ── Simulators ── */}
-      <Section id="simuladores" bg="bg-gray-50">
-        <div className="text-center mb-12">
-          <SectionLabel text="NUESTROS SIMULADORES" />
-          <h2 className="text-3xl md:text-5xl font-futuristic italic font-bold text-gray-900 leading-tight mt-4 flex flex-col items-center">
-            <span>TECNOLOGÍA, PRECISIÓN</span>
-            <span className="text-red-600 mt-2 md:mt-4">Y REALISMO.</span>
+      {/* ── HEADER Cursos y Programas ── */}
+      <div className="bg-gray-50 pt-16 pb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-red-600 font-bold text-xs tracking-widest uppercase mb-2">FORMACIÓN PROFESIONAL</p>
+          <h2 className="text-3xl md:text-5xl font-futuristic italic font-bold text-gray-900 leading-tight mb-4">
+            CURSOS Y PROGRAMAS
           </h2>
+          <p className="text-gray-600 text-sm max-w-2xl">
+            Entrenamientos teóricos y prácticos diseñados para pilotos que buscan ingresar o perfeccionarse en la aviación comercial y ejecutiva.
+          </p>
+        </div>
+      </div>
+
+      {/* ── Cursos Teóricos ── */}
+      <Section id="cursos-teoricos" bg="bg-gray-50" className="!pt-4 !pb-16">
+        <div className="flex items-center gap-4 mb-8">
+          <div className="w-8 h-0.5 bg-red-600" />
+          <h3 className="font-bold text-sm tracking-wider uppercase text-gray-900">CURSOS TEÓRICOS</h3>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Boeing 737 */}
-          <div className="bg-white border border-gray-200 p-8 hover:border-red-600 transition-colors">
-            <div className="flex items-start justify-between mb-4">
-              <div>
-                <h3 className="text-3xl md:text-4xl font-futuristic italic font-bold text-gray-900 leading-tight">
-                  BOEING<br /><span className="text-red-600">737</span>
-                </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {teoricos.map((item, idx) => (
+            <div key={idx} className="bg-white border border-gray-200 p-6 flex flex-col h-full hover:border-red-600 hover:shadow-lg transition-all group">
+              <div className="flex justify-between items-start mb-4">
+                <h4 className="text-2xl font-futuristic italic font-bold text-red-600 whitespace-pre-line leading-none">
+                  {item.title}
+                </h4>
+                <item.icon strokeWidth={1} className="w-8 h-8 text-red-600 opacity-50 group-hover:opacity-100 transition-opacity" />
               </div>
-              <Plane strokeWidth={1} className="w-16 h-16 text-gray-200" />
-            </div>
-            <p className="text-gray-600 text-sm mb-6">
-              Entrenamiento completo en una de las aeronaves comerciales más utilizadas del mundo.
-            </p>
-            <div className="grid grid-cols-2 gap-6">
-              <div>
-                <p className="text-red-600 font-bold text-xs uppercase tracking-wider mb-3">IDEAL PARA</p>
-                <ul className="space-y-2">
-                  {['Pilotos de línea aérea','Estudiantes de aviación comercial','Preparación para entrevistas','Procedimientos IFR','CRM y MCC','Emergencias y fallas','Aproximaciones ILS, RNAV y VOR','Entrenamiento recurrente'].map(i => <CheckItem key={i} text={i} />)}
+              <p className="font-bold text-[10px] uppercase text-gray-900 mb-2">{item.subtitle}</p>
+              <p className="text-red-600 font-bold text-xs mb-4">{item.hours}</p>
+              <p className="text-gray-500 text-xs flex-grow mb-4">{item.desc}</p>
+              
+              {item.list.length > 0 && (
+                <ul className="mb-6 space-y-1">
+                  {item.list.map((li, i) => (
+                    <li key={i} className="flex items-start gap-2 text-xs text-gray-700">
+                      <ChevronRight className="w-3 h-3 text-gray-400 shrink-0 mt-0.5" />
+                      <span>{li}</span>
+                    </li>
+                  ))}
                 </ul>
-              </div>
-              <div>
-                <p className="text-red-600 font-bold text-xs uppercase tracking-wider mb-3">CARACTERÍSTICAS</p>
-                <ul className="space-y-2">
-                  {['Cabina de tamaño real','Instrumentación profesional','Sistemas completamente funcionales','Escenarios meteorológicos personalizados','Aeropuertos de todo el mundo','Instructor Station'].map(i => <CheckItem key={i} text={i} />)}
-                </ul>
+              )}
+              
+              <div className="mt-auto pt-4 border-t border-gray-100">
+                <p className="font-futuristic italic font-bold text-xl text-gray-900 mb-4">{item.price}</p>
+                <a 
+                  id={`btn-teorico-${item.title.replace(/\s+/g, '-').toLowerCase()}`}
+                  href={`${whatsappBase}${encodeURIComponent(`Hola, quisiera más información sobre el curso teórico: ${item.title.replace('\n', ' ')}`)}`}
+                  target="_blank" rel="noopener noreferrer"
+                  className="block w-full bg-red-600 text-white text-center py-2 text-xs font-bold uppercase hover:bg-red-700 transition-colors"
+                >
+                  MÁS INFORMACIÓN &rarr;
+                </a>
               </div>
             </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* ── Programas Completos ── */}
+      <Section id="programas-completos" bg="bg-white" className="!py-16">
+        <div className="flex items-center gap-4 mb-8">
+          <div className="w-8 h-0.5 bg-red-600" />
+          <h3 className="font-bold text-sm tracking-wider uppercase text-gray-900">PROGRAMAS COMPLETOS</h3>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* PROG 1 */}
+          <div className="bg-[#111111] text-white p-8 relative overflow-hidden flex flex-col justify-between h-full group border border-gray-800 hover:border-red-600 transition-colors">
+            <div className="relative z-10 mb-8">
+              <div className="flex justify-between items-start mb-2">
+                <p className="text-red-600 font-bold text-xs tracking-wider uppercase">PROGRAMA 1</p>
+                <p className="text-red-600 font-bold text-sm">45 HORAS</p>
+              </div>
+              <h4 className="text-3xl md:text-4xl font-futuristic italic font-bold text-white mb-2 leading-tight">
+                KING AIR B200
+              </h4>
+              <p className="text-xs font-bold uppercase tracking-wide text-gray-300 mb-6">CURSO COMPLETO DE TRANSICIÓN<br/>AVANZADA Y MULTIMOTOR</p>
+              
+              <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
+                <p className="text-gray-400 text-sm md:w-1/2">
+                  La formación definitiva para dar el salto al entorno corporativo y ejecutivo de alta performance.
+                </p>
+                <div className="md:w-1/2 flex flex-col gap-2">
+                  <div className="flex items-center gap-3">
+                    <BookOpen strokeWidth={1} className="w-5 h-5 text-gray-500" />
+                    <span className="text-sm">25 hs Teoría</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Monitor strokeWidth={1} className="w-5 h-5 text-gray-500" />
+                    <span className="text-sm">20 hs Simulador</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative z-10">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 border-t border-gray-800 pt-6">
+                {[
+                  { i: UserCheck, l: "Instructor\nCorporativo" },
+                  { i: FileText, l: "Manual\nincluido" },
+                  { i: Crosshair, l: "Enfoque\nIFR" },
+                  { i: Clock, l: "SOP y flujos\nejecutivos" }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2">
+                    <item.i strokeWidth={1} className="w-8 h-8 text-red-600 shrink-0" />
+                    <span className="text-[10px] text-gray-400 leading-tight whitespace-pre-line">{item.l}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p className="text-3xl font-futuristic italic font-bold">$1.450.000 ARS</p>
+                <a 
+                  id="btn-programa-king-air"
+                  href={`${whatsappBase}${encodeURIComponent("Hola, quisiera más información sobre el Programa Completo 1: King Air B200.")}`}
+                  target="_blank" rel="noopener noreferrer"
+                  className="w-full sm:w-auto bg-red-600 text-white px-8 py-3 text-xs font-bold uppercase hover:bg-red-700 transition-colors text-center"
+                >
+                  MÁS INFORMACIÓN &rarr;
+                </a>
+              </div>
+            </div>
+            {/* Background Accent */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-red-900/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none transition-all group-hover:bg-red-900/20" />
           </div>
 
-          {/* King Air 200 */}
-          <div className="bg-white border border-gray-200 p-8 hover:border-red-600 transition-colors">
-            <div className="flex items-start justify-between mb-4">
-              <div>
-                <h3 className="text-3xl md:text-4xl font-futuristic italic font-bold text-gray-900 leading-tight">
-                  BEECHCRAFT<br /><span className="text-red-600 italic">KING AIR 200</span>
-                </h3>
+          {/* PROG 2 */}
+          <div className="bg-[#111111] text-white p-8 relative overflow-hidden flex flex-col justify-between h-full group border border-gray-800 hover:border-red-600 transition-colors">
+            <div className="relative z-10 mb-8">
+              <div className="flex justify-between items-start mb-2">
+                <p className="text-red-600 font-bold text-xs tracking-wider uppercase">PROGRAMA 2</p>
+                <p className="text-red-600 font-bold text-sm">45 HORAS</p>
               </div>
-              <Plane strokeWidth={1} className="w-16 h-16 text-gray-200" />
+              <h4 className="text-3xl md:text-4xl font-futuristic italic font-bold text-white mb-2 leading-tight">
+                BOEING 737 NG MCC
+              </h4>
+              <p className="text-xs font-bold uppercase tracking-wide text-gray-300 mb-6">CURSO COMPLETO DE COOPERACIÓN<br/>EN TRIPULACIÓN MÚLTIPLE</p>
+              
+              <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
+                <p className="text-gray-400 text-sm md:w-1/2">
+                  El puente técnico y operativo hacia la cabina de una línea aérea comercial.
+                </p>
+                <div className="md:w-1/2 flex flex-col gap-2">
+                  <div className="flex items-center gap-3">
+                    <BookOpen strokeWidth={1} className="w-5 h-5 text-gray-500" />
+                    <span className="text-sm">25 hs Teoría</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Monitor strokeWidth={1} className="w-5 h-5 text-gray-500" />
+                    <span className="text-sm">20 hs Simulador</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p className="text-gray-600 text-sm mb-6">
-              Entrenamiento enfocado en operaciones ejecutivas y turbohélice.
-            </p>
-            <div className="grid grid-cols-2 gap-6">
-              <div>
-                <p className="text-red-600 font-bold text-xs uppercase tracking-wider mb-3">IDEAL PARA</p>
-                <ul className="space-y-2">
-                  {['Pilotos corporativos','Entrenamiento multimotor','Procedimientos IFR','Navegación instrumental','Gestión de emergencias','Operaciones reales de cabina'].map(i => <CheckItem key={i} text={i} />)}
-                </ul>
+
+            <div className="relative z-10">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 border-t border-gray-800 pt-6">
+                {[
+                  { i: Users, l: "CRM\navanzado" },
+                  { i: ShieldCheck, l: "MCC" },
+                  { i: ClipboardList, l: "SOP" },
+                  { i: Target, l: "PF / PM" }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2">
+                    <item.i strokeWidth={1} className="w-8 h-8 text-red-600 shrink-0" />
+                    <span className="text-[10px] text-gray-400 leading-tight whitespace-pre-line">{item.l}</span>
+                  </div>
+                ))}
               </div>
-              <div>
-                <p className="text-red-600 font-bold text-xs uppercase tracking-wider mb-3">CARACTERÍSTICAS</p>
-                <ul className="space-y-2">
-                  {['Simulación de alta fidelidad','Procedimientos completos','Sistemas de navegación avanzados','Escenarios configurables','Entrenamiento personalizado'].map(i => <CheckItem key={i} text={i} />)}
-                </ul>
+
+              <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p className="text-3xl font-futuristic italic font-bold">$1.850.000 ARS</p>
+                <a 
+                  id="btn-programa-737-mcc"
+                  href={`${whatsappBase}${encodeURIComponent("Hola, quisiera más información sobre el Programa Completo 2: Boeing 737 NG MCC.")}`}
+                  target="_blank" rel="noopener noreferrer"
+                  className="w-full sm:w-auto bg-red-600 text-white px-8 py-3 text-xs font-bold uppercase hover:bg-red-700 transition-colors text-center"
+                >
+                  MÁS INFORMACIÓN &rarr;
+                </a>
               </div>
             </div>
+            {/* Background Accent */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-red-900/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none transition-all group-hover:bg-red-900/20" />
           </div>
         </div>
       </Section>
 
-      {/* ── Programs ── */}
-      <Section id="cursos" bg="bg-white">
-        <div className="text-center mb-12">
-          <SectionLabel text="PROGRAMAS DISPONIBLES" />
-          <h2 className="text-3xl md:text-5xl font-futuristic italic font-bold text-gray-900 leading-tight mt-4 flex flex-col items-center">
-            <span>ELEGÍ TU</span>
-            <span className="text-red-600 mt-2 md:mt-4">PROGRAMA.</span>
-          </h2>
+      {/* ── Entrenamiento en Simulador ── */}
+      <Section id="entrenamiento-simulador" bg="bg-gray-50" className="!py-16">
+        <div className="flex items-center gap-4 mb-8">
+          <div className="w-8 h-0.5 bg-red-600" />
+          <h3 className="font-bold text-sm tracking-wider uppercase text-gray-900">ENTRENAMIENTO EN SIMULADOR</h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {programs.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="border border-gray-200 p-6 hover:border-red-600 hover:shadow-md transition-all group cursor-pointer">
-              <div className="w-10 h-10 border border-red-600 flex items-center justify-center mb-4 group-hover:bg-red-600 transition-colors">
-                <Icon strokeWidth={1.5} className="w-5 h-5 text-red-600 group-hover:text-white transition-colors" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* SIM 1 */}
+          <div className="bg-white border border-gray-200 overflow-hidden flex flex-col group">
+            <div className="relative h-48 bg-gray-200">
+              <div className="absolute inset-0 bg-cover bg-center opacity-70 group-hover:scale-105 transition-transform duration-700" 
+                style={{ backgroundImage: `url("${import.meta.env.BASE_URL}simulator-cockpit.png")` }} />
+              <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />
+              <div className="absolute bottom-4 left-6">
+                <p className="text-red-600 font-bold text-xs tracking-wider uppercase mb-1">PROGRAMA 3</p>
+                <h4 className="text-3xl font-futuristic italic font-bold text-gray-900 leading-none">
+                  BOEING 737 NG
+                </h4>
               </div>
-              <h3 className="font-futuristic italic font-bold text-sm text-gray-900 mb-2 whitespace-pre-line leading-snug">{title}</h3>
-              <p className="text-xs text-gray-500 leading-relaxed">{desc}</p>
             </div>
-          ))}
+            <div className="p-6 flex-grow border-b border-gray-100">
+              <p className="text-sm text-gray-600">
+                Módulos de vuelo técnico para pilotos que buscan mantener habilitaciones, sumar horas instrumentales específicas o preparar un examen de ingreso.
+              </p>
+            </div>
+            <div className="grid grid-cols-3 bg-white">
+              <div className="p-4 text-center border-r border-gray-100 flex flex-col items-center">
+                <Clock strokeWidth={1.5} className="w-5 h-5 text-red-600 mb-2" />
+                <p className="text-[10px] font-bold uppercase text-red-600 mb-2">HORA INDIVIDUAL</p>
+                <p className="text-sm font-futuristic italic font-bold">$125.000 <span className="text-[10px] text-gray-400">ARS</span></p>
+              </div>
+              <div className="p-4 text-center border-r border-gray-100 flex flex-col items-center">
+                <Calendar strokeWidth={1.5} className="w-5 h-5 text-red-600 mb-2" />
+                <p className="text-[10px] font-bold uppercase text-red-600 mb-2">PACK 10 HORAS</p>
+                <p className="text-sm font-futuristic italic font-bold">$1.150.000 <span className="text-[10px] text-gray-400">ARS</span></p>
+              </div>
+              <div className="p-4 text-center flex flex-col items-center">
+                <Layers strokeWidth={1.5} className="w-5 h-5 text-red-600 mb-2" />
+                <p className="text-[10px] font-bold uppercase text-red-600 mb-2">PACK 20 HORAS</p>
+                <p className="text-sm font-futuristic italic font-bold">$2.100.000 <span className="text-[10px] text-gray-400">ARS</span></p>
+              </div>
+            </div>
+          </div>
+
+          {/* SIM 2 */}
+          <div className="bg-white border border-gray-200 overflow-hidden flex flex-col group">
+            <div className="relative h-48 bg-gray-200">
+              <div className="absolute inset-0 bg-cover bg-center opacity-70 group-hover:scale-105 transition-transform duration-700" 
+                style={{ backgroundImage: `url("${import.meta.env.BASE_URL}simulator-cockpit.png")` }} />
+              <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />
+              <div className="absolute bottom-4 left-6">
+                <p className="text-red-600 font-bold text-xs tracking-wider uppercase mb-1">PROGRAMA 4</p>
+                <h4 className="text-3xl font-futuristic italic font-bold text-gray-900 leading-none">
+                  KING AIR B200
+                </h4>
+              </div>
+            </div>
+            <div className="p-6 flex-grow border-b border-gray-100">
+              <p className="text-sm text-gray-600">
+                Módulos de vuelo técnico diseñados para pilotos orientados a la aviación ejecutiva que desean entrenamiento práctico directo, sin necesidad de cursar módulos teóricos.
+              </p>
+            </div>
+            <div className="grid grid-cols-3 bg-white">
+              <div className="p-4 text-center border-r border-gray-100 flex flex-col items-center">
+                <Clock strokeWidth={1.5} className="w-5 h-5 text-red-600 mb-2" />
+                <p className="text-[10px] font-bold uppercase text-red-600 mb-2">HORA INDIVIDUAL</p>
+                <p className="text-sm font-futuristic italic font-bold">$125.000 <span className="text-[10px] text-gray-400">ARS</span></p>
+              </div>
+              <div className="p-4 text-center border-r border-gray-100 flex flex-col items-center">
+                <Calendar strokeWidth={1.5} className="w-5 h-5 text-red-600 mb-2" />
+                <p className="text-[10px] font-bold uppercase text-red-600 mb-2">PACK 10 HORAS</p>
+                <p className="text-sm font-futuristic italic font-bold">$1.150.000 <span className="text-[10px] text-gray-400">ARS</span></p>
+              </div>
+              <div className="p-4 text-center flex flex-col items-center">
+                <Layers strokeWidth={1.5} className="w-5 h-5 text-red-600 mb-2" />
+                <p className="text-[10px] font-bold uppercase text-red-600 mb-2">PACK 20 HORAS</p>
+                <p className="text-sm font-futuristic italic font-bold">$2.100.000 <span className="text-[10px] text-gray-400">ARS</span></p>
+              </div>
+            </div>
+          </div>
         </div>
       </Section>
 
       {/* ── Why Us ── */}
-      <Section id="por-que" bg="bg-gray-50">
-        <div className="mb-10">
-          <div className="w-12 h-1 bg-red-600 mb-4" />
-          <h2 className="text-3xl md:text-4xl font-futuristic italic font-bold text-gray-900 leading-tight flex flex-col">
-            <span>¿POR QUÉ ELEGIR</span>
-            <span className="text-red-600 mt-2 md:mt-3">BAIRES GLOBAL JETS?</span>
-          </h2>
+      <Section id="por-que" bg="bg-white" className="!pt-4 !pb-24 border-t border-gray-100">
+        <div className="flex flex-col items-center mb-12">
+          <div className="w-8 h-0.5 bg-red-600 mb-4" />
+          <h3 className="font-bold text-sm tracking-wider uppercase text-gray-900 text-center">¿POR QUÉ ENTRENAR EN BAIRES GLOBAL JETS?</h3>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
-          {whyUs.map(({ icon: Icon, label }) => (
-            <div key={label} className="flex flex-col items-center text-center gap-3">
-              <div className="w-12 h-12 border border-gray-200 flex items-center justify-center">
-                <Icon strokeWidth={1} className="w-6 h-6 text-red-600" />
-              </div>
-              <p className="text-xs font-bold text-gray-900 leading-snug">{label}</p>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+          {whyUsNew.map(({ icon: Icon, label }, idx) => (
+            <div key={idx} className="flex flex-col items-center text-center gap-3">
+              <Icon strokeWidth={1} className="w-10 h-10 text-red-600" />
+              <p className="text-[10px] md:text-xs font-bold text-gray-900 leading-snug whitespace-pre-line">{label}</p>
             </div>
           ))}
         </div>
       </Section>
+
+      {/* ── Banner ── */}
+      <div className="relative bg-gray-900 overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center opacity-40"
+             style={{ backgroundImage: `url("${import.meta.env.BASE_URL}simulator-cockpit.png")` }} />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div>
+            <h2 className="text-4xl md:text-6xl font-futuristic italic font-bold text-white leading-none">
+              YOUR AIRLINE CAREER<br/>
+              <span className="text-red-600">STARTS HERE.</span>
+            </h2>
+          </div>
+          <a
+            id="btn-sim-banner-solicitar"
+            href={`${whatsappBase}${encodeURIComponent("Hola, me gustaría solicitar información general sobre los cursos y programas de simulador.")}`}
+            target="_blank" rel="noopener noreferrer"
+            className="bg-red-600 text-white px-8 py-4 text-sm font-bold uppercase hover:bg-red-700 transition-colors flex items-center gap-2 whitespace-nowrap"
+          >
+            SOLICITAR INFORMACIÓN &rarr;
+          </a>
+        </div>
+      </div>
 
       {/* ── CTA / Contact ── */}
       <Section id="contacto-sim" bg="bg-white">
