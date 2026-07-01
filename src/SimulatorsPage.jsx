@@ -5,7 +5,7 @@ import {
   ChevronRight, ArrowLeft, Target, BookOpen,
   MapPin, Phone, Mail, UserCheck, Monitor,
   ClipboardList, Crosshair, Wrench, Settings,
-  Calendar, Layers, FileText
+  Calendar, Layers, FileText, Instagram, Facebook, Linkedin
 } from 'lucide-react';
 import { Navbar } from './App.jsx';
 import { useLanguage } from './i18n/LanguageContext';
@@ -592,6 +592,19 @@ export default function SimulatorsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <img src={`${import.meta.env.BASE_URL}logo-BGJ.png`} alt="Baires Global Jets" className="h-10 w-auto object-contain brightness-0 invert" />
           <p className="text-gray-500 text-xs text-center">{t('sim.footer.copy')}</p>
+          
+          <div className="flex gap-4 items-center">
+            <a href="https://www.linkedin.com/company/bairesglobaljets" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-600 transition-colors">
+              <Linkedin strokeWidth={1.5} className="w-5 h-5" />
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61585403314055&locale=es_LA" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-600 transition-colors">
+              <Facebook strokeWidth={1.5} className="w-5 h-5" />
+            </a>
+            <a href="https://www.instagram.com/baires_global_jets?igsh=aHMxcmltaGwzNm8=" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-600 transition-colors">
+              <Instagram strokeWidth={1.5} className="w-5 h-5" />
+            </a>
+          </div>
+
           <Link to="/" className="text-gray-400 hover:text-white text-xs flex items-center gap-1 transition-colors">
             <ArrowLeft className="w-3 h-3" /> {t('sim.footer.volver')}
           </Link>

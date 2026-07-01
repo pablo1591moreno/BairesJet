@@ -27,7 +27,10 @@ import {
   Check,
   Menu,
   X,
-  Target
+  Target,
+  Instagram,
+  Facebook,
+  Linkedin
 } from 'lucide-react';
 import { airports } from './data/airports';
 
@@ -762,14 +765,14 @@ const ContactSection = () => {
         </div>
 
         <div className="flex gap-4 mt-8">
-          <a href="#" className="w-10 h-10 border border-gray-300 flex items-center justify-center text-gray-600 hover:text-red-600 hover:border-red-600 transition-colors">
-            <Camera strokeWidth={1.5} className="w-5 h-5" />
+          <a href="https://www.linkedin.com/company/bairesglobaljets" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-gray-300 flex items-center justify-center text-gray-600 hover:text-red-600 hover:border-red-600 transition-colors">
+            <Linkedin strokeWidth={1.5} className="w-5 h-5" />
           </a>
-          <a href="#" className="w-10 h-10 border border-gray-300 flex items-center justify-center text-gray-600 hover:text-red-600 hover:border-red-600 transition-colors">
-            <MessageCircle strokeWidth={1.5} className="w-5 h-5" />
+          <a href="https://www.facebook.com/profile.php?id=61585403314055&locale=es_LA" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-gray-300 flex items-center justify-center text-gray-600 hover:text-red-600 hover:border-red-600 transition-colors">
+            <Facebook strokeWidth={1.5} className="w-5 h-5" />
           </a>
-          <a href="#" className="w-10 h-10 border border-gray-300 flex items-center justify-center text-gray-600 hover:text-red-600 hover:border-red-600 transition-colors">
-            <Mail strokeWidth={1.5} className="w-5 h-5" />
+          <a href="https://www.instagram.com/baires_global_jets?igsh=aHMxcmltaGwzNm8=" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-gray-300 flex items-center justify-center text-gray-600 hover:text-red-600 hover:border-red-600 transition-colors">
+            <Instagram strokeWidth={1.5} className="w-5 h-5" />
           </a>
         </div>
       </div>
