@@ -12,17 +12,24 @@ import { useLanguage } from './i18n/LanguageContext';
 
 // ── SEO Head Manager ───────────────────────────────────────────────────────────
 const SimulatorSEO = () => {
+  const { t } = useLanguage();
+
   useEffect(() => {
     // Title
-    document.title = 'Cursos de Simuladores de Vuelo en Argentina | Baires Global Jets Training Center';
+    document.title = t('sim.seo.title');
 
     // Meta description
     let desc = document.querySelector('meta[name="description"]');
     if (!desc) { desc = document.createElement('meta'); desc.name = 'description'; document.head.appendChild(desc); }
-    desc.content = 'Cursos profesionales en simuladores de vuelo Boeing 737 y King Air 200 en Buenos Aires. Entrenamiento IFR, MCC, Airline Preparation y Corporate Pilot Training. Instructores certificados, tecnología de última generación.';
+    desc.content = t('sim.seo.desc');
 
     // OG Tags
-    const og = { 'og:title': 'Simuladores de Vuelo | Baires Global Jets Training Center', 'og:description': 'Entrená en simuladores de vuelo profesionales en Argentina. Boeing 737 y King Air 200. Cursos IFR, MCC, Airline Prep y más. Inscripciones abiertas.', 'og:image': 'https://pablo1591moreno.github.io/BairesJet/simulator-cockpit.png', 'og:url': 'https://pablo1591moreno.github.io/BairesJet/simuladores' };
+    const og = { 
+      'og:title': t('sim.seo.og_title'), 
+      'og:description': t('sim.seo.og_desc'), 
+      'og:image': 'https://pablo1591moreno.github.io/BairesJet/simulator-cockpit.png', 
+      'og:url': 'https://pablo1591moreno.github.io/BairesJet/simuladores' 
+    };
     Object.entries(og).forEach(([prop, content]) => {
       let tag = document.querySelector(`meta[property="${prop}"]`);
       if (!tag) { tag = document.createElement('meta'); tag.setAttribute('property', prop); document.head.appendChild(tag); }
@@ -41,31 +48,28 @@ const SimulatorSEO = () => {
         {
           "@type": "EducationalOrganization",
           "name": "Baires Global Jets Training Center",
-          "description": "Centro de entrenamiento aeronáutico en Argentina con simuladores de vuelo profesionales Boeing 737 y Beechcraft King Air 200. Ofrecemos cursos de piloto privado, IFR, MCC, Airline Preparation y Corporate Pilot Training.",
+          "description": t('sim.seo.json_desc'),
           "url": "https://pablo1591moreno.github.io/BairesJet/simuladores",
           "telephone": "+54-9-11-7374-5726",
           "email": "info@bairesglobaljets.com.ar",
           "address": { "@type": "PostalAddress", "addressLocality": "Buenos Aires", "addressCountry": "AR" },
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
-            "name": "Cursos de Simuladores de Vuelo",
+            "name": t('sim.header.title'),
             "itemListElement": [
-              { "@type": "Offer", "itemOffered": { "@type": "Course", "name": "Discovery Flight Experience", "description": "Primera experiencia de vuelo en simulador para quienes desean conocer la aviación. Sin requisitos previos." } },
-              { "@type": "Offer", "itemOffered": { "@type": "Course", "name": "Private Pilot Training", "description": "Entrenamiento orientado al perfeccionamiento de pilotos privados en simuladores profesionales." } },
-              { "@type": "Offer", "itemOffered": { "@type": "Course", "name": "Instrument Flight Rules (IFR)", "description": "Procedimientos completos de navegación instrumental y aproximaciones de precisión en simulador Boeing 737." } },
-              { "@type": "Offer", "itemOffered": { "@type": "Course", "name": "Multi Crew Cooperation (MCC)", "description": "Entrenamiento en comunicación, liderazgo y trabajo en cabina para operaciones con múltiples pilotos." } },
-              { "@type": "Offer", "itemOffered": { "@type": "Course", "name": "Airline Preparation", "description": "Preparación para procesos de selección de aerolíneas: SOP, Checklist, CRM, gestión de recursos y operaciones normales y anormales." } },
-              { "@type": "Offer", "itemOffered": { "@type": "Course", "name": "Corporate Pilot Training", "description": "Entrenamiento especializado para pilotos de aviación ejecutiva en King Air 200." } }
+              { "@type": "Offer", "itemOffered": { "@type": "Course", "name": "Boeing 737 NG Type Rating / Systems", "description": t('sim.teoricos.b737_desc') } },
+              { "@type": "Offer", "itemOffered": { "@type": "Course", "name": "King Air B200 Type Rating / Systems", "description": t('sim.teoricos.ka_desc') } },
+              { "@type": "Offer", "itemOffered": { "@type": "Course", "name": "Multi Crew Cooperation (MCC)", "description": t('sim.teoricos.mcc_desc') } },
+              { "@type": "Offer", "itemOffered": { "@type": "Course", "name": "Jet Orientation Course (JOC)", "description": t('sim.teoricos.joc_desc') } },
+              { "@type": "Offer", "itemOffered": { "@type": "Course", "name": "Crew Resource Management (CRM)", "description": t('sim.teoricos.crm_desc') } }
             ]
           }
         },
         {
           "@type": "FAQPage",
           "mainEntity": [
-            { "@type": "Question", "name": "¿Qué simuladores de vuelo tienen disponibles?", "acceptedAnswer": { "@type": "Answer", "text": "Baires Global Jets Training Center cuenta con simuladores Boeing 737 y Beechcraft King Air 200, ambos de alta fidelidad con cabinas de tamaño real, instrumentación profesional y escenarios meteorológicos configurables." } },
-            { "@type": "Question", "name": "¿Necesito ser piloto para tomar un curso de simulador?", "acceptedAnswer": { "@type": "Answer", "text": "No. El curso Discovery Flight Experience está diseñado para quienes no tienen experiencia previa y desean vivir la sensación de volar. Para los cursos IFR, MCC y Airline Preparation sí se requieren horas y habilitaciones previas." } },
-            { "@type": "Question", "name": "¿Dónde están ubicados los simuladores de Baires Global Jets?", "acceptedAnswer": { "@type": "Answer", "text": "El Training Center de Baires Global Jets está ubicado en Buenos Aires, Argentina, con acceso estratégico desde Aeroparque Jorge Newbery." } },
-            { "@type": "Question", "name": "¿Los cursos de simulador sirven para validar horas de vuelo?", "acceptedAnswer": { "@type": "Answer", "text": "Los cursos en simuladores profesionales FSTD pueden ser utilizados para validar horas de vuelo instrumental y de procedimientos según la normativa ANAC vigente. Consultá con nuestros instructores para más detalles según tu habilitación." } }
+            { "@type": "Question", "name": "¿Qué simuladores de vuelo tienen disponibles? / Which flight simulators are available?", "acceptedAnswer": { "@type": "Answer", "text": "Boeing 737 NG & Beechcraft King Air B200 FSTD (Flight Simulation Training Devices) en Buenos Aires, Argentina." } },
+            { "@type": "Question", "name": "¿Ofrecen entrenamiento IFR y preparación para aerolíneas? / Do you offer IFR and Airline Preparation?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, nuestros programas incluyen entrenamiento IFR, cursos MCC, JOC y preparación intensiva (Airline Preparation) enfocada en estándares SOP comerciales." } }
           ]
         }
       ]
@@ -77,7 +81,7 @@ const SimulatorSEO = () => {
       const s = document.getElementById('simulator-jsonld');
       if (s) s.remove();
     };
-  }, []);
+  }, [t]);
   return null;
 };
 

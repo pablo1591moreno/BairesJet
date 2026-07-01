@@ -250,6 +250,13 @@ export const translations = {
       footer: {
         copy: "© 2025 Baires Global Jets · Training Center · Buenos Aires, Argentina",
         volver: "Volver al sitio principal"
+      },
+      seo: {
+        title: "Centro de Entrenamiento Aeronáutico | Simuladores Boeing 737 NG y King Air B200",
+        desc: "Entrenamiento especializado para pilotos comerciales y ejecutivos en Buenos Aires. Habilitación de tipo, IFR, JOC, MCC y CRM en simuladores Boeing 737 NG y Beechcraft King Air B200. Cursos bajo normativa ANAC.",
+        og_title: "Centro de Entrenamiento para Pilotos | Baires Global Jets Training Center",
+        og_desc: "Especialización para pilotos comerciales y corporativos. Simuladores B737 NG y King Air B200 en Argentina. Programas IFR, MCC, JOC y CRM con instructores de línea aérea.",
+        json_desc: "Centro de entrenamiento aeronáutico avanzado en Argentina especializado en pilotos comerciales y ejecutivos. Operamos simuladores profesionales de Boeing 737 NG y Beechcraft King Air 200. Programas de Type Rating, IFR, MCC, JOC, CRM y Airline Preparation."
       }
     }
   },
@@ -504,6 +511,13 @@ export const translations = {
       footer: {
         copy: "© 2025 Baires Global Jets · Training Center · Buenos Aires, Argentina",
         volver: "Back to main site"
+      },
+      seo: {
+        title: "Aviation Training Center | Boeing 737 NG & King Air B200 Simulators",
+        desc: "Specialized training for commercial and executive pilots in Buenos Aires. Type Rating, IFR, JOC, MCC, and CRM in Boeing 737 NG and Beechcraft King Air B200 simulators. Courses under ANAC regulations.",
+        og_title: "Pilot Training Center | Baires Global Jets Training Center",
+        og_desc: "Specialization for commercial and corporate pilots. B737 NG & King Air B200 simulators in Argentina. IFR, MCC, JOC and CRM programs with airline instructors.",
+        json_desc: "Advanced aviation training center in Argentina specialized for commercial and executive pilots. We operate professional Boeing 737 NG and Beechcraft King Air 200 simulators. Type Rating, IFR, MCC, JOC, CRM and Airline Preparation programs."
       }
     }
   }
