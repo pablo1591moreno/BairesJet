@@ -25,7 +25,8 @@ import {
   Headset,
   Check,
   Menu,
-  X
+  X,
+  Target
 } from 'lucide-react';
 import { airports } from './data/airports';
 
@@ -210,21 +211,39 @@ const Hero = () => (
       
       <div className="w-full lg:w-[55%] p-6 sm:p-8 md:p-16 lg:p-24 flex flex-col justify-center relative z-10 bg-white lg:bg-transparent">
         <div className="w-12 h-1 bg-red-600 mb-6 md:mb-8"></div>
-        <h1 className="text-4xl md:text-7xl font-futuristic italic font-bold text-gray-900 leading-tight flex flex-col">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-futuristic italic font-bold text-gray-900 leading-tight flex flex-col">
           <span>VOLAR.</span>
+          <span>ENTRENAR.</span>
           <span className="text-red-600 mt-2 md:mt-4">SIN LÍMITES.</span>
         </h1>
         <p className="mt-4 md:mt-6 text-gray-600 text-base md:text-lg max-w-md">
-          Vuelos privados y chárter ejecutivos en Argentina. Sin escalas, a tu horario, con privacidad total. De Buenos Aires al mundo y a cada rincón del país.
+          Vuelos privados y simuladores de última generación.<br/>
+          La experiencia aérea completa, a tu medida.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-4">
           <button
-            id="btn-hero-cotizar-vuelo"
+            id="btn-hero-reservar-vuelo"
             onClick={() => document.getElementById('vuelos').scrollIntoView({ behavior: 'smooth' })}
-            className="bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-fit"
+            className="bg-red-700 text-white px-6 py-4 font-bold text-xs flex items-center justify-between gap-4 hover:bg-red-800 transition-colors w-full sm:w-auto"
           >
-            COTIZÁ TU VUELO <ArrowRight strokeWidth={2} className="w-4 h-4" />
+            <div className="flex items-center gap-3">
+              <Plane strokeWidth={1.5} className="w-6 h-6 transform -rotate-45" />
+              <span className="text-left leading-tight">RESERVÁ TU<br/>VUELO PRIVADO</span>
+            </div>
+            <ArrowRight strokeWidth={2} className="w-4 h-4 ml-4" />
           </button>
+          
+          <Link
+            id="btn-hero-reservar-simulador"
+            to="/simuladores"
+            className="border border-red-600 bg-white text-gray-900 px-6 py-4 font-bold text-xs flex items-center justify-between gap-4 hover:bg-gray-50 transition-colors w-full sm:w-auto"
+          >
+            <div className="flex items-center gap-3">
+              <Target strokeWidth={1.5} className="w-6 h-6 text-red-600" />
+              <span className="text-left leading-tight">RESERVÁ TURNO<br/>EN SIMULADOR</span>
+            </div>
+            <ArrowRight strokeWidth={2} className="w-4 h-4 ml-4 text-red-600" />
+          </Link>
         </div>
 
         <div className="mt-10 md:mt-16 grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 pt-6 md:pt-8">
