@@ -327,7 +327,7 @@ const Hero = () => {
   );
 };
 
-const AutocompleteInput = ({ label, placeholder, icon: Icon, className = "" }) => {
+const AutocompleteInput = ({ label, placeholder, icon: Icon, className = "", name, required }) => {
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
@@ -345,6 +345,8 @@ const AutocompleteInput = ({ label, placeholder, icon: Icon, className = "" }) =
         <Icon strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2 shrink-0" />
         <input 
           type="text" 
+          name={name}
+          required={required}
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
@@ -384,9 +386,53 @@ const AutocompleteInput = ({ label, placeholder, icon: Icon, className = "" }) =
 const QuoteSection = () => {
   const { t } = useLanguage();
   const today = new Date().toISOString().split("T")[0];
+  const [status, setStatus] = useState(''); // 'idle', 'loading', 'success', 'error'
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('loading');
+    const form = e.target;
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/emepe1591@gmail.com', {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      if (response.ok) {
+        setStatus('success');
+        form.reset();
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
+  };
 
   return (
     <Section id="vuelos" bg="bg-gray-50" className="relative overflow-hidden">
+      {status === 'success' && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm">
+          <div className="bg-white p-8 border border-gray-200 shadow-2xl flex flex-col items-center text-center max-w-sm w-full relative">
+            <button onClick={() => setStatus('idle')} className="absolute top-4 right-4 text-gray-400 hover:text-red-600 transition-colors">
+              <X strokeWidth={2} className="w-5 h-5" />
+            </button>
+            <div className="w-16 h-16 bg-green-50 rounded-full border border-green-100 flex items-center justify-center mb-4">
+              <Check strokeWidth={2} className="w-8 h-8 text-green-500" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">¡Enviado!</h3>
+            <p className="text-gray-600 text-sm mb-8">{t('contact.form.success')}</p>
+            <button onClick={() => setStatus('idle')} className="bg-red-600 text-white font-bold py-3 px-8 w-full hover:bg-red-700 transition-colors text-sm">
+              ACEPTAR
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="flex flex-col lg:flex-row gap-12 relative z-10">
         <div className="w-full lg:w-1/2">
           <div className="w-12 h-1 bg-red-600 mb-6"></div>
@@ -399,13 +445,18 @@ const QuoteSection = () => {
             {t('quote.desc')}
           </p>
 
-          <form onSubmit={(e) => e.preventDefault()} className="bg-white p-5 sm:p-6 md:p-8 border border-gray-200">
+          <form onSubmit={handleSubmit} className="bg-white p-5 sm:p-6 md:p-8 border border-gray-200">
+            {status === 'error' && (
+              <div className="bg-red-50 text-red-600 p-3 text-sm border border-red-200 mb-4">
+                {t('contact.form.error')}
+              </div>
+            )}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               <div>
                 <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.tipo')}</label>
                 <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
                   <Plane strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                  <select className="w-full bg-transparent outline-none text-gray-800 text-sm appearance-none">
+                  <select name="tipo_viaje" className="w-full bg-transparent outline-none text-gray-800 text-sm appearance-none">
                     <option>{t('quote.form.ida_vuelta')}</option>
                     <option>{t('quote.form.ida')}</option>
                   </select>
@@ -416,17 +467,21 @@ const QuoteSection = () => {
                 <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.pasajeros')}</label>
                 <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
                   <Users strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                  <input type="number" min="1" placeholder={t('quote.form.pasajeros_ph')} className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
+                  <input required name="pasajeros" type="number" min="1" placeholder={t('quote.form.pasajeros_ph')} className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
                 </div>
               </div>
               
               <AutocompleteInput 
+                name="origen"
+                required={true}
                 label={t('quote.form.origen')} 
                 placeholder={t('quote.form.ciudad_ph')} 
                 icon={MapPin} 
               />
               
               <AutocompleteInput 
+                name="destino"
+                required={true}
                 label={t('quote.form.destino')} 
                 placeholder={t('quote.form.ciudad_ph')} 
                 icon={MapPin} 
@@ -435,15 +490,15 @@ const QuoteSection = () => {
               <div>
                 <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.salida')}</label>
                 <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
-                  <input type="date" min={today} className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
+                  <input required name="fecha_salida" type="date" min={today} className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
                 </div>
               </div>
               <div>
                 <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.regreso')}</label>
                 <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
-                  <input type="date" min={today} className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400 pr-24" />
+                  <input name="fecha_regreso" type="date" min={today} className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400 pr-24" />
                   <div className="absolute right-3 flex items-center gap-2 bg-gray-50/80 px-2 py-1 rounded">
-                    <input type="checkbox" id="solo_ida" className="accent-red-600" />
+                    <input type="checkbox" id="solo_ida" name="solo_ida" className="accent-red-600" />
                     <label htmlFor="solo_ida" className="text-xs text-gray-600 cursor-pointer">{t('quote.form.ida')}</label>
                   </div>
                 </div>
@@ -452,7 +507,7 @@ const QuoteSection = () => {
                 <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.horario')}</label>
                 <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
                   <Clock strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                  <select className="w-full bg-transparent outline-none text-gray-800 text-sm appearance-none">
+                  <select name="horario" className="w-full bg-transparent outline-none text-gray-800 text-sm appearance-none">
                     <option>{t('quote.form.horario_aprox')}</option>
                     <option>{t('quote.form.manana')}</option>
                     <option>{t('quote.form.tarde')}</option>
@@ -465,7 +520,7 @@ const QuoteSection = () => {
                 <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.aeronave')}</label>
                 <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50">
                   <Plane strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                  <select className="w-full bg-transparent outline-none text-gray-800 text-sm appearance-none">
+                  <select name="aeronave" className="w-full bg-transparent outline-none text-gray-800 text-sm appearance-none">
                     <option>{t('quote.form.selecciona')}</option>
                     <option>Light Jet</option>
                     <option>Medium Jet</option>
@@ -483,21 +538,21 @@ const QuoteSection = () => {
                   <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.nombre')}</label>
                   <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50 focus-within:border-red-600 focus-within:bg-white transition-colors">
                     <User strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                    <input type="text" placeholder={t('quote.form.nombre_ph')} className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
+                    <input required name="nombre" type="text" placeholder={t('quote.form.nombre_ph')} className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
                   </div>
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.email')}</label>
                   <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50 focus-within:border-red-600 focus-within:bg-white transition-colors">
                     <Mail strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                    <input type="email" placeholder={t('quote.form.email_ph')} className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
+                    <input required name="email" type="email" placeholder={t('quote.form.email_ph')} className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
                   </div>
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.telefono')}</label>
                   <div className="relative border border-gray-200 p-3 flex items-center bg-gray-50/50 focus-within:border-red-600 focus-within:bg-white transition-colors">
                     <Phone strokeWidth={1.5} className="w-4 h-4 text-gray-400 mr-2" />
-                    <input type="tel" placeholder="+54 9 11 1234-5678" className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
+                    <input required name="telefono" type="tel" placeholder="+54 9 11 1234-5678" className="w-full bg-transparent outline-none text-gray-800 text-sm placeholder-gray-400" />
                   </div>
                 </div>
               </div>
@@ -505,11 +560,12 @@ const QuoteSection = () => {
             
             <div className="mt-8 flex flex-col sm:flex-row items-center gap-6">
               <button
-                type="button"
+                type="submit"
+                disabled={status === 'loading'}
                 id="btn-form-solicitar-cotizacion"
-                className="w-full sm:w-auto bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors"
+                className="w-full sm:w-auto bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {t('quote.form.btn_cotizar')} <ArrowRight strokeWidth={2} className="w-4 h-4" />
+                {status === 'loading' ? t('contact.form.sending') : t('quote.form.btn_cotizar')} <ArrowRight strokeWidth={2} className="w-4 h-4" />
               </button>
               <div className="flex items-center gap-2 text-xs text-gray-500">
                 <Lock strokeWidth={1.5} className="w-4 h-4 shrink-0" />
