@@ -399,7 +399,7 @@ const QuoteSection = () => {
             {t('quote.desc')}
           </p>
 
-          <form className="bg-white p-5 sm:p-6 md:p-8 border border-gray-200">
+          <form onSubmit={(e) => e.preventDefault()} className="bg-white p-5 sm:p-6 md:p-8 border border-gray-200">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               <div>
                 <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">{t('quote.form.tipo')}</label>
@@ -505,6 +505,7 @@ const QuoteSection = () => {
             
             <div className="mt-8 flex flex-col sm:flex-row items-center gap-6">
               <button
+                type="button"
                 id="btn-form-solicitar-cotizacion"
                 className="w-full sm:w-auto bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors"
               >
