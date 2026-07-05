@@ -126,8 +126,20 @@ export const translations = {
       aeroparque: "AEROPARQUE",
       listo1: "¿LISTO PARA",
       listo2: "VOLAR?",
-      listo_desc: "Solicitá más información o cotizá tu próximo servicio.",
+      listo_desc: "Nuestro equipo de expertos está disponible 24/7 para asesorarte y planificar tu próximo vuelo con el más alto nivel de servicio y seguridad.",
       btn_cotizar: "COTIZAR VUELO PRIVADO",
+      form: {
+        title: "Envianos tu consulta",
+        name: "Nombre completo",
+        email: "Correo electrónico",
+        phone: "Teléfono",
+        subject: "Asunto",
+        message: "Mensaje",
+        send: "ENVIAR MENSAJE",
+        sending: "Enviando...",
+        success: "¡Mensaje enviado con éxito! Nos contactaremos a la brevedad.",
+        error: "Hubo un error al enviar el mensaje. Por favor, intentá nuevamente."
+      },
       wa_msg: "¡Hola! Estoy interesado en un vuelo privado. Me gustaría recibir más información."
     },
     features: {
@@ -387,8 +399,20 @@ export const translations = {
       aeroparque: "AEROPARQUE",
       listo1: "READY TO",
       listo2: "FLY?",
-      listo_desc: "Request more information or quote your next service.",
+      listo_desc: "Our expert team is available 24/7 to advise you and plan your next flight with the highest level of service and safety.",
       btn_cotizar: "QUOTE PRIVATE FLIGHT",
+      form: {
+        title: "Send us an inquiry",
+        name: "Full Name",
+        email: "Email Address",
+        phone: "Phone Number",
+        subject: "Subject",
+        message: "Message",
+        send: "SEND MESSAGE",
+        sending: "Sending...",
+        success: "Message sent successfully! We will contact you shortly.",
+        error: "There was an error sending the message. Please try again."
+      },
       wa_msg: "Hello! I am interested in a private flight. I would like to receive more information."
     },
     features: {

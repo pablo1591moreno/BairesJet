@@ -739,6 +739,88 @@ const ExperienceSection = () => {
   );
 };
 
+const ContactForm = () => {
+  const { t } = useLanguage();
+  const [status, setStatus] = useState(''); // 'idle', 'loading', 'success', 'error'
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('loading');
+    const form = e.target;
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch('https://formspree.io/f/tu-id-aqui', {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      if (response.ok) {
+        setStatus('success');
+        form.reset();
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
+  };
+
+  if (status === 'success') {
+    return (
+      <div className="bg-green-50 border border-green-200 p-8 flex flex-col items-center justify-center text-center h-full">
+        <Check className="w-12 h-12 text-green-500 mb-4" />
+        <h3 className="text-xl font-bold text-gray-900 mb-2">{t('contact.form.success')}</h3>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="bg-gray-50 border border-gray-200 p-6 md:p-8 flex flex-col gap-4 h-full">
+      <h3 className="text-xl font-bold text-gray-900 mb-2">{t('contact.form.title')}</h3>
+      
+      {status === 'error' && (
+        <div className="bg-red-50 text-red-600 p-3 text-sm border border-red-200 mb-2">
+          {t('contact.form.error')}
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="name" className="block text-xs font-bold text-gray-700 uppercase mb-1">{t('contact.form.name')}</label>
+          <input required type="text" id="name" name="name" className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-red-600 bg-white" />
+        </div>
+        <div>
+          <label htmlFor="email" className="block text-xs font-bold text-gray-700 uppercase mb-1">{t('contact.form.email')}</label>
+          <input required type="email" id="email" name="email" className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-red-600 bg-white" />
+        </div>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="phone" className="block text-xs font-bold text-gray-700 uppercase mb-1">{t('contact.form.phone')}</label>
+          <input required type="tel" id="phone" name="phone" className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-red-600 bg-white" />
+        </div>
+        <div>
+          <label htmlFor="subject" className="block text-xs font-bold text-gray-700 uppercase mb-1">{t('contact.form.subject')}</label>
+          <input required type="text" id="subject" name="subject" className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-red-600 bg-white" />
+        </div>
+      </div>
+
+      <div className="flex-grow">
+        <label htmlFor="message" className="block text-xs font-bold text-gray-700 uppercase mb-1">{t('contact.form.message')}</label>
+        <textarea required id="message" name="message" rows="4" className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-red-600 bg-white resize-none h-full min-h-[120px]"></textarea>
+      </div>
+
+      <button type="submit" disabled={status === 'loading'} className="bg-gray-900 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-600 transition-colors mt-2 disabled:opacity-50 disabled:cursor-not-allowed">
+        {status === 'loading' ? t('contact.form.sending') : t('contact.form.send')}
+      </button>
+    </form>
+  );
+};
+
 const ContactSection = () => {
   const { t } = useLanguage();
   
@@ -811,16 +893,8 @@ const ContactSection = () => {
         </div>
       </div>
       
-      <div className="w-full lg:w-2/3 h-64 sm:h-96 lg:h-auto bg-gray-100 relative overflow-hidden border border-gray-200 mt-8 lg:mt-0">
-        {/* Placeholder Map Layout */}
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-30 grayscale"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-4 py-2 shadow-lg flex items-center gap-3 border border-gray-200">
-           <MapPin strokeWidth={2} className="text-red-600 w-5 h-5 md:w-6 md:h-6 shrink-0" />
-           <div>
-             <p className="font-bold text-xs md:text-sm text-gray-900">{t('contact.aeroparque')}</p>
-             <p className="text-[10px] md:text-xs text-gray-500">Jorge Newbery (AEP)</p>
-           </div>
-        </div>
+      <div className="w-full lg:w-2/3 mt-8 lg:mt-0">
+        <ContactForm />
       </div>
     </div>
     
