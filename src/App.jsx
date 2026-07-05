@@ -768,56 +768,67 @@ const ContactForm = () => {
     }
   };
 
-  if (status === 'success') {
-    return (
-      <div className="bg-green-50 border border-green-200 p-8 flex flex-col items-center justify-center text-center h-full">
-        <Check className="w-12 h-12 text-green-500 mb-4" />
-        <h3 className="text-xl font-bold text-gray-900 mb-2">{t('contact.form.success')}</h3>
-      </div>
-    );
-  }
-
   return (
-    <form onSubmit={handleSubmit} className="bg-gray-50 border border-gray-200 p-6 md:p-8 flex flex-col gap-4 h-full">
-      <h3 className="text-xl font-bold text-gray-900 mb-2">{t('contact.form.title')}</h3>
-      
-      {status === 'error' && (
-        <div className="bg-red-50 text-red-600 p-3 text-sm border border-red-200 mb-2">
-          {t('contact.form.error')}
+    <>
+      {status === 'success' && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm">
+          <div className="bg-white p-8 border border-gray-200 shadow-2xl flex flex-col items-center text-center max-w-sm w-full relative">
+            <button onClick={() => setStatus('idle')} className="absolute top-4 right-4 text-gray-400 hover:text-red-600 transition-colors">
+              <X strokeWidth={2} className="w-5 h-5" />
+            </button>
+            <div className="w-16 h-16 bg-green-50 rounded-full border border-green-100 flex items-center justify-center mb-4">
+              <Check strokeWidth={2} className="w-8 h-8 text-green-500" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">¡Enviado!</h3>
+            <p className="text-gray-600 text-sm mb-8">{t('contact.form.success')}</p>
+            <button onClick={() => setStatus('idle')} className="bg-red-600 text-white font-bold py-3 px-8 w-full hover:bg-red-700 transition-colors text-sm">
+              ACEPTAR
+            </button>
+          </div>
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label htmlFor="name" className="block text-xs font-bold text-gray-700 uppercase mb-1">{t('contact.form.name')}</label>
-          <input required type="text" id="name" name="name" className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-red-600 bg-white" />
-        </div>
-        <div>
-          <label htmlFor="email" className="block text-xs font-bold text-gray-700 uppercase mb-1">{t('contact.form.email')}</label>
-          <input required type="email" id="email" name="email" className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-red-600 bg-white" />
-        </div>
-      </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label htmlFor="phone" className="block text-xs font-bold text-gray-700 uppercase mb-1">{t('contact.form.phone')}</label>
-          <input required type="tel" id="phone" name="phone" className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-red-600 bg-white" />
-        </div>
-        <div>
-          <label htmlFor="subject" className="block text-xs font-bold text-gray-700 uppercase mb-1">{t('contact.form.subject')}</label>
-          <input required type="text" id="subject" name="subject" className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-red-600 bg-white" />
-        </div>
-      </div>
+      <form onSubmit={handleSubmit} className="bg-gray-50 border border-gray-200 p-6 md:p-8 flex flex-col gap-4 h-full relative">
+        <h3 className="text-xl font-bold text-gray-900 mb-2">{t('contact.form.title')}</h3>
+        
+        {status === 'error' && (
+          <div className="bg-red-50 text-red-600 p-3 text-sm border border-red-200 mb-2">
+            {t('contact.form.error')}
+          </div>
+        )}
 
-      <div className="flex-grow">
-        <label htmlFor="message" className="block text-xs font-bold text-gray-700 uppercase mb-1">{t('contact.form.message')}</label>
-        <textarea required id="message" name="message" rows="4" className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-red-600 bg-white resize-none h-full min-h-[120px]"></textarea>
-      </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="name" className="block text-xs font-bold text-gray-700 uppercase mb-1">{t('contact.form.name')}</label>
+            <input required type="text" id="name" name="name" className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-red-600 bg-white" />
+          </div>
+          <div>
+            <label htmlFor="email" className="block text-xs font-bold text-gray-700 uppercase mb-1">{t('contact.form.email')}</label>
+            <input required type="email" id="email" name="email" className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-red-600 bg-white" />
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="phone" className="block text-xs font-bold text-gray-700 uppercase mb-1">{t('contact.form.phone')}</label>
+            <input required type="tel" id="phone" name="phone" className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-red-600 bg-white" />
+          </div>
+          <div>
+            <label htmlFor="subject" className="block text-xs font-bold text-gray-700 uppercase mb-1">{t('contact.form.subject')}</label>
+            <input required type="text" id="subject" name="subject" className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-red-600 bg-white" />
+          </div>
+        </div>
 
-      <button type="submit" disabled={status === 'loading'} className="bg-gray-900 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-600 transition-colors mt-2 disabled:opacity-50 disabled:cursor-not-allowed">
-        {status === 'loading' ? t('contact.form.sending') : t('contact.form.send')}
-      </button>
-    </form>
+        <div className="flex-grow">
+          <label htmlFor="message" className="block text-xs font-bold text-gray-700 uppercase mb-1">{t('contact.form.message')}</label>
+          <textarea required id="message" name="message" rows="4" className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-red-600 bg-white resize-none h-full min-h-[120px]"></textarea>
+        </div>
+
+        <button type="submit" disabled={status === 'loading'} className="bg-gray-900 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-600 transition-colors mt-2 disabled:opacity-50 disabled:cursor-not-allowed">
+          {status === 'loading' ? t('contact.form.sending') : t('contact.form.send')}
+        </button>
+      </form>
+    </>
   );
 };
 
