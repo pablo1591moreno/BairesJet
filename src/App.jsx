@@ -750,7 +750,7 @@ const ContactForm = () => {
     const data = new FormData(form);
 
     try {
-      const response = await fetch('https://formspree.io/f/tu-id-aqui', {
+      const response = await fetch('https://formsubmit.co/ajax/emepe1591@gmail.com', {
         method: 'POST',
         body: data,
         headers: {
