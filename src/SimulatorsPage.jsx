@@ -73,8 +73,8 @@ const SimulatorSEO = () => {
           "name": "Baires Global Jets Training Center",
           "description": t('sim.seo.json_desc'),
           "url": "https://pablo1591moreno.github.io/BairesJet/simuladores",
-          "telephone": "+54-9-11-7374-5726",
-          "email": "info@bairesglobaljets.com.ar",
+          "telephone": "+54 9 11 7374 5726",
+          "email": "info@bairesglobaljets.com",
           "address": { "@type": "PostalAddress", "addressLocality": "Buenos Aires", "addressCountry": "AR" },
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
@@ -607,7 +607,7 @@ export default function SimulatorsPage() {
             </div>
             <div className="flex items-center gap-3 text-white">
               <Mail strokeWidth={1.5} className="w-5 h-5 text-red-600 shrink-0" />
-              <span className="text-sm">info@bairesglobaljets.com.ar</span>
+              <span className="text-sm">info@bairesglobaljets.com</span>
             </div>
             <div className="flex items-center gap-3 text-white">
               <Globe strokeWidth={1.5} className="w-5 h-5 text-red-600 shrink-0" />

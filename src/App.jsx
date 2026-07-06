@@ -395,7 +395,7 @@ const QuoteSection = () => {
     const data = new FormData(form);
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/emepe1591@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/info@bairesglobaljets.com', {
         method: 'POST',
         body: data,
         headers: {
@@ -807,7 +807,7 @@ const ContactForm = () => {
     const data = new FormData(form);
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/emepe1591@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/info@bairesglobaljets.com', {
         method: 'POST',
         body: data,
         headers: {
@@ -920,8 +920,8 @@ const ContactSection = () => {
             </div>
             <div>
               <h4 className="font-bold text-sm text-gray-900 mb-1">{t('contact.email')}</h4>
-              <p className="text-sm text-red-600">vuelos@bairesglobaljets.com.ar</p>
-              <p className="text-sm text-red-600">info@bairesglobaljets.com.ar</p>
+              <p className="text-sm text-red-600">vuelos@bairesglobaljets.com</p>
+              <p className="text-sm text-red-600">info@bairesglobaljets.com</p>
             </div>
           </div>
           
