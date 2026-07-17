@@ -247,7 +247,7 @@ export const translations = {
         f6: "MATERIAL\nACTUALIZADO"
       },
       banner: {
-        title1: "TU CARRERA EN AEROLÍNEAS",
+        title1: "TU CARRERA EN LÍNEA AÉREA",
         title2: "COMIENZA ACÁ.",
         btn: "SOLICITAR INFORMACIÓN",
         wa_msg: "Hola, me gustaría solicitar información general sobre los cursos y programas de simulador."

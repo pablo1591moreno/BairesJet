@@ -262,7 +262,6 @@ const Hero = () => {
           <div className="w-12 h-1 bg-red-600 mb-6 md:mb-8"></div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-futuristic italic font-bold text-gray-900 leading-tight flex flex-col">
             <span>{t('hero.volar')}</span>
-            <span>{t('hero.entrenar')}</span>
             <span className="text-red-600 mt-2 md:mt-4">{t('hero.sin_limites')}</span>
           </h1>
           <p className="mt-4 md:mt-6 text-gray-600 text-base md:text-lg max-w-md">
