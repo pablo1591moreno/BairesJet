@@ -50,8 +50,8 @@ const SimulatorSEO = () => {
     const og = { 
       'og:title': t('sim.seo.og_title'), 
       'og:description': t('sim.seo.og_desc'), 
-      'og:image': 'https://pablo1591moreno.github.io/BairesJet/simulator-cockpit.png', 
-      'og:url': 'https://pablo1591moreno.github.io/BairesJet/simuladores' 
+      'og:image': 'https://bairesglobaljets.com/simulator-cockpit.png', 
+      'og:url': 'https://bairesglobaljets.com/simuladores' 
     };
     Object.entries(og).forEach(([prop, content]) => {
       let tag = document.querySelector(`meta[property="${prop}"]`);
@@ -72,7 +72,7 @@ const SimulatorSEO = () => {
           "@type": "EducationalOrganization",
           "name": "Baires Global Jets Training Center",
           "description": t('sim.seo.json_desc'),
-          "url": "https://pablo1591moreno.github.io/BairesJet/simuladores",
+          "url": "https://bairesglobaljets.com/simuladores",
           "telephone": "+54 9 11 7374 5726",
           "email": "info@bairesglobaljets.com",
           "address": { "@type": "PostalAddress", "addressLocality": "Buenos Aires", "addressCountry": "AR" },
