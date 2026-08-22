@@ -318,7 +318,7 @@ export default function SimulatorsPage() {
               )}
               
               <div className="mt-auto pt-4 border-t border-gray-100">
-                <p className="font-futuristic italic font-bold text-xl text-gray-900 mb-4">{item.price}</p>
+                {/* Precio oculto a pedido: <p className="font-futuristic italic font-bold text-xl text-gray-900 mb-4">{item.price}</p> */}
                 <a 
                   id={`btn-teorico-${item.title.replace(/\\s+/g, '-').toLowerCase()}`}
                   href={`${whatsappBase}${encodeURIComponent(`${t('sim.teoricos.wa_msg')} ${item.title.replace('\\n', ' ')}`)}`}
@@ -386,7 +386,7 @@ export default function SimulatorsPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                <p className="text-3xl font-futuristic italic font-bold">$1.450.000 ARS</p>
+                {/* <p className="text-3xl font-futuristic italic font-bold">$1.450.000 ARS</p> */}
                 <a 
                   id="btn-programa-king-air"
                   href={`${whatsappBase}${encodeURIComponent(t('sim.programas.wa_ka'))}`}
@@ -446,7 +446,7 @@ export default function SimulatorsPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                <p className="text-3xl font-futuristic italic font-bold">$1.850.000 ARS</p>
+                {/* <p className="text-3xl font-futuristic italic font-bold">$1.850.000 ARS</p> */}
                 <a 
                   id="btn-programa-737-mcc"
                   href={`${whatsappBase}${encodeURIComponent(t('sim.programas.wa_b737'))}`}
@@ -493,17 +493,17 @@ export default function SimulatorsPage() {
               <div className="p-4 text-center border-r border-gray-100 flex flex-col items-center">
                 <Clock strokeWidth={1.5} className="w-5 h-5 text-red-600 mb-2" />
                 <p className="text-[10px] font-bold uppercase text-red-600 mb-2">HORA INDIVIDUAL</p>
-                <p className="text-sm font-futuristic italic font-bold">$125.000 <span className="text-[10px] text-gray-400">ARS</span></p>
+                {/* <p className="text-sm font-futuristic italic font-bold">$125.000 <span className="text-[10px] text-gray-400">ARS</span></p> */}
               </div>
               <div className="p-4 text-center border-r border-gray-100 flex flex-col items-center">
                 <Calendar strokeWidth={1.5} className="w-5 h-5 text-red-600 mb-2" />
                 <p className="text-[10px] font-bold uppercase text-red-600 mb-2">PACK 10 HORAS</p>
-                <p className="text-sm font-futuristic italic font-bold">$1.150.000 <span className="text-[10px] text-gray-400">ARS</span></p>
+                {/* <p className="text-sm font-futuristic italic font-bold">$1.150.000 <span className="text-[10px] text-gray-400">ARS</span></p> */}
               </div>
               <div className="p-4 text-center flex flex-col items-center">
                 <Layers strokeWidth={1.5} className="w-5 h-5 text-red-600 mb-2" />
                 <p className="text-[10px] font-bold uppercase text-red-600 mb-2">PACK 20 HORAS</p>
-                <p className="text-sm font-futuristic italic font-bold">$2.100.000 <span className="text-[10px] text-gray-400">ARS</span></p>
+                {/* <p className="text-sm font-futuristic italic font-bold">$2.100.000 <span className="text-[10px] text-gray-400">ARS</span></p> */}
               </div>
             </div>
           </div>
@@ -530,17 +530,17 @@ export default function SimulatorsPage() {
               <div className="p-4 text-center border-r border-gray-100 flex flex-col items-center">
                 <Clock strokeWidth={1.5} className="w-5 h-5 text-red-600 mb-2" />
                 <p className="text-[10px] font-bold uppercase text-red-600 mb-2">HORA INDIVIDUAL</p>
-                <p className="text-sm font-futuristic italic font-bold">$125.000 <span className="text-[10px] text-gray-400">ARS</span></p>
+                {/* <p className="text-sm font-futuristic italic font-bold">$125.000 <span className="text-[10px] text-gray-400">ARS</span></p> */}
               </div>
               <div className="p-4 text-center border-r border-gray-100 flex flex-col items-center">
                 <Calendar strokeWidth={1.5} className="w-5 h-5 text-red-600 mb-2" />
                 <p className="text-[10px] font-bold uppercase text-red-600 mb-2">PACK 10 HORAS</p>
-                <p className="text-sm font-futuristic italic font-bold">$1.150.000 <span className="text-[10px] text-gray-400">ARS</span></p>
+                {/* <p className="text-sm font-futuristic italic font-bold">$1.150.000 <span className="text-[10px] text-gray-400">ARS</span></p> */}
               </div>
               <div className="p-4 text-center flex flex-col items-center">
                 <Layers strokeWidth={1.5} className="w-5 h-5 text-red-600 mb-2" />
                 <p className="text-[10px] font-bold uppercase text-red-600 mb-2">PACK 20 HORAS</p>
-                <p className="text-sm font-futuristic italic font-bold">$2.100.000 <span className="text-[10px] text-gray-400">ARS</span></p>
+                {/* <p className="text-sm font-futuristic italic font-bold">$2.100.000 <span className="text-[10px] text-gray-400">ARS</span></p> */}
               </div>
             </div>
           </div>
