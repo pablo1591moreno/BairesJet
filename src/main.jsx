@@ -41,6 +41,14 @@ function CtaTracker() {
           cta_categoria: CTA_CATEGORIAS[el.id],
         })
       }
+
+      // Meta Pixel: Track 'Contact' for all WhatsApp links
+      const link = e.target.closest('a')
+      if (link && link.href && link.href.includes('wa.me')) {
+        if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+          window.fbq('track', 'Contact')
+        }
+      }
     }
     document.addEventListener('click', handleClick, true)
     return () => document.removeEventListener('click', handleClick, true)
