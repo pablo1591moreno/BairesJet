@@ -5,6 +5,7 @@ import './index.css'
 import App from './App.jsx'
 import SimulatorsPage from './SimulatorsPage.jsx'
 import TermsConditionsPage from './TermsConditionsPage.jsx'
+import PrivacyPolicyPage from './PrivacyPolicyPage.jsx'
 import { LanguageProvider } from './i18n/LanguageContext.jsx'
 import { trackEvent, trackPageview } from './analytics.js'
 
@@ -81,6 +82,7 @@ createRoot(document.getElementById('root')).render(
 
     <Route path="/simuladores" element={<SimulatorsPage />} />
     <Route path="/terms-conditions" element={<TermsConditionsPage />} />
+    <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
   </Routes>
   </HashRouter>
   </LanguageProvider>
