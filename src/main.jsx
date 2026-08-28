@@ -7,7 +7,10 @@ import SimulatorsPage from './SimulatorsPage.jsx'
 import TermsConditionsPage from './TermsConditionsPage.jsx'
 import PrivacyPolicyPage from './PrivacyPolicyPage.jsx'
 import { LanguageProvider } from './i18n/LanguageContext.jsx'
-import { trackEvent, trackPageview } from './analytics.js'
+import { trackEvent, trackPageview, initMetaPixel } from './analytics.js'
+
+// Inicializar Pixel de Meta
+initMetaPixel();
 
 // Mapa de botones clave a su categoria de negocio, para poder
 // diferenciar en Google Analytics el trafico de "Venta de Vuelos"
