@@ -246,6 +246,13 @@ export default function SimulatorsPage() {
                 {t('sim.hero.btn_reservar')}
               </a>
             </div>
+            
+            <div className="mt-8 flex items-center gap-4">
+              <img src={`${import.meta.env.BASE_URL}ANAC.png`} alt="Centro de Instrucción de Aeronáutica Civil" className="h-10 md:h-12 object-contain opacity-80" />
+              <p className="text-xs font-bold text-gray-800 uppercase tracking-widest leading-tight">
+                Centro de Instrucción de<br/><span className="text-red-600">Aeronáutica Civil</span>
+              </p>
+            </div>
 
             {/* Feature pills */}
             <div className="mt-10 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 md:pt-8 border-t border-gray-100">
