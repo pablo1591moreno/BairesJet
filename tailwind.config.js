@@ -13,7 +13,7 @@ export default {
         syncopate: ['Syncopate', 'sans-serif'],
       },
       animation: {
-        marquee: 'marquee 25s linear infinite',
+        marquee: 'marquee 27.5s linear infinite',
       },
       keyframes: {
         marquee: {
