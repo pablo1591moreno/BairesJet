@@ -11,6 +11,15 @@ export default {
         orbitron: ['Orbitron', 'sans-serif'],
         exo: ['"Exo 2"', 'sans-serif'],
         syncopate: ['Syncopate', 'sans-serif'],
+      },
+      animation: {
+        marquee: 'marquee 25s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        }
       }
     },
   },

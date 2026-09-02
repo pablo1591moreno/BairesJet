@@ -1098,11 +1098,41 @@ const SimulatorPreviewSection = () => (
   </section>
 );
 
+const EmptyLegsTicker = () => {
+  const emptyLegs = [
+    { route: 'SUMU (Uruguay) ✈ SAZS (Bariloche)', date: 'Sep 22', aircraft: 'Learjet 60' },
+    { route: 'SADF (San Fernando) ✈ TNCM (St. Maarten)', date: 'Sep 22', aircraft: 'Learjet 60' },
+    { route: 'SAME (Mendoza) ✈ SPJC (Lima)', date: 'Sep 02', aircraft: 'Learjet 60' },
+    { route: 'SULS (Maldonado) ✈ SLLP (La Paz)', date: 'Sep 21', aircraft: 'Learjet 60' },
+    { route: 'TNCA (Aruba) ✈ SLLP (La Paz)', date: 'Sep 26', aircraft: 'Gulfstream G-V' }
+  ];
+
+  return (
+    <div className="w-full bg-gray-900 border-b border-gray-800 text-white overflow-hidden py-3 relative z-20 flex items-center">
+      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-gray-900 to-transparent z-10"></div>
+      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-gray-900 to-transparent z-10"></div>
+      <div className="flex whitespace-nowrap animate-marquee items-center">
+        {/* Double the list for seamless looping */}
+        {[...emptyLegs, ...emptyLegs].map((leg, i) => (
+          <div key={i} className="flex items-center mx-8">
+            <span className="text-red-500 font-bold text-xs uppercase tracking-widest mr-3">Empty Leg</span>
+            <span className="font-semibold text-sm mr-3">{leg.route}</span>
+            <span className="text-gray-400 text-sm mr-3">| {leg.aircraft}</span>
+            <span className="text-gray-400 text-sm">| {leg.date}</span>
+            <span className="mx-8 text-gray-700">•</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default function App() {
   return (
     <div className="font-sans text-gray-900 bg-white">
       <Navbar />
       <Hero />
+      <EmptyLegsTicker />
       <QuoteSection />
       <FleetSection />
       <ExperienceSection />
