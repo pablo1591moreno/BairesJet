@@ -940,7 +940,7 @@ const ContactSection = () => {
             </div>
             <div>
               <h4 className="font-bold text-sm text-gray-900 mb-1">{t('contact.ubicacion')}</h4>
-              <p className="text-sm text-red-600">Bolívar 753, B1704BKO Ramos Mejía</p>
+              <p className="text-sm text-red-600">Bolívar 573, B1704BKO Ramos Mejía</p>
               <p className="text-xs text-gray-500 mt-1">{t('contact.ubicacion_desc')}</p>
             </div>
           </div>

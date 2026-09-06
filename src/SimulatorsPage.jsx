@@ -75,7 +75,7 @@ const SimulatorSEO = () => {
           "url": "https://bairesglobaljets.com/simuladores",
           "telephone": "+54 9 11 7374 5726",
           "email": "info@bairesglobaljets.com",
-          "address": { "@type": "PostalAddress", "streetAddress": "Bolívar 753", "postalCode": "B1704BKO", "addressLocality": "Ramos Mejía", "addressRegion": "Provincia de Buenos Aires", "addressCountry": "AR" },
+          "address": { "@type": "PostalAddress", "streetAddress": "Bolívar 573", "postalCode": "B1704BKO", "addressLocality": "Ramos Mejía", "addressRegion": "Provincia de Buenos Aires", "addressCountry": "AR" },
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
             "name": t('sim.header.title'),
@@ -151,24 +151,6 @@ export default function SimulatorsPage() {
 
   const teoricos = [
     {
-      title: 'MCC',
-      subtitle: t('sim.teoricos.mcc'),
-      hours: `25 ${t('sim.teoricos.horas')}`,
-      desc: t('sim.teoricos.mcc_desc'),
-      list: t('sim.teoricos.mcc_list'),
-      price: '$350.000 ARS',
-      icon: Users
-    },
-    {
-      title: 'JOC',
-      subtitle: t('sim.teoricos.joc'),
-      hours: `15 ${t('sim.teoricos.horas')}`,
-      desc: t('sim.teoricos.joc_desc'),
-      list: [],
-      price: '$250.000 ARS',
-      icon: Plane
-    },
-    {
       title: 'CRM',
       subtitle: t('sim.teoricos.crm'),
       hours: `16 ${t('sim.teoricos.horas')}`,
@@ -194,6 +176,94 @@ export default function SimulatorsPage() {
       list: t('sim.teoricos.ka_list'),
       price: '$300.000 ARS',
       icon: Wrench
+    }
+  ];
+
+  const programasEstructurados = [
+    {
+      id: "type-rating-737",
+      title: "INSTRUCCIÓN INICIAL (TYPE RATING)\nBOEING 737-800 NG",
+      subtitle: "CURSO COMPLETO DE HABILITACIÓN DE TIPO",
+      hours: "45",
+      desc: "Formación inicial y habilitación de tipo en simulador FFS Nivel D para operar el Boeing 737-800 NG bajo estándares comerciales.",
+      teoria: "25",
+      sim: "20",
+      simType: "FFS Nivel D",
+      features: [
+        { i: Users, l: "Instructor\nCertificado" },
+        { i: ShieldCheck, l: "Aprobado\npor ANAC" },
+        { i: ClipboardList, l: "Material\nOficial" },
+        { i: Target, l: "Estándar\nLínea Aérea" }
+      ],
+      wa: "Hola, quisiera más información sobre el programa: Instrucción Inicial (Type Rating) Boeing 737-800 NG."
+    },
+    {
+      id: "type-rating-kingair",
+      title: "INSTRUCCIÓN INICIAL (TYPE RATING)\nKING AIR 200",
+      subtitle: "CURSO COMPLETO DE HABILITACIÓN DE TIPO",
+      hours: "45",
+      desc: "Programa integral para obtener la habilitación de tipo en el versátil turbohélice King Air 200, operando con máxima seguridad.",
+      teoria: "25",
+      sim: "20",
+      simType: "Simulador",
+      features: [
+        { i: UserCheck, l: "Instructor\nCorporativo" },
+        { i: FileText, l: "Manual\nincluido" },
+        { i: Crosshair, l: "Enfoque\nIFR" },
+        { i: Clock, l: "Operación\nAvanzada" }
+      ],
+      wa: "Hola, quisiera más información sobre el programa: Instrucción Inicial (Type Rating) King Air 200."
+    },
+    {
+      id: "programa-kingair",
+      title: "PROGRAMA COMPLETO\nKING AIR B200",
+      subtitle: "TRANSICIÓN AVANZADA Y MULTIMOTOR",
+      hours: "25",
+      desc: "La formación definitiva para dar el salto al entorno corporativo y ejecutivo de alta performance, integrando teoría y práctica.",
+      teoria: "19",
+      sim: "6",
+      simType: "Simulador",
+      features: [
+        { i: UserCheck, l: "Instructor\nCorporativo" },
+        { i: FileText, l: "Manual\nincluido" },
+        { i: Crosshair, l: "Enfoque\nIFR" },
+        { i: Clock, l: "SOP y flujos\nejecutivos" }
+      ],
+      wa: "Hola, quisiera más información sobre el Programa Completo King Air B200."
+    },
+    {
+      id: "mcc",
+      title: "MCC\nMULTI CREW COOPERATION",
+      subtitle: "COOPERACIÓN EN TRIPULACIÓN MÚLTIPLE",
+      hours: "25",
+      desc: "El puente técnico y operativo hacia la cabina de una línea aérea comercial. Aprenda a trabajar en equipo bajo metodologías probadas.",
+      teoria: "21",
+      sim: "4",
+      simType: "Simulador B737-800 NG",
+      features: [
+        { i: Users, l: "CRM\navanzado" },
+        { i: ShieldCheck, l: "SOP" },
+        { i: ClipboardList, l: "PF / PM" },
+        { i: Target, l: "Airline\nPrep" }
+      ],
+      wa: "Hola, quisiera más información sobre el curso MCC (Multi Crew Cooperation)."
+    },
+    {
+      id: "joc",
+      title: "JOC\nJET ORIENTATION COURSE",
+      subtitle: "CURSO DE ORIENTACIÓN A REACCIÓN",
+      hours: "15",
+      desc: "Transición fundamental de aviones a hélice a jets comerciales, dominando la inercia, velocidad y gestión de energía.",
+      teoria: "5",
+      sim: "10",
+      simType: "Simulador B737-800 NG",
+      features: [
+        { i: Users, l: "Gestión de\nEnergía" },
+        { i: ShieldCheck, l: "High\nAltitude" },
+        { i: ClipboardList, l: "Swept\nWing" },
+        { i: Target, l: "Glass\nCockpit" }
+      ],
+      wa: "Hola, quisiera más información sobre el curso JOC (Jet Orientation Course)."
     }
   ];
 
@@ -348,125 +418,60 @@ export default function SimulatorsPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* PROG 1 */}
-          <div className="bg-[#111111] text-white p-8 relative overflow-hidden flex flex-col justify-between h-full group border border-gray-800 hover:border-red-600 transition-colors">
-            <div className="relative z-10 mb-8">
-              <div className="flex justify-between items-start mb-2">
-                <p className="text-red-600 font-bold text-xs tracking-wider uppercase">{t('sim.programas.prog1')}</p>
-                <p className="text-red-600 font-bold text-sm">45 {t('sim.programas.horas')}</p>
-              </div>
-              <h4 className="text-3xl md:text-4xl font-futuristic italic font-bold text-white mb-2 leading-tight">
-                KING AIR B200
-              </h4>
-              <p className="text-xs font-bold uppercase tracking-wide text-gray-300 mb-6 whitespace-pre-line">{t('sim.programas.ka_subtitle')}</p>
-              
-              <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
-                <p className="text-gray-400 text-sm md:w-1/2">
-                  {t('sim.programas.ka_desc')}
-                </p>
-                <div className="md:w-1/2 flex flex-col gap-2">
-                  <div className="flex items-center gap-3">
-                    <BookOpen strokeWidth={1} className="w-5 h-5 text-gray-500" />
-                    <span className="text-sm">25 {t('sim.programas.teoria')}</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Monitor strokeWidth={1} className="w-5 h-5 text-gray-500" />
-                    <span className="text-sm">20 {t('sim.programas.sim')}</span>
+          {programasEstructurados.map((prog, index) => (
+            <div key={prog.id} className="bg-[#111111] text-white p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between h-full group border border-gray-800 hover:border-red-600 transition-colors">
+              <div className="relative z-10 mb-8">
+                <div className="flex justify-between items-start mb-2">
+                  <p className="text-red-600 font-bold text-[10px] sm:text-xs tracking-wider uppercase">{t('sim.programas.horas')}</p>
+                  <p className="text-red-600 font-bold text-sm">{prog.hours} {t('sim.programas.horas')}</p>
+                </div>
+                <h4 className="text-2xl md:text-3xl lg:text-4xl font-futuristic italic font-bold text-white mb-2 leading-tight whitespace-pre-line">
+                  {prog.title}
+                </h4>
+                <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-gray-300 mb-6 whitespace-pre-line">{prog.subtitle}</p>
+                
+                <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
+                  <p className="text-gray-400 text-xs sm:text-sm md:w-1/2">
+                    {prog.desc}
+                  </p>
+                  <div className="md:w-1/2 flex flex-col gap-2">
+                    <div className="flex items-center gap-3">
+                      <BookOpen strokeWidth={1} className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 shrink-0" />
+                      <span className="text-xs sm:text-sm">{prog.teoria} hs {t('sim.programas.teoria').replace('hs Teoría', 'Teoría')}</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Monitor strokeWidth={1} className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 shrink-0" />
+                      <span className="text-xs sm:text-sm">{prog.sim} hs {prog.simType}</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="relative z-10">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 border-t border-gray-800 pt-6">
-                {[
-                  { i: UserCheck, l: t('sim.programas.ka_f1') },
-                  { i: FileText, l: t('sim.programas.ka_f2') },
-                  { i: Crosshair, l: t('sim.programas.ka_f3') },
-                  { i: Clock, l: t('sim.programas.ka_f4') }
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-2">
-                    <item.i strokeWidth={1} className="w-8 h-8 text-red-600 shrink-0" />
-                    <span className="text-[10px] text-gray-400 leading-tight whitespace-pre-line">{item.l}</span>
-                  </div>
-                ))}
-              </div>
+              <div className="relative z-10">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 mb-8 border-t border-gray-800 pt-6">
+                  {prog.features.map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <item.i strokeWidth={1} className="w-6 h-6 sm:w-8 sm:h-8 text-red-600 shrink-0" />
+                      <span className="text-[9px] sm:text-[10px] text-gray-400 leading-tight whitespace-pre-line">{item.l}</span>
+                    </div>
+                  ))}
+                </div>
 
-              <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                {/* <p className="text-3xl font-futuristic italic font-bold">$1.450.000 ARS</p> */}
-                <a 
-                  id="btn-programa-king-air"
-                  href={`${whatsappBase}${encodeURIComponent(t('sim.programas.wa_ka'))}`}
-                  target="_blank" rel="noopener noreferrer"
-                  className="w-full sm:w-auto bg-red-600 text-white px-8 py-3 text-xs font-bold uppercase hover:bg-red-700 transition-colors text-center"
-                >
-                  {t('sim.programas.btn')} &rarr;
-                </a>
-              </div>
-            </div>
-            {/* Background Accent */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-red-900/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none transition-all group-hover:bg-red-900/20" />
-          </div>
-
-          {/* PROG 2 */}
-          <div className="bg-[#111111] text-white p-8 relative overflow-hidden flex flex-col justify-between h-full group border border-gray-800 hover:border-red-600 transition-colors">
-            <div className="relative z-10 mb-8">
-              <div className="flex justify-between items-start mb-2">
-                <p className="text-red-600 font-bold text-xs tracking-wider uppercase">{t('sim.programas.prog2')}</p>
-                <p className="text-red-600 font-bold text-sm">45 {t('sim.programas.horas')}</p>
-              </div>
-              <h4 className="text-3xl md:text-4xl font-futuristic italic font-bold text-white mb-2 leading-tight">
-                BOEING 737 NG MCC
-              </h4>
-              <p className="text-xs font-bold uppercase tracking-wide text-gray-300 mb-6 whitespace-pre-line">{t('sim.programas.b737_subtitle')}</p>
-              
-              <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
-                <p className="text-gray-400 text-sm md:w-1/2">
-                  {t('sim.programas.b737_desc')}
-                </p>
-                <div className="md:w-1/2 flex flex-col gap-2">
-                  <div className="flex items-center gap-3">
-                    <BookOpen strokeWidth={1} className="w-5 h-5 text-gray-500" />
-                    <span className="text-sm">25 {t('sim.programas.teoria')}</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Monitor strokeWidth={1} className="w-5 h-5 text-gray-500" />
-                    <span className="text-sm">20 {t('sim.programas.sim')}</span>
-                  </div>
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+                  <a 
+                    id={`btn-programa-${prog.id}`}
+                    href={`${whatsappBase}${encodeURIComponent(prog.wa)}`}
+                    target="_blank" rel="noopener noreferrer"
+                    className="w-full sm:w-auto bg-red-600 text-white px-6 sm:px-8 py-3 text-xs font-bold uppercase hover:bg-red-700 transition-colors text-center"
+                  >
+                    {t('sim.programas.btn')} &rarr;
+                  </a>
                 </div>
               </div>
+              {/* Background Accent */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-red-900/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none transition-all group-hover:bg-red-900/20" />
             </div>
-
-            <div className="relative z-10">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 border-t border-gray-800 pt-6">
-                {[
-                  { i: Users, l: t('sim.programas.b737_f1') },
-                  { i: ShieldCheck, l: t('sim.programas.b737_f2') },
-                  { i: ClipboardList, l: t('sim.programas.b737_f3') },
-                  { i: Target, l: t('sim.programas.b737_f4') }
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-2">
-                    <item.i strokeWidth={1} className="w-8 h-8 text-red-600 shrink-0" />
-                    <span className="text-[10px] text-gray-400 leading-tight whitespace-pre-line">{item.l}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                {/* <p className="text-3xl font-futuristic italic font-bold">$1.850.000 ARS</p> */}
-                <a 
-                  id="btn-programa-737-mcc"
-                  href={`${whatsappBase}${encodeURIComponent(t('sim.programas.wa_b737'))}`}
-                  target="_blank" rel="noopener noreferrer"
-                  className="w-full sm:w-auto bg-red-600 text-white px-8 py-3 text-xs font-bold uppercase hover:bg-red-700 transition-colors text-center"
-                >
-                  {t('sim.programas.btn')} &rarr;
-                </a>
-              </div>
-            </div>
-            {/* Background Accent */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-red-900/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none transition-all group-hover:bg-red-900/20" />
-          </div>
+          ))}
         </div>
       </Section>
 
@@ -622,7 +627,7 @@ export default function SimulatorsPage() {
             </div>
             <div className="flex items-center gap-3 text-white">
               <MapPin strokeWidth={1.5} className="w-5 h-5 text-red-600 shrink-0" />
-              <span className="text-sm">Bolívar 753, B1704BKO Ramos Mejía, Prov. de Buenos Aires</span>
+              <span className="text-sm">Bolívar 573, B1704BKO Ramos Mejía, Prov. de Buenos Aires</span>
             </div>
             <a id="btn-sim-cta-reservar-whatsapp" href="https://wa.me/5491173745726" target="_blank" rel="noopener noreferrer"
               className="mt-4 bg-red-600 text-white px-8 py-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-700 transition-colors w-fit">
