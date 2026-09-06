@@ -370,7 +370,7 @@ export default function SimulatorsPage() {
           <h3 className="font-bold text-sm tracking-wider uppercase text-gray-900">{t('sim.teoricos.title')}</h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {teoricos.map((item, idx) => (
             <div key={idx} className="bg-white border border-gray-200 p-6 flex flex-col h-full hover:border-red-600 hover:shadow-lg transition-all group">
               <div className="flex justify-between items-start mb-4">
@@ -417,9 +417,9 @@ export default function SimulatorsPage() {
           <h3 className="font-bold text-sm tracking-wider uppercase text-gray-900">{t('sim.programas.title')}</h3>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="flex flex-wrap justify-center gap-6">
           {programasEstructurados.map((prog, index) => (
-            <div key={prog.id} className="bg-[#111111] text-white p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between h-full group border border-gray-800 hover:border-red-600 transition-colors">
+            <div key={prog.id} className="w-full lg:w-[calc(50%-12px)] bg-[#111111] text-white p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between h-full group border border-gray-800 hover:border-red-600 transition-colors">
               <div className="relative z-10 mb-8">
                 <div className="flex justify-between items-start mb-2">
                   <p className="text-red-600 font-bold text-[10px] sm:text-xs tracking-wider uppercase">{t('sim.programas.horas')}</p>
